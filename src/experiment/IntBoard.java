@@ -1,24 +1,42 @@
 package experiment;
 
 import java.util.*;
-
+import java.io.*;
 
 public class IntBoard {
 	Set<BoardCell> targets;
 	Map< BoardCell, Set<BoardCell> > adjacencyMap;
 	BoardCell[][] boardCells;
-	//ArrayList<ArrayList<BoardCell>> boardCells;
-	//int[][] intarray = new int[10][10];
+
 	
 	// Constructor
-	public IntBoard() {
+	public IntBoard(String fileName) throws IOException {
 		super();
-		this.readBoard("asdf.csv");
+		try {
+			this.readBoard(fileName);
+		} catch (Exception e) {
+			//something
+		}
 		this.adjacencyMap = calcAdjacencies();
 	}
 
-	private void readBoard(String fileName) {
-		boardCells = new BoardCell[10][10];
+	private void readBoard(String fileName) throws IOException {
+		FileReader reader = new FileReader(fileName);
+		Scanner in = new Scanner(reader);
+        String delimeter = ",";
+        // get dimensions
+        String line = in.nextLine();
+        String[] dim = line.split(line);//Integer.valueOf()
+        boardCells = new BoardCell[10][10];
+		while (in.hasNextLine()) {
+			String line = in.nextLine();
+            // use comma as separator
+            String[] country = line.split(cvsSplitBy);
+
+            System.out.println("Country [code= " + country[4] + " , name=" + country[5] + "]");
+
+        }
+		
 	}
 	
 	public BoardCell getCell(int x, int y) {
