@@ -12,8 +12,14 @@ public class IntBoardTests {
 	private static final int MAX = 3;
 	
 	@Before
-	public void setup() {
-		board = new IntBoard("asdf.csv") throws IOException;  // constructor should call calcAdjacencies() so you can test them
+	public void setup(){
+		try {
+		board = new IntBoard("asdf.csv");  // constructor should call calcAdjacencies() so you can test them
+		} catch (FileNotFoundException e) {
+			assert(false); // file not found exception thrown by IntBoard Constructor
+		} catch (IOException e) {
+			assert(false); // io exception thrown by IntBoard Constructor
+		}
 	}
 	
 	// tests for four corners of the board
@@ -82,9 +88,20 @@ public class IntBoardTests {
 		board.calcTargets(board.getCell(1, 1), 3);
 		Set<BoardCell> targetList = board.getTargets(board.getCell(1, 1), 3);
 		
+		assert(targetList.contains(board.getCell(0, 0)));
+		assert(targetList.contains(board.getCell(0, 1)));
+		assert(targetList.contains(board.getCell(0, 2)));
+		assert(targetList.contains(board.getCell(0, 3)));
+		assert(targetList.contains(board.getCell(1, 0)));
+		assert(targetList.contains(board.getCell(1, 1)));
 		assert(targetList.contains(board.getCell(1, 2)));
+		assert(targetList.contains(board.getCell(1, 3)));
+		assert(targetList.contains(board.getCell(2, 0)));
 		assert(targetList.contains(board.getCell(2, 1)));
+		assert(targetList.contains(board.getCell(2, 2)));
 		assert(targetList.contains(board.getCell(2, 3)));
+		assert(targetList.contains(board.getCell(3, 0)));
+		assert(targetList.contains(board.getCell(3, 1)));
 		assert(targetList.contains(board.getCell(3, 2)));
 	}
 }
