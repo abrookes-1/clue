@@ -10,25 +10,30 @@ public class IntBoard {
 
 	
 	// Constructor
-	public IntBoard(String fileName) throws FileNotFoundException{
+	public IntBoard(String fileName) throws FileNotFoundException {
 		super();
 		this.readBoard(fileName);
 		this.adjacencyMap = calcAdjacencies();
 	}
 
-	private void readBoard(String fileName) throws FileNotFoundException{
+	private void readBoard(String fileName) throws FileNotFoundException {
 		FileReader reader = new FileReader(fileName);
 		Scanner in = new Scanner(reader);
         String delimeter = ",";
         // get dimensions
         String line = in.nextLine();
         String[] dim = line.split(delimeter);
+        // use dimensions to size boardCells 
         boardCells = new BoardCell[Integer.valueOf(dim[0])][Integer.valueOf(dim[1])];
-		while (in.hasNextLine()) {
+        // occupy boardCells array from file data
+		for ( int row = 0; row < Integer.valueOf(dim[1]); ++row ) {
 			line = in.nextLine();
             // use comma as separator
-            String[] row = line.split(delimeter);
-            for (
+            String[] input = line.split(delimeter);
+            for ( int col = 0; col < Integer.valueOf(dim[0]); ++col ) {
+            	boardCells[row][col].setRow(Integer.valueOf(input[row]));
+            	boardCells[row][col].setColumn(Integer.valueOf(input[col]));
+            }
         }
 		
 	}
