@@ -1,5 +1,8 @@
 package tests;
+
 import java.util.*;
+import java.io.*;
+
 import experiment.*;
 import org.junit.*;
 
@@ -10,7 +13,7 @@ public class IntBoardTests {
 	
 	@Before
 	public void setup() {
-		board = new IntBoard("asdf.csv"));  // constructor should call calcAdjacencies() so you can test them
+		board = new IntBoard("asdf.csv") throws IOException;  // constructor should call calcAdjacencies() so you can test them
 	}
 	
 	// tests for four corners of the board
