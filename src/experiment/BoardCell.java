@@ -3,7 +3,7 @@ package experiment;
 public class BoardCell {
 	private int row;
 	private int column;
-	
+	private String symbol; 
 	
 	public int getRow() {
 		return row;
@@ -16,6 +16,12 @@ public class BoardCell {
 	}
 	public void setColumn(int column) {
 		this.column = column;
+	}
+	public String getSymbol() {
+		return symbol;
+	}
+	public void setSymbol(String symbol) {
+		this.symbol = symbol;
 	}
 	
 	
