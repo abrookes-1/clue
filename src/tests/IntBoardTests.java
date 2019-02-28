@@ -1,7 +1,12 @@
 package tests;
+import java.util.*;
+import experiment.*;
 import org.junit.*;
 
+
 public class IntBoardTests {
+	IntBoard board;
+	
 	@Before
 	public void setup() {
 		board = new IntBoard();  // constructor should call calcAdjacencies() so you can test them
@@ -11,7 +16,10 @@ public class IntBoardTests {
 	@Test
 	public void testAdjacencyTL() {
 		// TL = top left
+		Set<BoardCell> testList = board.getAdjList(board.getCell(0, 0));
 		
+		assert(testList.contains(board.getCell(1, 0)));
+		assert(testList.contains(board.getCell(0, 1)));
 	}
 	
 	@Test
