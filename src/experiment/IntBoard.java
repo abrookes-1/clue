@@ -31,8 +31,8 @@ public class IntBoard {
             // use comma as separator
             String[] input = line.split(delimeter);
             for ( int col = 0; col < Integer.valueOf(dim[0]); ++col ) {
-            	boardCells[row][col].setRow(Integer.valueOf(input[row]));
-            	boardCells[row][col].setColumn(Integer.valueOf(input[col]));
+            	boardCells[row][col].setRow(row);
+            	boardCells[row][col].setColumn(col);
             }
         }
 		
