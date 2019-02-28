@@ -55,7 +55,7 @@ public class IntBoard {
 		
 	}
 	
-	public Set<BoardCell> getTargets() {
+	public Set<BoardCell> getTargets(BoardCell cell, int range) {
 		return new HashSet<BoardCell>();
 	}
 	
