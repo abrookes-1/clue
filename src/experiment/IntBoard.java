@@ -33,6 +33,7 @@ public class IntBoard {
             for ( int col = 0; col < Integer.valueOf(dim[0]); ++col ) {
             	boardCells[row][col].setRow(row);
             	boardCells[row][col].setColumn(col);
+            	boardCells[row][col].setSymbol(input[col]);
             }
         }
 		
