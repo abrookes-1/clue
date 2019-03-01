@@ -85,8 +85,8 @@ public class IntBoardTests {
 	
 	@Test
 	public void testTargets() {
-		board.calcTargets(board.getCell(1, 1), 3);
-		Set<BoardCell> targetList = board.getTargets(board.getCell(1, 1), 3);
+		//board.calcTargets(board.getCell(1, 1), 3);
+		Set<BoardCell> targetList = board.getTargets();
 		
 		assert(targetList.contains(board.getCell(0, 0)));
 		assert(targetList.contains(board.getCell(0, 1)));
