@@ -36,6 +36,7 @@ public class IntBoard {
             // use comma as separator
             String[] input = line.split(delimeter);
             for ( int col = 0; col < Integer.valueOf(dim[0]); ++col ) {
+            	boardCells[row][col] = new BoardCell();
             	boardCells[row][col].setRow(row);
             	boardCells[row][col].setColumn(col);
             	boardCells[row][col].setSymbol(input[col]);
@@ -55,10 +56,10 @@ public class IntBoard {
 		
 		for (BoardCell[] rowArr: boardCells) {
 			for(BoardCell cell: rowArr) {
-				if (cell.getColumn() < boardWidth -1) thisAdj.add(this.getCell(cell.getRow()+1, cell.getColumn()));
-				if (cell.getRow() < boardHeight -1) thisAdj.add(this.getCell(cell.getRow(), cell.getColumn()+1));
-				if (cell.getRow() > 0) thisAdj.add(this.getCell(cell.getRow(), cell.getColumn()-1));
-				if (cell.getColumn() > 0) thisAdj.add(this.getCell(cell.getRow()-1, cell.getColumn()));
+				if (cell.getRow() < boardWidth -1) thisAdj.add(this.getCell(cell.getRow()+1, cell.getColumn()));
+				if (cell.getColumn() < boardHeight -1) thisAdj.add(this.getCell(cell.getRow(), cell.getColumn()+1));
+				if (cell.getColumn() > 0) thisAdj.add(this.getCell(cell.getRow(), cell.getColumn()-1));
+				if (cell.getRow() > 0) thisAdj.add(this.getCell(cell.getRow()-1, cell.getColumn()));
 
 				adjacents.put(cell, thisAdj);
 				thisAdj.clear();
