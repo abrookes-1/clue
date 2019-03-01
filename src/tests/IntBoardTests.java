@@ -28,6 +28,8 @@ public class IntBoardTests {
 		// TL = top left
 		Set<BoardCell> testList = board.getAdjList(board.getCell(0, 0));
 		
+		board.printBoard();
+		board.printTarg();
 		assert(testList.contains(board.getCell(1, 0)));
 		assert(testList.contains(board.getCell(0, 1)));
 	}
@@ -46,8 +48,8 @@ public class IntBoardTests {
 		// TL = bottom left
 		Set<BoardCell> testList = board.getAdjList(board.getCell(0, MAX));
 		
-		assert(testList.contains(board.getCell(1, 0)));
-		assert(testList.contains(board.getCell(0, 1)));
+		assert(testList.contains(board.getCell(1, 3)));
+		assert(testList.contains(board.getCell(0, 2)));
 	}
 	
 	@Test
@@ -55,8 +57,8 @@ public class IntBoardTests {
 		// BR = bottom right
 		Set<BoardCell> testList = board.getAdjList(board.getCell(MAX, MAX));
 		
-		assert(testList.contains(board.getCell(1, 0)));
-		assert(testList.contains(board.getCell(0, 1)));
+		assert(testList.contains(board.getCell(2, 3)));
+		assert(testList.contains(board.getCell(3, 2)));
 	}
 	
 	@Test
@@ -85,23 +87,16 @@ public class IntBoardTests {
 	
 	@Test
 	public void testTargets() {
-		//board.calcTargets(board.getCell(1, 1), 3);
+		board.calcTargets(board.getCell(1, 1), 3);
 		Set<BoardCell> targetList = board.getTargets();
 		
-//		assert(targetList.contains(board.getCell(0, 0)));
-//		assert(targetList.contains(board.getCell(0, 1)));
-//		assert(targetList.contains(board.getCell(0, 2)));
-//		assert(targetList.contains(board.getCell(0, 3)));
-//		assert(targetList.contains(board.getCell(1, 0)));
-//		assert(targetList.contains(board.getCell(1, 1)));
-//		assert(targetList.contains(board.getCell(1, 2)));
-//		assert(targetList.contains(board.getCell(1, 3)));
-//		assert(targetList.contains(board.getCell(2, 0)));
-//		assert(targetList.contains(board.getCell(2, 1)));
-//		assert(targetList.contains(board.getCell(2, 2)));
-//		assert(targetList.contains(board.getCell(2, 3)));
-//		assert(targetList.contains(board.getCell(3, 0)));
-//		assert(targetList.contains(board.getCell(3, 1)));
-//		assert(targetList.contains(board.getCell(3, 2)));
+		assert(targetList.contains(board.getCell(0, 1)));
+		assert(targetList.contains(board.getCell(1, 0)));
+		assert(targetList.contains(board.getCell(0, 3)));
+		assert(targetList.contains(board.getCell(3, 0)));
+		assert(targetList.contains(board.getCell(1, 2)));
+		assert(targetList.contains(board.getCell(2, 1)));
+		assert(targetList.contains(board.getCell(3, 2)));
+		assert(targetList.contains(board.getCell(2, 3)));
 	}
 }
