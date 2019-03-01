@@ -7,6 +7,8 @@ public class IntBoard {
 	Set<BoardCell> targets;
 	Map< BoardCell, Set<BoardCell> > adjacencyMap;
 	BoardCell[][] boardCells;
+	private int boardWidth;
+	private int boardHeight;
 
 	
 	// Constructor
@@ -24,7 +26,9 @@ public class IntBoard {
         String line = in.nextLine();
         String[] dim = line.split(delimeter);
         // use dimensions to size boardCells 
-        boardCells = new BoardCell[Integer.valueOf(dim[0])][Integer.valueOf(dim[1])];
+        boardHeight = Integer.valueOf(dim[1]);
+        boardWidth = Integer.valueOf(dim[0]);
+        boardCells = new BoardCell[boardHeight][boardWidth];
         // occupy boardCells array from file data
 		for ( int row = 0; row < Integer.valueOf(dim[1]); ++row ) {
 			line = in.nextLine();
@@ -45,7 +49,21 @@ public class IntBoard {
 	
 	
 	public Map< BoardCell, Set<BoardCell> > calcAdjacencies() {
-		return new HashMap< BoardCell, Set<BoardCell> >();
+		Map< BoardCell, Set<BoardCell> > adjacents = new HashMap< BoardCell, Set<BoardCell> >();
+		Set<BoardCell> thisAdj = new HashSet<BoardCell>();
+		
+		for (BoardCell[] rowArr: boardCells) {
+			for(BoardCell cell: rowArr) {
+				if (cell.getColumn() < boardWidth -1) thisAdj.add(this.getCell(cell.getRow()+1, cell.getColumn()));
+				if (cell.getRow() < boardHeight -1) thisAdj.add(this.getCell(cell.getRow(), cell.getColumn()+1));
+				if (cell.getRow() > 0) thisAdj.add(this.getCell(cell.getRow(), cell.getColumn()-1));
+				if (cell.getColumn() > 0) thisAdj.add(this.getCell(cell.getRow()-1, cell.getColumn()));
+
+				adjacents.put(cell, thisAdj);
+				thisAdj.clear();
+			}
+		}
+		return adjacents;
 	}
 	
 	public Set<BoardCell> getAdjList(BoardCell key) {
