@@ -14,7 +14,7 @@ public class IntBoardTests {
 	@Before
 	public void setup(){
 		try {
-		board = new IntBoard("asdf.csv");  // constructor should call calcAdjacencies() so you can test them
+		board = new IntBoard("testBoard.csv");  // constructor should call calcAdjacencies() so you can test them
 		} catch (FileNotFoundException e) {
 			assert(false); // file not found exception thrown by IntBoard Constructor
 		} catch (IOException e) {

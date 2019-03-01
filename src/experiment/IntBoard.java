@@ -5,6 +5,7 @@ import java.io.*;
 
 public class IntBoard {
 	Set<BoardCell> targets;
+	Set<BoardCell> visited;
 	Map< BoardCell, Set<BoardCell> > adjacencyMap;
 	BoardCell[][] boardCells;
 	private int boardWidth;
@@ -70,12 +71,19 @@ public class IntBoard {
 		return adjacencyMap.get(key);
 	}
 	
-	public void calcTargets(int startCell, int pathLength) {
-		
+	public void calcTargets(BoardCell start, int pathLength) {
+		if (pathLength != 0) {
+			visited.add(start);
+			for (BoardCell adj : adjacencyMap.get(start)){
+				if (!visited.contains(adj)) calcTargets(adj, pathLength - 1);
+			}
+		}
+		targets.add(start);
+		return;
 	}
 	
-	public Set<BoardCell> getTargets(BoardCell cell, int range) {
-		return new HashSet<BoardCell>();
+	public Set<BoardCell> getTargets() {
+		return targets;
 	}
 	
 	
