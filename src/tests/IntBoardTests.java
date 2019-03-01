@@ -28,8 +28,8 @@ public class IntBoardTests {
 		// TL = top left
 		Set<BoardCell> testList = board.getAdjList(board.getCell(0, 0));
 		
-		board.printBoard();
-		board.printTarg();
+		//board.printBoard();
+		//board.printTarg();
 		assert(testList.contains(board.getCell(1, 0)));
 		assert(testList.contains(board.getCell(0, 1)));
 	}
@@ -39,8 +39,8 @@ public class IntBoardTests {
 		// TL = top right
 		Set<BoardCell> testList = board.getAdjList(board.getCell(MAX, 0));
 		
-		assert(testList.contains(board.getCell(1, 0)));
-		assert(testList.contains(board.getCell(0, 1)));
+		assert(testList.contains(board.getCell(2, 0)));
+		assert(testList.contains(board.getCell(3, 1)));
 	}
 	
 	@Test
@@ -87,7 +87,8 @@ public class IntBoardTests {
 	
 	@Test
 	public void testTargets() {
-		board.calcTargets(board.getCell(1, 1), 3);
+		Set<BoardCell> visited = new HashSet<BoardCell>();
+		board.calcTargets(board.getCell(1, 1), 3, visited);
 		Set<BoardCell> targetList = board.getTargets();
 		
 		assert(targetList.contains(board.getCell(0, 1)));

@@ -94,16 +94,17 @@ public class IntBoard {
 		return adjacencyMap.get(key);
 	}
 	
-	public void calcTargets(BoardCell start, int pathLength) {
+	public Set<BoardCell> calcTargets(BoardCell start, int pathLength, Set<BoardCell> visited) {
 		if (pathLength != 0) {
-			visited.add(start);
 			for (BoardCell adj : adjacencyMap.get(start)){
-				/*if (!visited.contains(adj))*/ calcTargets(adj, pathLength - 1);
+				visited.add(start);
+				calcTargets(adj, pathLength - 1, visited);
 			}
 		}
 		targets.add(start);
-		return;
+		return visited;
 	}
+	
 	
 	public Set<BoardCell> getTargets() {
 		return targets;
