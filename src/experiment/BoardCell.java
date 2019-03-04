@@ -2,6 +2,7 @@ package experiment;
 
 /*
  *  @author Giorgio Cassata, Aidan Brookes
+ *  Part 2 code: passing tests
  */
 
 public class BoardCell {

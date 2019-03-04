@@ -8,6 +8,7 @@ import org.junit.*;
 
 /*
  *  @author Giorgio Cassata, Aidan Brookes
+ *  Part 2 code: passing tests
  */
 
 public class IntBoardTests {
