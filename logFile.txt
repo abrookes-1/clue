@@ -1,3 +1,17 @@
+commit ed7c3cd7468c51a8cdeb1ca735768db2d6f89bb8
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Sun Mar 3 23:46:57 2019 -0700
+
+    Switched to ArrayLists for the gameboard so the size didn't have to be preset
+    
+    tests still pass
+
+commit 1488012db5e4220a09e36bd746524b25c5a8c744
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Sun Mar 3 20:34:29 2019 -0700
+
+    Added author names and touched up comments
+
 commit 453dabca6c8ca3db38c9285c8fca256d36d02bcd
 Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
 Date:   Thu Feb 28 18:58:02 2019 -0700
