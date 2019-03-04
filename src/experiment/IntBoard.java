@@ -11,7 +11,7 @@ public class IntBoard {
 	Set<BoardCell> targets = new HashSet<BoardCell>();
 	Set<BoardCell> visited = new HashSet<BoardCell>();
 	Map< BoardCell, Set<BoardCell> > adjacencyMap;
-	BoardCell[][] boardCells;
+	ArrayList<ArrayList<BoardCell>> boardCells;
 	private int boardWidth;
 	private int boardHeight;
 
@@ -28,38 +28,43 @@ public class IntBoard {
 		FileReader reader = new FileReader(fileName);
 		Scanner in = new Scanner(reader);
         String delimeter = ",";
-        // get dimensions
-        String line = in.nextLine();
-        String[] dim = line.split(delimeter);
-        // use dimensions to size boardCells 
-        boardHeight = Integer.valueOf(dim[1]);
-        boardWidth = Integer.valueOf(dim[0]);
-        boardCells = new BoardCell[boardHeight][boardWidth];
+        String line;
+        boardCells = new ArrayList();
         // occupy boardCells array from file data
-		for ( int row = 0; row < Integer.valueOf(dim[1]); ++row ) {
+        int row = -1;
+        while (in.hasNextLine()) {
+        	row++;
 			line = in.nextLine();
+			ArrayList<BoardCell> thisRow = new ArrayList<BoardCell>();
+			
             // use comma as separator
             String[] input = line.split(delimeter);
-            for ( int col = 0; col < Integer.valueOf(dim[0]); ++col ) {
-            	boardCells[row][col] = new BoardCell();
-            	boardCells[row][col].setRow(row);
-            	boardCells[row][col].setColumn(col);
-            	boardCells[row][col].setSymbol(input[col]);
+            int col = -1;
+            for ( int temp = 0; temp < input.length; ++temp ) {
+            	if (!input[temp].isBlank()) {
+            		col++;
+            		BoardCell cell = new BoardCell(row, col, input[col]);
+                	thisRow.add(cell);
+            	}
             }
+            boardCells.add(thisRow);
         }
-		
+		// record dimensions
+		boardHeight = boardCells.size();
+        boardWidth = boardCells.get(0).size();	
 	}
 	
+
 	// populates a map of cells with their respective adjacent cells
 	public Map< BoardCell, Set<BoardCell> > calcAdjacencies() {
 		Map< BoardCell, Set<BoardCell> > adjacents = new HashMap< BoardCell, Set<BoardCell> >();
 		Set<BoardCell> thisAdj = new HashSet<BoardCell>();
-		
-		for (BoardCell[] rowArr: boardCells) {
+
+		for (ArrayList<BoardCell> rowArr: boardCells) {
 			for(BoardCell cell: rowArr) {
 				thisAdj = new HashSet<BoardCell>();
-				if (cell.getRow() < boardWidth -1) thisAdj.add(this.getCell(cell.getRow()+1, cell.getColumn()));
-				if (cell.getColumn() < boardHeight -1) thisAdj.add(this.getCell(cell.getRow(), cell.getColumn()+1));
+				if (cell.getRow() < boardHeight -1) thisAdj.add(this.getCell(cell.getRow()+1, cell.getColumn()));
+				if (cell.getColumn() < boardWidth -1) thisAdj.add(this.getCell(cell.getRow(), cell.getColumn()+1));
 				if (cell.getColumn() > 0) thisAdj.add(this.getCell(cell.getRow(), cell.getColumn()-1));
 				if (cell.getRow() > 0) thisAdj.add(this.getCell(cell.getRow()-1, cell.getColumn()));
 
@@ -71,6 +76,7 @@ public class IntBoard {
 	
 	
 	// calculates possible cells to move to given a path length and an empty Set of BoardCells
+	// TODO: make it consider the tiles that can be visited "W" etc
 	public Set<BoardCell> calcTargets(BoardCell start, int pathLength, Set<BoardCell> visited) {
 		if (pathLength != 0) {
 			for (BoardCell adj : adjacencyMap.get(start)){
@@ -86,7 +92,7 @@ public class IntBoard {
 	
 	// getter for a specific cell in the board
 		public BoardCell getCell(int x, int y) {
-			return boardCells[x][y];
+			return boardCells.get(x).get(y);
 		}
 		
 	// getter for adjacency list given a specific cell
@@ -103,7 +109,7 @@ public class IntBoard {
 	
 	// prints items in board to console (for testing)
 	public void printBoard() {
-		for (BoardCell[] rowArr: boardCells) {
+		for (ArrayList<BoardCell> rowArr: boardCells) {
 			for(BoardCell cell: rowArr) {
 				System.out.print(cell.getRow() + ":" + cell.getColumn() + ", ");
 			}

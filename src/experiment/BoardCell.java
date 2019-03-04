@@ -9,6 +9,14 @@ public class BoardCell {
 	private int column;
 	private String symbol; 
 	
+	// constructor
+	public BoardCell(int row, int column, String symbol) {
+		super();
+		this.row = row;
+		this.column = column;
+		this.symbol = symbol;
+	}
+	
 	// Getters
 	public int getRow() {
 		return row;
