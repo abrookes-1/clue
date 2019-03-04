@@ -5,6 +5,7 @@ import java.io.*;
 
 /*
  *  @author Giorgio Cassata, Aidan Brookes
+ *  Part 2 code: passing tests
  */
 
 public class IntBoard {
