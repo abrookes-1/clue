@@ -6,6 +6,9 @@ import java.io.*;
 import experiment.*;
 import org.junit.*;
 
+/*
+ *  @author Giorgio Cassata, Aidan Brookes
+ */
 
 public class IntBoardTests {
 	IntBoard board;

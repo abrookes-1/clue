@@ -3,6 +3,10 @@ package experiment;
 import java.util.*;
 import java.io.*;
 
+/*
+ *  @author Giorgio Cassata, Aidan Brookes
+ */
+
 public class IntBoard {
 	Set<BoardCell> targets = new HashSet<BoardCell>();
 	Set<BoardCell> visited = new HashSet<BoardCell>();
@@ -18,29 +22,8 @@ public class IntBoard {
 		this.readBoard(fileName);
 		this.adjacencyMap = calcAdjacencies();
 	}
-
-	public void printBoard() {
-		for (BoardCell[] rowArr: boardCells) {
-			for(BoardCell cell: rowArr) {
-				System.out.print(cell.getRow() + ":" + cell.getColumn() + ", ");
-			}
-			System.out.println();
-		}
-	}
 	
-	public void printAdj() {
-		for (BoardCell cell: adjacencyMap.get(this.getCell(0, 0))) {
-			System.out.println(cell.getRow() + ":" + cell.getColumn());
-		}
-	}
-	
-	public void printTarg() {
-		this.calcTargets(this.getCell(1, 1), 3);
-		for (BoardCell cell: this.targets) {
-			System.out.println(cell.getRow() + ":" + cell.getColumn());
-		}
-	}
-	
+	// takes in file for board and populates an array with boardCells
 	private void readBoard(String fileName) throws FileNotFoundException {
 		FileReader reader = new FileReader(fileName);
 		Scanner in = new Scanner(reader);
@@ -67,11 +50,7 @@ public class IntBoard {
 		
 	}
 	
-	public BoardCell getCell(int x, int y) {
-		return boardCells[x][y];
-	}
-	
-	
+	// populates a map of cells with their respective adjacent cells
 	public Map< BoardCell, Set<BoardCell> > calcAdjacencies() {
 		Map< BoardCell, Set<BoardCell> > adjacents = new HashMap< BoardCell, Set<BoardCell> >();
 		Set<BoardCell> thisAdj = new HashSet<BoardCell>();
@@ -90,25 +69,61 @@ public class IntBoard {
 		return adjacents;
 	}
 	
-	public Set<BoardCell> getAdjList(BoardCell key) {
-		return adjacencyMap.get(key);
-	}
 	
+	// calculates possible cells to move to given a path length and an empty Set of BoardCells
 	public Set<BoardCell> calcTargets(BoardCell start, int pathLength, Set<BoardCell> visited) {
 		if (pathLength != 0) {
 			for (BoardCell adj : adjacencyMap.get(start)){
-				visited.add(start);
-				calcTargets(adj, pathLength - 1, visited);
+				visited.add(start); // add current cell to a Set of visited cells
+				calcTargets(adj, pathLength - 1, visited); // recursively calls itself, reducing the pathLength and passing along a Set of previous BoardCells 
 			}
 		}
 		targets.add(start);
 		return visited;
 	}
 	
+	// Getters
 	
+	// getter for a specific cell in the board
+		public BoardCell getCell(int x, int y) {
+			return boardCells[x][y];
+		}
+		
+	// getter for adjacency list given a specific cell
+		public Set<BoardCell> getAdjList(BoardCell key) {
+			return adjacencyMap.get(key);
+		}
+		
+	// getter for Targets Set
 	public Set<BoardCell> getTargets() {
 		return targets;
 	}
 	
+	// Print methods (for testing)
+	
+	// prints items in board to console (for testing)
+	public void printBoard() {
+		for (BoardCell[] rowArr: boardCells) {
+			for(BoardCell cell: rowArr) {
+				System.out.print(cell.getRow() + ":" + cell.getColumn() + ", ");
+			}
+			System.out.println();
+		}
+	}
+	
+	// prints adjacency lists to console (for testing)
+	public void printAdj() {
+		for (BoardCell cell: adjacencyMap.get(this.getCell(0, 0))) {
+			System.out.println(cell.getRow() + ":" + cell.getColumn());
+		}
+	}
+	
+	// prints targets to console (for testing)
+	public void printTarg() {
+		this.calcTargets(this.getCell(1, 1), 3);
+		for (BoardCell cell: this.targets) {
+			System.out.println(cell.getRow() + ":" + cell.getColumn());
+		}
+	}
 	
 }

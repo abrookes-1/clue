@@ -1,0 +1,197 @@
+commit 453dabca6c8ca3db38c9285c8fca256d36d02bcd
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Feb 28 18:58:02 2019 -0700
+
+    Fixed EVERYTHING
+    
+    :b:
+
+commit 1282a37b31656206df0916903df1c587f00b725a
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Feb 28 18:53:09 2019 -0700
+
+    most tests working (not targs)
+
+commit c32b08924dd1c79fe7bdb6c37cc5f70ae79272b9
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Feb 28 18:03:42 2019 -0700
+
+    fixed stuff
+
+commit f25c35567594dfa58e68458a141fc885ceccf5e7
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Feb 28 17:48:46 2019 -0700
+
+    smol
+
+commit 7d344d4898ed4c7930214fc015f368fc8cedb7f7
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Feb 28 17:44:56 2019 -0700
+
+    made target algo
+
+commit 703ca3b221df507e0daf9d7da5730ed5d8a16548
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Feb 28 17:20:47 2019 -0700
+
+    implemented calcAdjacents
+
+commit 18503383c74aedeb852d43d4c56979e01488d448
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Feb 28 16:37:26 2019 -0700
+
+    Update IntBoard.java
+
+commit 81029b92492071fa9add47d38745813ac5ea9021
+Merge: 28545e9 bbf6057
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Feb 28 16:36:39 2019 -0700
+
+    Merge branch 'master' of https://github.com/abrookes-1/clue
+
+commit 28545e9d423ff4615e1afcf44998a77e4a1ec005
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Feb 28 16:35:59 2019 -0700
+
+    asdf
+
+commit bbf6057105b6404dd1032869ffbb66765ecbd63b
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Feb 28 16:35:00 2019 -0700
+
+    Fixed IntBoard
+
+commit a36157165e97801b0b2f8b94b498ab7bcd163f8f
+Merge: 03b76c5 d337121
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Feb 28 16:27:45 2019 -0700
+
+    Merge branch 'master' of https://github.com/abrookes-1/clue
+
+commit 03b76c56885912cb86a95b86652f54fea0f95ca9
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Feb 28 16:27:39 2019 -0700
+
+    Finished readBoard method
+
+commit d337121751e13424e431a20d5e3b0e0d1bfcaaa9
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Feb 28 16:26:38 2019 -0700
+
+    tests complete
+
+commit a8055e42208437e38fb7aa6ab46c8be2d323de77
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Feb 28 15:52:57 2019 -0700
+
+    updated setup for parametrized file name
+
+commit 5a1dabeac4f70aec2ccba6ba41f50d782cb56fb1
+Merge: 0a4d2f4 60638dd
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Feb 28 15:51:50 2019 -0700
+
+    Merge branch 'master' of https://github.com/abrookes-1/clue
+
+commit 0a4d2f4f791be10658cce4ad4b3640a52e6a6f2e
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Feb 28 15:51:38 2019 -0700
+
+    Did stuff
+
+commit 60638dd74135023fa66e78c75216cc7fcdb30681
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Feb 28 15:38:48 2019 -0700
+
+    Update IntBoardTests.java
+
+commit dc09346b88ce18f6d764cf67e4e5190e38e1c377
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Feb 28 15:37:40 2019 -0700
+
+    did work on IntBoard
+
+commit 4da175a9a916582a1650bfa1d54d75d767cc1ba6
+Merge: 5b9427c 2964124
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Feb 28 15:15:02 2019 -0700
+
+    Merge branch 'master' of https://github.com/abrookes-1/clue
+
+commit 5b9427cdbc7e32428070c4e4ad21a4eac3a4cf69
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Feb 28 15:14:28 2019 -0700
+
+    added methods to intboard, implemented first test method
+
+commit 29641240de954f9c2c72473d1102456b897f04e2
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Feb 28 15:01:38 2019 -0700
+
+    Added a test board
+
+commit 8d41f23fd513334358eb40456a6d34b813141dde
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Feb 28 14:38:08 2019 -0700
+
+    Added IntBoard class for testing
+
+commit 2caaa22c7aaad091559dd15dd4bf0c349102dfc2
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Feb 28 14:26:44 2019 -0700
+
+    added empty test functions
+
+commit adece810989d363f796eba5578eadb9cc2ffc250
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Feb 28 14:12:41 2019 -0700
+
+    refactor
+
+commit 81a6d3c9962557a54b4d111a8d15a9b0be78b007
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Feb 28 14:08:29 2019 -0700
+
+    added tests and experiment packages
+
+commit ebeab63ed602e9264f16123753941531f90ed524
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Feb 26 15:14:28 2019 -0700
+
+    Compressed first submission and added first class
+
+commit 9289aa317f8e1dd3319304ae559c8f33a4bc4a8c
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Feb 26 15:08:31 2019 -0700
+
+    Fixed map
+
+commit 1f37b0cd99b0c7fe00e7bec7e5bb8930db2234cc
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Feb 26 15:03:04 2019 -0700
+
+    Update ClueMap.csv
+
+commit 677cc5555fd06478127402c0d17f6a475ee32eec
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Feb 26 15:00:37 2019 -0700
+
+    Added Map and RoomKey
+
+commit 77007e928419d6975c47caa063670167ea6b49fd
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Feb 26 14:53:04 2019 -0700
+
+    Create ClueMap.csv
+
+commit ec3b4a6d09c4eaaecad11f8a50dac1bbbe197f0c
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Feb 26 14:45:02 2019 -0700
+
+    added gitignore
+
+commit db460cc413534c665ceadc19c66322a8e7ff1b8f
+Author: abrookes-1 <aaabrookes@gmail.com>
+Date:   Tue Feb 26 14:29:24 2019 -0700
+
+    Initial commit
