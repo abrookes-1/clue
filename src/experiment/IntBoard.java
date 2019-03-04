@@ -92,14 +92,14 @@ public class IntBoard {
 	// Getters
 	
 	// getter for a specific cell in the board
-		public BoardCell getCell(int x, int y) {
-			return boardCells.get(x).get(y);
-		}
+	public BoardCell getCell(int x, int y) {
+		return boardCells.get(x).get(y);
+	}
 		
 	// getter for adjacency list given a specific cell
-		public Set<BoardCell> getAdjList(BoardCell key) {
-			return adjacencyMap.get(key);
-		}
+	public Set<BoardCell> getAdjList(BoardCell key) {
+		return adjacencyMap.get(key);
+	}
 		
 	// getter for Targets Set
 	public Set<BoardCell> getTargets() {
