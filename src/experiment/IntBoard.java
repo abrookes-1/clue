@@ -8,10 +8,10 @@ import java.io.*;
  */
 
 public class IntBoard {
-	Set<BoardCell> targets = new HashSet<BoardCell>();
-	Set<BoardCell> visited = new HashSet<BoardCell>();
-	Map< BoardCell, Set<BoardCell> > adjacencyMap;
-	ArrayList<ArrayList<BoardCell>> boardCells;
+	private Set<BoardCell> targets = new HashSet<BoardCell>();
+	private Set<BoardCell> visited = new HashSet<BoardCell>();
+	private Map< BoardCell, Set<BoardCell> > adjacencyMap;
+	private ArrayList<ArrayList<BoardCell>> boardCells;
 	private int boardWidth;
 	private int boardHeight;
 
