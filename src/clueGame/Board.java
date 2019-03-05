@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.*;
 
 import clueGame.BoardCell;
-import experiment.IntBoard;
+
 
 public class Board {
 	private int boardWidth;
@@ -20,11 +20,10 @@ public class Board {
 	private String roomConfigFile;
 	
 
-	// Constructor
-	public Board()  {
+		// Constructor
+		public Board()  {
 			super();
 			this.legend = new HashMap<Character, String>();
-			this.adjacencyMap = calcAdjacencies();
 		}
 	
 	// takes in file for board and populates an array with boardCells
@@ -153,7 +152,7 @@ public class Board {
 		} catch (IOException e) {
 			System.out.println(e);  // io exception thrown by IntBoard Constructor
 		}
-		
+		this.adjacencyMap = calcAdjacencies();
 	}
 
 	
