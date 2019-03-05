@@ -1,0 +1,1 @@
+We selected our cells based off of our own clue map that we created in the previous assignment. For example, we have a down facing door at (10,5) for our Theatre room. For the non-door rooms we selected random cells for various rooms to make sure their initial matches. The location of these cells are from a variety of rows and columns that are in different parts of each room.  

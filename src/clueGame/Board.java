@@ -15,6 +15,7 @@ public class Board {
 	private String roomConfigFile;
 	
 	public Board() {
+		this.legend = new HashMap<Character, String>();
 		
 	}
 	
@@ -25,7 +26,7 @@ public class Board {
 	}
 	
 	public BoardCell getCellAt(int row, int col) {
-		return null;
+		return new BoardCell(0,0,'z');
 	}
 	
 
