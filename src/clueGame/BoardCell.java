@@ -9,6 +9,7 @@ public class BoardCell {
 	private int row;
 	private int column;
 	private char initial; 
+	private DoorDirection direction;
 	
 	// constructor
 	public BoardCell(int row, int column, char symbol) {
@@ -16,6 +17,7 @@ public class BoardCell {
 		this.row = row;
 		this.column = column;
 		this.initial = symbol;
+		this.direction = DoorDirection.NONE;
 	}
 	
 	// Getters
@@ -58,5 +60,23 @@ public class BoardCell {
 
 	}
 	
-	
+	public void setDirection(char direction) {
+		switch(direction) {
+		case 'D':
+			this.direction = DoorDirection.DOWN;
+			break;
+		case 'R':
+			this.direction = DoorDirection.RIGHT;
+			break;
+		case 'U':
+			this.direction = DoorDirection.UP;
+			break;
+		case 'L':
+			this.direction = DoorDirection.LEFT;
+			break;
+		default:
+			this.direction = DoorDirection.NONE;
+			break;
+		}
+	}
 }
