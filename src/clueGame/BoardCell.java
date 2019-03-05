@@ -32,7 +32,7 @@ public class BoardCell {
 	}
 	
 	public DoorDirection getDoorDirection() {
-		return DoorDirection.NONE;
+		return this.direction;
 	}
 	
 	// Setters
@@ -56,8 +56,8 @@ public class BoardCell {
 	}
 	
 	public boolean isDoorway() {
-		return false;
-
+		if (this.direction == DoorDirection.NONE) return false;
+		return true;
 	}
 	
 	public void setDirection(char direction) {

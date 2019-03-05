@@ -44,7 +44,7 @@ public class Board {
             String[] input = line.split(delimeter);
             int col = -1;
             for ( int temp = 0; temp < input.length; ++temp ) {
-            	if (!input[temp].isBlank()) {
+            	if (!input[temp].isEmpty()) {
             		col++;
             		BoardCell cell = new BoardCell(row, col, input[col].charAt(0));
             		if (input[col].length() == 2) {
@@ -93,7 +93,17 @@ public class Board {
 	}
 		
 	private void loadRoomConfig(String fileName) throws FileNotFoundException {
-		
+		FileReader reader = new FileReader(fileName);
+		Scanner in = new Scanner(reader);
+        String delimeter = ", ";
+        String line;
+        // occupy boardCells array from file data
+        while (in.hasNextLine()) {
+			line = in.nextLine();
+            // use comma as separator
+            String[] input = line.split(delimeter);
+            legend.put(input[0].charAt(0), input[1]);
+        }
 	}
 	
 	// setters and getters
