@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.*;
 
 import clueGame.BoardCell;
-
+import clueGame.BadConfigFormatException;
 
 public class Board {
 	private int boardWidth;
@@ -20,15 +20,15 @@ public class Board {
 	private String roomConfigFile;
 	
 
-		// Constructor
-		public Board()  {
-			super();
-			this.legend = new HashMap<Character, String>();
-		}
+	// Constructor
+	public Board()  {
+		super();
+		this.legend = new HashMap<Character, String>();
+	}
 	
 	// takes in file for board and populates an array with boardCells
-	private void loadBoardConfig(String fileName) throws FileNotFoundException {
-		FileReader reader = new FileReader(fileName);
+	public void loadBoardConfig() throws FileNotFoundException, BadConfigFormatException {
+		FileReader reader = new FileReader(boardConfigFile);
 		Scanner in = new Scanner(reader);
         String delimeter = ",";
         String line;
@@ -46,6 +46,9 @@ public class Board {
             for ( int temp = 0; temp < input.length; ++temp ) {
             	if (!input[temp].isEmpty()) {
             		col++;
+            		if (!legend.containsKey(input[col].charAt(0))) {
+            			throw new BadConfigFormatException();
+            		}
             		BoardCell cell = new BoardCell(row, col, input[col].charAt(0));
             		if (input[col].length() == 2) {
             			cell.setDirection(input[col].charAt(1));
@@ -58,6 +61,11 @@ public class Board {
 		// record dimensions
 		boardHeight = boardCells.size();
         boardWidth = boardCells.get(0).size();	
+        for (int i = 1; i < boardHeight; ++i) {
+        	if (boardCells.get(i).size() != boardWidth) {
+        		throw new BadConfigFormatException();
+        	}
+        }
 	}
 
 	// populates a map of cells with their respective adjacent cells
@@ -92,8 +100,8 @@ public class Board {
 		return visited;
 	}
 		
-	private void loadRoomConfig(String fileName) throws FileNotFoundException {
-		FileReader reader = new FileReader(fileName);
+	public void loadRoomConfig() throws FileNotFoundException, BadConfigFormatException {
+		FileReader reader = new FileReader(roomConfigFile);
 		Scanner in = new Scanner(reader);
         String delimeter = ", ";
         String line;
@@ -103,6 +111,9 @@ public class Board {
             // use comma as separator
             String[] input = line.split(delimeter);
             legend.put(input[0].charAt(0), input[1]);
+            if (!input[2].equals("Card") && !input[2].equals("Other")) {
+            	throw new BadConfigFormatException(input[2]);
+            }
         }
 	}
 	
@@ -149,18 +160,22 @@ public class Board {
 	
 	public void initialize() {
 		try {
-			this.loadBoardConfig(boardConfigFile);
-		} catch (FileNotFoundException e) {
-			System.out.println(e); // file not found exception thrown by IntBoard Constructor
-		} catch (IOException e) {
-			System.out.println(e);  // io exception thrown by IntBoard Constructor
-		}
-		try {
-			this.loadRoomConfig(roomConfigFile);
+			this.loadRoomConfig();
 		} catch (FileNotFoundException e) {
 			System.out.println(e);  // file not found exception thrown by IntBoard Constructor
 		} catch (IOException e) {
 			System.out.println(e);  // io exception thrown by IntBoard Constructor
+		} catch (BadConfigFormatException e) {
+			System.out.println("Bad Config2:" + e.getMessage());  // io exception thrown by IntBoard Constructor
+		}
+		try {
+			this.loadBoardConfig();
+		} catch (FileNotFoundException e) {
+			System.out.println(e); // file not found exception thrown by IntBoard Constructor
+		} catch (IOException e) {
+			System.out.println(e);  // io exception thrown by IntBoard Constructor
+		} catch (BadConfigFormatException e) {
+			System.out.println("Bad Config1");  // io exception thrown by IntBoard Constructor
 		}
 		this.adjacencyMap = calcAdjacencies();
 	}
