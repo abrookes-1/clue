@@ -89,16 +89,24 @@ public class Board {
 	
 	// calculates possible cells to move to given a path length and an empty Set of BoardCells
 	// TODO: make it consider the tiles that can be visited "W" etc
-	public Set<BoardCell> calcTargets(BoardCell start, int pathLength, Set<BoardCell> visited) {
+	public Set<BoardCell> helperTargets(BoardCell start, int pathLength, Set<BoardCell> visited) {
 		if (pathLength != 0) {
 			for (BoardCell adj : adjacencyMap.get(start)){
 				visited.add(start); // add current cell to a Set of visited cells
-				calcTargets(adj, pathLength - 1, visited); // recursively calls itself, reducing the pathLength and passing along a Set of previous BoardCells 
+				helperTargets(adj, pathLength - 1, visited); // recursively calls itself, reducing the pathLength and passing along a Set of previous BoardCells 
 			}
 		}
 		targets.add(start);
 		return visited;
 	}
+	
+	public Set<BoardCell> calcTargets(int x, int y, int pathlength) {
+		Set<BoardCell> visited = new HashSet<BoardCell>();
+		visited = helperTargets(this.getCellAt(x,	y), pathlength, visited);
+		return visited;
+	}
+	
+	
 		
 	public void loadRoomConfig() throws FileNotFoundException, BadConfigFormatException {
 		FileReader reader = new FileReader(roomConfigFile);
@@ -145,8 +153,8 @@ public class Board {
 	}
 
 	// getter for adjacency list given a specific cell
-	public Set<BoardCell> getAdjList(BoardCell key) {
-		return adjacencyMap.get(key);
+	public Set<BoardCell> getAdjList(int x, int y) {
+		return adjacencyMap.get(this.getCellAt(x,y));
 	}
 		
 	// getter for Targets Set
