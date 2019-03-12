@@ -64,7 +64,7 @@ public class CTest_BoardAdjTargetTests_Custom {
 		assertTrue(testList.contains(board.getCellAt(19, 0)));
 		// TEST DOORWAY LEFT 
 		testList = board.getAdjList(11, 15);
-		assertEquals(1, testList.size());
+		assertEquals(3, testList.size());
 		assertTrue(testList.contains(board.getCellAt(11, 14)));
 		// TEST DOORWAY DOWN
 		testList = board.getAdjList(14, 21);
@@ -150,7 +150,7 @@ public class CTest_BoardAdjTargetTests_Custom {
 		
 		board.calcTargets(21, 15, 1);
 		targets= board.getTargets();
-		assertEquals(3, targets.size());
+		assertEquals(4, targets.size());
 		assertTrue(targets.contains(board.getCellAt(20, 15)));
 		assertTrue(targets.contains(board.getCellAt(22, 15)));	
 		assertTrue(targets.contains(board.getCellAt(21, 14)));	
@@ -205,7 +205,7 @@ public class CTest_BoardAdjTargetTests_Custom {
 		
 		// Includes a path that doesn't have enough length
 		board.calcTargets(16, 5, 4);
-		targets= board.getTargets();
+		targets = board.getTargets();
 		assertEquals(5, targets.size());
 		assertTrue(targets.contains(board.getCellAt(12, 5)));
 		assertTrue(targets.contains(board.getCellAt(13, 4)));	
@@ -223,7 +223,6 @@ public class CTest_BoardAdjTargetTests_Custom {
 		// One room is exactly 1 away
 		board.calcTargets(21, 15, 1);
 		Set<BoardCell> targets= board.getTargets();
-		targets= board.getTargets();
 		assertEquals(4, targets.size());
 		assertTrue(targets.contains(board.getCellAt(20, 15)));
 		assertTrue(targets.contains(board.getCellAt(22, 15)));	

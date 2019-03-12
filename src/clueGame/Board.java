@@ -21,7 +21,7 @@ public class Board {
 	
 
 	// Constructor
-	public Board()  {
+	public Board() {
 		super();
 		this.legend = new HashMap<Character, String>();
 	}
@@ -76,10 +76,42 @@ public class Board {
 		for (ArrayList<BoardCell> rowArr: boardCells) {
 			for(BoardCell cell: rowArr) {
 				thisAdj = new HashSet<BoardCell>();
-				if (cell.getRow() < boardHeight -1) thisAdj.add(this.getCellAt(cell.getRow()+1, cell.getColumn()));
-				if (cell.getColumn() < boardWidth -1) thisAdj.add(this.getCellAt(cell.getRow(), cell.getColumn()+1));
-				if (cell.getColumn() > 0) thisAdj.add(this.getCellAt(cell.getRow(), cell.getColumn()-1));
-				if (cell.getRow() > 0) thisAdj.add(this.getCellAt(cell.getRow()-1, cell.getColumn()));
+				if (cell.getInitial() != 'W' && cell.getDoorDirection() == DoorDirection.NONE) {
+					adjacents.put(cell, thisAdj);
+					continue;
+				}
+				BoardCell cellBelow = null;
+				BoardCell cellRight = null;
+				BoardCell cellAbove = null;
+				BoardCell cellLeft = null;
+				
+				if (cell.getRow() < boardHeight -1) {
+					cellBelow = this.getCellAt(cell.getRow()+1, cell.getColumn());
+				}
+				if (cell.getColumn() < boardWidth -1) {
+					cellRight = this.getCellAt(cell.getRow(), cell.getColumn()+1);
+				}
+				if (cell.getColumn() > 0) {
+					cellLeft = this.getCellAt(cell.getRow(), cell.getColumn()-1);
+				}
+				if (cell.getRow() > 0) {
+					cellAbove = this.getCellAt(cell.getRow()-1, cell.getColumn());
+				}
+				
+				
+				if (cellBelow != null && (cellBelow.getInitial() == 'W' || cellBelow.getDoorDirection() != DoorDirection.NONE)) {
+					thisAdj.add(cellBelow);
+				}
+				if (cellAbove != null && (cellAbove.getInitial() == 'W' || cellAbove.getDoorDirection() != DoorDirection.NONE)) {
+					thisAdj.add(cellAbove);
+				}
+				if (cellRight != null && (cellRight.getInitial() == 'W' || cellRight.getDoorDirection() != DoorDirection.NONE)) {
+					thisAdj.add(cellRight);
+				}
+				if (cellLeft != null && (cellLeft.getInitial() == 'W' || cellLeft.getDoorDirection() != DoorDirection.NONE)) {
+					thisAdj.add(cellLeft);
+				}
+				
 
 				adjacents.put(cell, thisAdj);
 			}
@@ -88,7 +120,6 @@ public class Board {
 	}
 	
 	// calculates possible cells to move to given a path length and an empty Set of BoardCells
-	// TODO: make it consider the tiles that can be visited "W" etc
 	public Set<BoardCell> helperTargets(BoardCell start, int pathLength, Set<BoardCell> visited) {
 		if (pathLength != 0) {
 			for (BoardCell adj : adjacencyMap.get(start)){
@@ -100,10 +131,12 @@ public class Board {
 		return visited;
 	}
 	
-	public Set<BoardCell> calcTargets(int x, int y, int pathlength) {
+	public void calcTargets(int x, int y, int pathlength) {
 		Set<BoardCell> visited = new HashSet<BoardCell>();
-		visited = helperTargets(this.getCellAt(x,	y), pathlength, visited);
-		return visited;
+		this.targets.clear();
+		helperTargets(this.getCellAt(x, y), pathlength, visited);
+		targets.remove(this.getCellAt(x, y));
+		return;
 	}
 	
 	
