@@ -1,3 +1,7 @@
+/*
+ *  @author Giorgio Cassata, Aidan Brookes
+ */
+
 package clueGame;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -11,36 +15,33 @@ public class Board {
 	private int boardWidth;
 	private int boardHeight;
 	private Map<Character, String> legend;
-	//private Set<BoardCell> namedTargets;
+	private Map< BoardCell, Set<BoardCell> > adjacencyMap;
 	private Set<BoardCell> targets = new HashSet<BoardCell>();
 	private Set<BoardCell> visited = new HashSet<BoardCell>();
-	private Map< BoardCell, Set<BoardCell> > adjacencyMap;
 	private ArrayList<ArrayList<BoardCell>> boardCells;
 	private String boardConfigFile;
 	private String roomConfigFile;
 	
-
 	// Constructor
 	public Board() {
 		super();
 		this.legend = new HashMap<Character, String>();
 	}
 	
-	// takes in file for board and populates an array with boardCells
+	// Uses boardConfigFile and populates an array with boardCells
 	public void loadBoardConfig() throws FileNotFoundException, BadConfigFormatException {
 		FileReader reader = new FileReader(boardConfigFile);
 		Scanner in = new Scanner(reader);
         String delimeter = ",";
         String line;
         boardCells = new ArrayList();
-        // occupy boardCells array from file data
+        
+        // Build array from file data
         int row = -1;
         while (in.hasNextLine()) {
         	row++;
 			line = in.nextLine();
 			ArrayList<BoardCell> thisRow = new ArrayList<BoardCell>();
-			
-            // use comma as separator
             String[] input = line.split(delimeter);
             int col = -1;
             for ( int temp = 0; temp < input.length; ++temp ) {
@@ -58,9 +59,12 @@ public class Board {
             }
             boardCells.add(thisRow);
         }
+        
 		// record dimensions
 		boardHeight = boardCells.size();
-        boardWidth = boardCells.get(0).size();	
+        boardWidth = boardCells.get(0).size();
+        
+        // check that each row has the same number of columns
         for (int i = 1; i < boardHeight; ++i) {
         	if (boardCells.get(i).size() != boardWidth) {
         		throw new BadConfigFormatException();
@@ -68,7 +72,7 @@ public class Board {
         }
 	}
 
-	// populates a map of cells with their respective adjacent cells
+	// Populates a map of cells with a Set of their respective adjacent cells
 	public Map< BoardCell, Set<BoardCell> > calcAdjacencies() {
 		Map< BoardCell, Set<BoardCell> > adjacents = new HashMap< BoardCell, Set<BoardCell> >();
 		Set<BoardCell> thisAdj = new HashSet<BoardCell>();
@@ -76,6 +80,8 @@ public class Board {
 		for (ArrayList<BoardCell> rowArr: boardCells) {
 			for(BoardCell cell: rowArr) {
 				thisAdj = new HashSet<BoardCell>();
+				
+				// If cell isn't walkway or door, doesn't have any adjacencies 
 				if (cell.getInitial() != 'W' && cell.getDoorDirection() == DoorDirection.NONE) {
 					adjacents.put(cell, thisAdj);
 					continue;
@@ -85,6 +91,7 @@ public class Board {
 				BoardCell cellAbove = null;
 				BoardCell cellLeft = null;
 				
+				// Set adjacent cells if they exist within the board
 				if (cell.getRow() < boardHeight -1) {
 					cellBelow = this.getCellAt(cell.getRow()+1, cell.getColumn());
 				}
@@ -98,7 +105,7 @@ public class Board {
 					cellAbove = this.getCellAt(cell.getRow()-1, cell.getColumn());
 				}
 				
-				
+				// Add adjacent cells to adjacency Set if they are a walkway or door
 				if (cellBelow != null && (cellBelow.getInitial() == 'W' || cellBelow.getDoorDirection() != DoorDirection.NONE)) {
 					thisAdj.add(cellBelow);
 				}
@@ -112,14 +119,14 @@ public class Board {
 					thisAdj.add(cellLeft);
 				}
 				
-
+				// Put Set of adjacent cells into map for current cell
 				adjacents.put(cell, thisAdj);
 			}
 		}
 		return adjacents;
 	}
 	
-	// calculates possible cells to move to given a path length and an empty Set of BoardCells
+	// Builds targets Set with possible cells to move to given a starting point, path length, and an empty Set of BoardCells 
 	public Set<BoardCell> helperTargets(BoardCell start, int pathLength, Set<BoardCell> visited) {
 		if (pathLength != 0) {
 			for (BoardCell adj : adjacencyMap.get(start)){
@@ -131,25 +138,24 @@ public class Board {
 		return visited;
 	}
 	
+	// Calls helperTargets correctly so it can build targets Set
 	public void calcTargets(int x, int y, int pathlength) {
 		Set<BoardCell> visited = new HashSet<BoardCell>();
 		this.targets.clear();
 		helperTargets(this.getCellAt(x, y), pathlength, visited);
-		targets.remove(this.getCellAt(x, y));
+		targets.remove(this.getCellAt(x, y)); // removes starting cell from targets if it gets included
 		return;
 	}
-	
-	
 		
+	// Uses roomConfigFile and populates an Map with a legend with room names corresponding to characters
 	public void loadRoomConfig() throws FileNotFoundException, BadConfigFormatException {
 		FileReader reader = new FileReader(roomConfigFile);
 		Scanner in = new Scanner(reader);
         String delimeter = ", ";
         String line;
-        // occupy boardCells array from file data
+        
         while (in.hasNextLine()) {
 			line = in.nextLine();
-            // use comma as separator
             String[] input = line.split(delimeter);
             legend.put(input[0].charAt(0), input[1]);
             if (!input[2].equals("Card") && !input[2].equals("Other")) {

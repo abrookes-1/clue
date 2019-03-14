@@ -1,9 +1,8 @@
-package clueGame;
-
 /*
  *  @author Giorgio Cassata, Aidan Brookes
- *  Part 2 code: passing tests
  */
+
+package clueGame;
 
 public class BoardCell {
 	private int row;
@@ -11,7 +10,7 @@ public class BoardCell {
 	private char initial; 
 	private DoorDirection direction;
 	
-	// constructor
+	// Constructor
 	public BoardCell(int row, int column, char symbol) {
 		super();
 		this.row = row;
@@ -30,7 +29,6 @@ public class BoardCell {
 	public char getInitial() {
 		return initial;
 	}
-	
 	public DoorDirection getDoorDirection() {
 		return this.direction;
 	}
@@ -45,21 +43,6 @@ public class BoardCell {
 	public void setInitial(char symbol) {
 		this.initial = symbol;
 	}
-	
-	public boolean isWalkway() {
-		return false;
-	}
-	
-	public boolean isRoom() {
-		return false;
-
-	}
-	
-	public boolean isDoorway() {
-		if (this.direction == DoorDirection.NONE) return false;
-		return true;
-	}
-	
 	public void setDirection(char direction) {
 		switch(direction) {
 		case 'D':
@@ -79,4 +62,19 @@ public class BoardCell {
 			break;
 		}
 	}
+	
+	// Checks for cell conditions
+	public boolean isWalkway() {
+		return false;
+	}
+	public boolean isRoom() {
+		return false;
+
+	}
+	public boolean isDoorway() {
+		if (this.direction == DoorDirection.NONE) return false;
+		return true;
+	}
+	
+	
 }
