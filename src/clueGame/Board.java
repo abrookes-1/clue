@@ -27,7 +27,7 @@ public class Board {
 		super();
 		this.legend = new HashMap<Character, String>();
 	}
-	
+
 	// Uses boardConfigFile and populates an array with boardCells
 	public void loadBoardConfig() throws FileNotFoundException, BadConfigFormatException {
 		FileReader reader = new FileReader(boardConfigFile);
@@ -146,7 +146,7 @@ public class Board {
 		targets.remove(this.getCellAt(x, y)); // removes starting cell from targets if it gets included
 		return;
 	}
-		
+	
 	// Uses roomConfigFile and populates an Map with a legend with room names corresponding to characters
 	public void loadRoomConfig() throws FileNotFoundException, BadConfigFormatException {
 		FileReader reader = new FileReader(roomConfigFile);

@@ -161,6 +161,8 @@ public class CTest_BoardAdjTargetTests_Custom {
 	// These are LIGHT BLUE on the planning spreadsheet
 	@Test
 	public void testTargetsTwoSteps() {
+		// targets one cell away seem to be selected as well as those two cells away
+		// targets = (row, column): (13, 14) (12, 14) (10, 15) (11, 14) (11, 15)
 		board.calcTargets(12, 15, 2);
 		Set<BoardCell> targets= board.getTargets();
 		assertEquals(4, targets.size());
@@ -168,13 +170,14 @@ public class CTest_BoardAdjTargetTests_Custom {
 		assertTrue(targets.contains(board.getCellAt(11, 14)));
 		assertTrue(targets.contains(board.getCellAt(13, 14)));
 		assertTrue(targets.contains(board.getCellAt(11, 14)));
-
+		
 		board.calcTargets(5, 7, 2);
 		targets= board.getTargets();
+		// targets = (row, column): ^(4,6) 1(5,8) ^(6,8) ^(5,9) ^(6,6) 1(4,7) ^(7,7) 1(5,6) ^(5,5) 1(6,7) ^(3,7)
 		assertEquals(7, targets.size());
 		assertTrue(targets.contains(board.getCellAt(5, 9)));
-		assertTrue(targets.contains(board.getCellAt(5, 5)));	
-		assertTrue(targets.contains(board.getCellAt(3, 7)));			
+		assertTrue(targets.contains(board.getCellAt(5, 5)));
+		assertTrue(targets.contains(board.getCellAt(3, 7)));
 		assertTrue(targets.contains(board.getCellAt(7, 7)));
 		assertTrue(targets.contains(board.getCellAt(6, 8)));
 		assertTrue(targets.contains(board.getCellAt(6, 6)));
