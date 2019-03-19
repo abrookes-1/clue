@@ -18,7 +18,7 @@ public class BoardCell {
 		this.initial = symbol;
 		this.direction = DoorDirection.NONE;
 	}
-	
+
 	// Getters
 	public int getRow() {
 		return row;

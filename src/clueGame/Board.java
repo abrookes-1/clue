@@ -90,7 +90,7 @@ public class Board {
 				BoardCell cellRight = null;
 				BoardCell cellAbove = null;
 				BoardCell cellLeft = null;
-				
+			
 				// Set adjacent cells if they exist within the board
 				if (cell.getRow() < boardHeight -1) {
 					cellBelow = this.getCellAt(cell.getRow()+1, cell.getColumn());
@@ -106,18 +106,40 @@ public class Board {
 				}
 				
 				// Add adjacent cells to adjacency Set if they are a walkway or door
-				if (cellBelow != null && (cellBelow.getInitial() == 'W' || cellBelow.getDoorDirection() != DoorDirection.NONE)) {
-					thisAdj.add(cellBelow);
+				if (cell.getInitial() == 'W') { // if on walkway
+					if (cellBelow != null && (cellBelow.getInitial() == 'W' || cellBelow.getDoorDirection() == DoorDirection.UP)) {
+						thisAdj.add(cellBelow);
+					}
+					if (cellAbove != null && (cellAbove.getInitial() == 'W' || cellAbove.getDoorDirection() == DoorDirection.DOWN)) {
+						thisAdj.add(cellAbove);
+					}
+					if (cellRight != null && (cellRight.getInitial() == 'W' || cellRight.getDoorDirection() == DoorDirection.LEFT)) {
+						thisAdj.add(cellRight);
+					}
+					if (cellLeft != null && (cellLeft.getInitial() == 'W' || cellLeft.getDoorDirection() == DoorDirection.RIGHT)) {
+						thisAdj.add(cellLeft);
+					}
+				} else if (cell.getDoorDirection() != DoorDirection.NONE) { // if in door
+					if (cell.getDoorDirection() == DoorDirection.RIGHT &&
+							(cellRight.getInitial() == 'W' || cellRight.getDoorDirection() != DoorDirection.NONE)) {
+						thisAdj.add(cellRight);
+					}
+					if (cell.getDoorDirection() == DoorDirection.LEFT &&
+							(cellLeft.getInitial() == 'W' || cellLeft.getDoorDirection() != DoorDirection.NONE)) {
+						thisAdj.add(cellLeft);
+					}
+					if (cell.getDoorDirection() == DoorDirection.UP &&
+							(cellAbove.getInitial() == 'W' || cellAbove.getDoorDirection() != DoorDirection.NONE)) {
+						thisAdj.add(cellAbove);
+					}
+					if (cell.getDoorDirection() == DoorDirection.DOWN &&
+							(cellBelow.getInitial() == 'W' || cellBelow.getDoorDirection() != DoorDirection.NONE)) {
+						thisAdj.add(cellBelow);
+					}
+				} else { // if in room
+					
 				}
-				if (cellAbove != null && (cellAbove.getInitial() == 'W' || cellAbove.getDoorDirection() != DoorDirection.NONE)) {
-					thisAdj.add(cellAbove);
-				}
-				if (cellRight != null && (cellRight.getInitial() == 'W' || cellRight.getDoorDirection() != DoorDirection.NONE)) {
-					thisAdj.add(cellRight);
-				}
-				if (cellLeft != null && (cellLeft.getInitial() == 'W' || cellLeft.getDoorDirection() != DoorDirection.NONE)) {
-					thisAdj.add(cellLeft);
-				}
+				
 				
 				// Put Set of adjacent cells into map for current cell
 				adjacents.put(cell, thisAdj);
@@ -125,26 +147,34 @@ public class Board {
 		}
 		return adjacents;
 	}
-	
+
 	// Builds targets Set with possible cells to move to given a starting point, path length, and an empty Set of BoardCells 
-	public Set<BoardCell> helperTargets(BoardCell start, int pathLength, Set<BoardCell> visited) {
-		if (pathLength != 0) {
+	public Set<BoardCell> helperTargets(BoardCell start, int pathLength, Set<BoardCell> visited, BoardCell origin) {
+		//if (visited == null) visited = new HashSet<BoardCell>();
+		if (pathLength != 0 && !visited.contains(start)) {
+			visited.add(start); // add current cell to a Set of visited cells
 			for (BoardCell adj : adjacencyMap.get(start)){
-				visited.add(start); // add current cell to a Set of visited cells
-				helperTargets(adj, pathLength - 1, visited); // recursively calls itself, reducing the pathLength and passing along a Set of previous BoardCells 
+				if (adj.getDoorDirection() == DoorDirection.NONE) {
+					if (adj.getRow() != origin.getRow() || adj.getColumn() != origin.getColumn()) { // make sure the path never goes through origin
+						helperTargets(adj, pathLength - 1, visited, origin); // recursively calls itself, reducing the pathLength and passing along a Set of previous BoardCells
+					}
+				} else { // add doors when not on even roll
+					targets.add(adj);
+				}
 			}
+		} else if (pathLength == 0){
+			targets.add(start);
+			visited.clear();
 		}
-		targets.add(start);
 		return visited;
 	}
-	
+
 	// Calls helperTargets correctly so it can build targets Set
 	public void calcTargets(int x, int y, int pathlength) {
 		Set<BoardCell> visited = new HashSet<BoardCell>();
 		this.targets.clear();
-		helperTargets(this.getCellAt(x, y), pathlength, visited);
+		helperTargets(this.getCellAt(x, y), pathlength, visited, this.getCellAt(x, y));
 		targets.remove(this.getCellAt(x, y)); // removes starting cell from targets if it gets included
-		return;
 	}
 	
 	// Uses roomConfigFile and populates an Map with a legend with room names corresponding to characters
@@ -204,7 +234,7 @@ public class Board {
 	public static Board getInstance() {
 		return new Board();
 	}
-	
+
 	public void initialize() {
 		try {
 			this.loadRoomConfig();
