@@ -12,6 +12,7 @@ import clueGame.BoardCell;
 import clueGame.BadConfigFormatException;
 
 public class Board {
+	private static Board boardInstance = new Board();
 	private int boardWidth;
 	private int boardHeight;
 	private Map<Character, String> legend;
@@ -232,7 +233,7 @@ public class Board {
 	}
 	
 	public static Board getInstance() {
-		return new Board();
+		return boardInstance;
 	}
 
 	public void initialize() {
