@@ -1,0 +1,2 @@
+1 - made getinstance return a static
+2 - removed unused instance of "visited" set

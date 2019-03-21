@@ -18,7 +18,6 @@ public class Board {
 	private Map<Character, String> legend;
 	private Map< BoardCell, Set<BoardCell> > adjacencyMap;
 	private Set<BoardCell> targets = new HashSet<BoardCell>();
-	private Set<BoardCell> visited = new HashSet<BoardCell>();
 	private ArrayList<ArrayList<BoardCell>> boardCells;
 	private String boardConfigFile;
 	private String roomConfigFile;
