@@ -106,7 +106,7 @@ public class Board {
 				}
 				
 				// Add adjacent cells to adjacency Set if they are a walkway or door
-				if (cell.getInitial() == 'W') { // if on walkway
+				if (cell.getInitial() == 'W') { // if current cell is a walkway
 					if (cellBelow != null && (cellBelow.getInitial() == 'W' || cellBelow.getDoorDirection() == DoorDirection.UP)) {
 						thisAdj.add(cellBelow);
 					}
@@ -119,7 +119,7 @@ public class Board {
 					if (cellLeft != null && (cellLeft.getInitial() == 'W' || cellLeft.getDoorDirection() == DoorDirection.RIGHT)) {
 						thisAdj.add(cellLeft);
 					}
-				} else if (cell.getDoorDirection() != DoorDirection.NONE) { // if in door
+				} else if (cell.getDoorDirection() != DoorDirection.NONE) { // if current cell is door slot
 					if (cell.getDoorDirection() == DoorDirection.RIGHT &&
 							(cellRight.getInitial() == 'W' || cellRight.getDoorDirection() != DoorDirection.NONE)) {
 						thisAdj.add(cellRight);
@@ -136,7 +136,7 @@ public class Board {
 							(cellBelow.getInitial() == 'W' || cellBelow.getDoorDirection() != DoorDirection.NONE)) {
 						thisAdj.add(cellBelow);
 					}
-				} else { // if in room
+				} else { // if current cell is neither walkway nor door (as of now this should never happen)
 					
 				}
 				
@@ -216,7 +216,7 @@ public class Board {
 	public Map<Character, String> getLegend() {
 		return legend;
 	}
-
+	
 	public void setLegend(Map<Character, String> legend) {
 		this.legend = legend;
 	}
