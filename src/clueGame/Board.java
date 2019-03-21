@@ -240,8 +240,6 @@ public class Board {
 			this.loadRoomConfig();
 		} catch (FileNotFoundException e) {
 			System.out.println(e);  // file not found exception thrown by IntBoard Constructor
-		} catch (IOException e) {
-			System.out.println(e);  // io exception thrown by IntBoard Constructor
 		} catch (BadConfigFormatException e) {
 			System.out.println("Bad Config2:" + e.getMessage());  // io exception thrown by IntBoard Constructor
 		}
@@ -249,8 +247,6 @@ public class Board {
 			this.loadBoardConfig();
 		} catch (FileNotFoundException e) {
 			System.out.println(e); // file not found exception thrown by IntBoard Constructor
-		} catch (IOException e) {
-			System.out.println(e);  // io exception thrown by IntBoard Constructor
 		} catch (BadConfigFormatException e) {
 			System.out.println("Bad Config1");  // io exception thrown by IntBoard Constructor
 		}
