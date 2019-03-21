@@ -2,3 +2,5 @@
 2 - removed unused instance of "visited" set
 3 - removed unreachable code in board.initialize (unreachable catch block)
 4 - changed three board methods (including constructor) from public to private
+5 - added comments to explain "getAdjacencies" logic
+6 - 
