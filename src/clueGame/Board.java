@@ -23,13 +23,13 @@ public class Board {
 	private String roomConfigFile;
 	
 	// Constructor
-	public Board() {
+	private Board() {
 		super();
 		this.legend = new HashMap<Character, String>();
 	}
 
 	// Uses boardConfigFile and populates an array with boardCells
-	public void loadBoardConfig() throws FileNotFoundException, BadConfigFormatException {
+	private void loadBoardConfig() throws FileNotFoundException, BadConfigFormatException {
 		FileReader reader = new FileReader(boardConfigFile);
 		Scanner in = new Scanner(reader);
         String delimeter = ",";
@@ -73,7 +73,7 @@ public class Board {
 	}
 
 	// Populates a map of cells with a Set of their respective adjacent cells
-	public Map< BoardCell, Set<BoardCell> > calcAdjacencies() {
+	private Map< BoardCell, Set<BoardCell> > calcAdjacencies() {
 		Map< BoardCell, Set<BoardCell> > adjacents = new HashMap< BoardCell, Set<BoardCell> >();
 		Set<BoardCell> thisAdj = new HashSet<BoardCell>();
 
