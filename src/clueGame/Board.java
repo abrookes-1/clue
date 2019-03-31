@@ -4,6 +4,7 @@
 
 package clueGame;
 import java.awt.Color;
+import java.util.Random;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -26,11 +27,15 @@ public class Board {
 	private String roomConfigFile;
 	private String playerConfigFile;
 	private String weaponConfigFile;
+	private ArrayList<Card> deck; 
+	private Solution answer;
 	
 	// Constructor
 	private Board() {
 		super();
 		this.legend = new HashMap<Character, String>();
+		this.players = new HashMap<Color, String>();
+		this.weapons = new HashSet<String>();
 	}
 
 	// Uses boardConfigFile and populates an array with boardCells
@@ -196,6 +201,9 @@ public class Board {
             if (!input[2].equals("Card") && !input[2].equals("Other")) {
             	throw new BadConfigFormatException(input[2]);
             }
+            if (input[2].equals("Card")) {
+            	// TODO: create card and add to deck
+            }
         }
 	}
 	
@@ -209,7 +217,8 @@ public class Board {
         while (in.hasNextLine()) {
 			line = in.nextLine();
             String[] input = line.split(delimeter);
-            players.put(Color.getColor(input[1]), input[0]);
+            players.put(Color.getColor(input[1]), input[0]); // PDF has proper way to do string to color w/o errors if color not valid
+            // TODO: create card and add to deck
         }
 	}
 	
@@ -222,8 +231,55 @@ public class Board {
         while (in.hasNextLine()) {
 			line = in.nextLine();
             weapons.add(line);
+            // TODO: create card and add to deck
         }
 	}
+	
+	// for the number of cards in the deck, will swap two random cards in the deck 
+	private void shuffleDeck() {
+		Random rand = new Random();
+		int m,n;
+		Card tempCard;
+		for (int i = 0; i < deck.size(); ++i) {
+			m = rand.nextInt(deck.size());
+			n = rand.nextInt(deck.size());
+			tempCard = deck[m];
+			deck[m] = deck[n];
+			deck[n] = tempCard;
+		}
+	}
+	
+	// select 3 random cards, one of each type and set as answer
+	public void selectAnswer() {
+		Random rand = new Random();
+		int m;
+		
+		String person = null;
+		String weapon = null;
+		String room = null;
+		
+		while (person == null) {
+			m = rand.nextInt(deck.size());
+			if (deck[m].getType() == CardType.PERSON) {
+				person = deck[m].getCardName();
+			}
+		}
+		while (weapon == null) {
+			m = rand.nextInt(deck.size());
+			if (deck[m].getType() == CardType.weapon) {
+				weapon = deck[m].getCardName();
+			}
+		}
+		while (room == null) {
+			m = rand.nextInt(deck.size());
+			if (deck[m].getType() == CardType.room) {
+				room = deck[m].getCardName();
+			}
+		}
+		
+		answer = new Solution(person, weapon, room); 
+	}
+	
 	
 	// setters and getters
 	public void setConfigFiles(String b, String l, String p, String w) {
