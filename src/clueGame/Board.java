@@ -3,6 +3,7 @@
  */
 
 package clueGame;
+import java.awt.Color;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,11 +17,15 @@ public class Board {
 	private int boardWidth;
 	private int boardHeight;
 	private Map<Character, String> legend;
+	private Map<Color, String> players;
+	private Set<String> weapons;
 	private Map< BoardCell, Set<BoardCell> > adjacencyMap;
 	private Set<BoardCell> targets = new HashSet<BoardCell>();
 	private ArrayList<ArrayList<BoardCell>> boardCells;
 	private String boardConfigFile;
 	private String roomConfigFile;
+	private String playerConfigFile;
+	private String weaponConfigFile;
 	
 	// Constructor
 	private Board() {
@@ -194,10 +199,38 @@ public class Board {
         }
 	}
 	
+	// Uses playerConfigFile and populates an Map with a legend with colors corresponding to player characters
+	public void loadPlayerConfig() throws FileNotFoundException, BadConfigFormatException {
+		FileReader reader = new FileReader(playerConfigFile);
+		Scanner in = new Scanner(reader);
+        String delimeter = ", ";
+        String line;
+        
+        while (in.hasNextLine()) {
+			line = in.nextLine();
+            String[] input = line.split(delimeter);
+            players.put(Color.getColor(input[1]), input[0]);
+        }
+	}
+	
+	// Uses weapon ConfigFile and populates an Set with weapons
+	public void loadWeaponConfig() throws FileNotFoundException, BadConfigFormatException {
+		FileReader reader = new FileReader(weaponConfigFile);
+		Scanner in = new Scanner(reader);
+        String line;
+        
+        while (in.hasNextLine()) {
+			line = in.nextLine();
+            weapons.add(line);
+        }
+	}
+	
 	// setters and getters
-	public void setConfigFiles(String b, String l) {
+	public void setConfigFiles(String b, String l, String p, String w) {
 		this.roomConfigFile = l;
 		this.boardConfigFile = b;
+		this.playerConfigFile = p;
+		this.weaponConfigFile = w;
 	}
 	
 	public BoardCell getCellAt(int row, int col) {
@@ -235,6 +268,7 @@ public class Board {
 		return boardInstance;
 	}
 
+	// TODO: re-factor
 	public void initialize() {
 		try {
 			this.loadRoomConfig();
@@ -251,6 +285,20 @@ public class Board {
 			System.out.println("Bad Config1");  // io exception thrown by IntBoard Constructor
 		}
 		this.adjacencyMap = calcAdjacencies();
+		try {
+			this.loadPlayerConfig();
+		} catch (FileNotFoundException e) {
+			System.out.println(e); // file not found exception thrown by IntBoard Constructor
+		} catch (BadConfigFormatException e) {
+			System.out.println("Bad Config3");  // io exception thrown by IntBoard Constructor
+		}
+		try {
+			this.loadWeaponConfig();
+		} catch (FileNotFoundException e) {
+			System.out.println(e); // file not found exception thrown by IntBoard Constructor
+		} catch (BadConfigFormatException e) {
+			System.out.println("Bad Config4");  // io exception thrown by IntBoard Constructor
+		}
 	}
 
 	

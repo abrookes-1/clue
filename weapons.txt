@@ -1,0 +1,6 @@
+Anvil
+Harpoon
+TNT
+Boulder
+Rocket
+Poison
