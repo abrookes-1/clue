@@ -3,13 +3,17 @@
  */
 
 package clueGame;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-import clueGame.BoardCell;
-import clueGame.BadConfigFormatException;
+import clueGame.*;
+//import clueGame.Solution;
+//import clueGame.Card;
+//import clueGame.BoardCell;
+//import clueGame.BadConfigFormatException;
 
 public class Board {
 	private static Board boardInstance = new Board();
@@ -251,8 +255,21 @@ public class Board {
 			System.out.println("Bad Config1");  // io exception thrown by IntBoard Constructor
 		}
 		this.adjacencyMap = calcAdjacencies();
+		
+		// add methods here to instantiate human and computer players
+		// call methods to create deck and deal cards
 	}
 
+	public void selectAnswer() {
+		
+	}
 	
+	public Card handleSuggestion() { //args tbd
+		return null;
+	}
+	
+	public Boolean checkAccusation(Solution accusation) {
+		return null;
+	}
 
 }
