@@ -280,6 +280,18 @@ public class Board {
 		answer = new Solution(person, weapon, room); 
 	}
 	
+	// checks if accusation matches answer
+	public Boolean checkAccusation(Solution accusation) {
+		if (accusation == answer) {
+			return true;
+		}
+		return false;
+	}
+	
+	// inputs are TBD
+	public Card handleSuggestion() {
+		return null;
+	}
 	
 	// setters and getters
 	public void setConfigFiles(String b, String l, String p, String w) {
