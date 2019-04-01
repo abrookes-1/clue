@@ -32,6 +32,7 @@ public class Board {
 	private String weaponConfigFile;
 	private ArrayList<Card> deck; 
 	private Solution answer;
+	private Set<Player> playerInstances;
 	
 	// Constructor
 	private Board() {
@@ -39,6 +40,7 @@ public class Board {
 		this.legend = new HashMap<Character, String>();
 		this.players = new HashMap<Color, String>();
 		this.weapons = new HashSet<String>();
+		this.playerInstances = new HashSet<Player>();
 	}
 
 	// Uses boardConfigFile and populates an array with boardCells
@@ -308,7 +310,10 @@ public class Board {
 		return boardCells.get(row).get(col);
 	}
 
-
+	public Set<Player> getPlayerInstances(){
+		return this.playerInstances;
+	}
+	
 	public int getNumRows() {
 		return boardHeight;
 	}
@@ -376,16 +381,16 @@ public class Board {
 		}
 	}
 
-	public void selectAnswer() {
-		
-	}
-	
-	public Card handleSuggestion() { //args tbd
-		return null;
-	}
-	
-	public Boolean checkAccusation(Solution accusation) {
-		return null;
-	}
+//	public void selectAnswer() {
+//		
+//	}
+//	
+//	public Card handleSuggestion() { //args tbd
+//		return null;
+//	}
+//	
+//	public Boolean checkAccusation(Solution accusation) {
+//		return null;
+//	}
 
 }
