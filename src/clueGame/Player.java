@@ -1,20 +1,31 @@
 package clueGame;
 import java.awt.Color;
+import java.util.Set;
 
 public class Player {
 	private String playerName;
 	private int row;
 	private int column;
-	private Color color;
+	//private Color color;
 	private String colorString;
+	private Set<Card> cards;
 	
 	public Player(String character, String color) {
 		this.playerName = character;
 		this.colorString = color;
 	}
 	
-	public Card disproveSuggestion(Solution suggestion) {
-		return null;
+	public Card disproveSuggestion(Solution suggestion) throws Exception {
+		for (Card aCard: cards) {
+			if (aCard.getCardName() == suggestion.person) {
+				return aCard;
+			} else if (aCard.getCardName() == suggestion.room) {
+				return aCard;
+			} else if (aCard.getCardName() == suggestion.weapon) {
+				return aCard;
+			}
+		}
+		throw new gamePlayException("card may not be disproved");
 	}
 	
 	public Color getColor() {
