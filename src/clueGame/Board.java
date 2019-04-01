@@ -302,17 +302,6 @@ public class Board {
 	
 	// TODO: make these customizable by the player
 	// TODO: make these work with actual players config file (ex. players.txt)
-	private void setupPlayers() {
-		playerInstances.clear();
-		// instantiates one human player and one computer payer for each extra character.
-		// for now, these are hard coded
-		this.playerInstances.add(new HumanPlayer("Colonel Mayo", "WHITE"));
-		this.playerInstances.add(new ComputerPlayer("Mrs. Byzantium", "MAGENTA"));
-		this.playerInstances.add(new ComputerPlayer("Professor Apricot", "YELLOW"));
-		this.playerInstances.add(new ComputerPlayer("Mrs. Quail", "GREEN"));
-		this.playerInstances.add(new ComputerPlayer("Mr. Blue", "BLUE"));
-		this.playerInstances.add(new ComputerPlayer("Ms. Rose", "RED"));
-}
 	
 	// setters and getters
 	public void setConfigFiles(String b, String l, String p, String w) {
@@ -397,7 +386,6 @@ public class Board {
 		}
 		
 		//setup player objects
-		this.setupPlayers();
 	}
 
 //	public void selectAnswer() {
