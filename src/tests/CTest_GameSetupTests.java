@@ -15,12 +15,42 @@ import clueGame.ComputerPlayer;
 public class CTest_GameSetupTests {
 	static Board gameBoard = Board.getInstance();
 	@Before
-	public static void setup_game() {
+	public void setup_game() {
+		gameBoard.setConfigFiles("ClueMap.csv", "RoomKey.txt", "players.txt", "weapons.txt");
 		gameBoard.initialize();
 	}
 	
 	@Test
-	public void testPlayersExist() {
+	public void testPlayerCount() {
+		Set<Player> players = gameBoard.getPlayerInstances();
+		assert(players.size() == 6);
+	}
+	
+	@Test
+	public void testComputerPlayersExist(){
+		Set<Player> players = gameBoard.getPlayerInstances();
+		int computerPlayerCount = 0;
+		Boolean containsHumanPlayer = false;
+		Boolean containsMultipleHumanPlayer = false;
+		Boolean nonHumanPlayersAreComputers = true;
+		
+		for (Player pla: players) {
+			if (HumanPlayer.class.isInstance(pla)) {
+				if (containsHumanPlayer) containsMultipleHumanPlayer = true;
+				else containsHumanPlayer = true;
+			} else if(!ComputerPlayer.class.isInstance(pla)){
+				nonHumanPlayersAreComputers = false;
+			} else if (ComputerPlayer.class.isInstance(pla)) {
+				computerPlayerCount++;
+			}
+		}
+		
+		assert(computerPlayerCount == 5);
+		assert(nonHumanPlayersAreComputers);
+	}
+	
+	@Test
+	public void testHumanPlayerExists() {
 		Set<Player> players = gameBoard.getPlayerInstances();
 		Boolean containsHumanPlayer = false;
 		Boolean containsMultipleHumanPlayer = false;
@@ -37,8 +67,26 @@ public class CTest_GameSetupTests {
 		}
 		
 		assert(containsHumanPlayer);
+	}
+	
+	@Test
+	public void testOnlyOneHumanPlayer() {
+		Set<Player> players = gameBoard.getPlayerInstances();
+		Boolean containsHumanPlayer = false;
+		Boolean containsMultipleHumanPlayer = false;
+		Boolean nonHumanPlayersAreComputers = true;
+		assert(players.size() == 6);
+		
+		for (Player pla: players) {
+			if (HumanPlayer.class.isInstance(pla)) {
+				if (containsHumanPlayer) containsMultipleHumanPlayer = true;
+				else containsHumanPlayer = true;
+			} else if(!ComputerPlayer.class.isInstance(pla)){
+				nonHumanPlayersAreComputers = false;
+			}
+		}
+		
 		assert(!containsMultipleHumanPlayer);
-		assert(nonHumanPlayersAreComputers);
 	}
 	
 }

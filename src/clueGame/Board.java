@@ -248,9 +248,9 @@ public class Board {
 		for (int i = 0; i < deck.size(); ++i) {
 			m = rand.nextInt(deck.size());
 			n = rand.nextInt(deck.size());
-			tempCard = deck[m];
-			deck[m] = deck[n];
-			deck[n] = tempCard;
+			tempCard = deck.get(m);
+//			deck[m] = deck[n]; // must be changed to not use index access (since deck is arraylist)
+//			deck[n] = tempCard;
 		}
 	}
 	
@@ -263,26 +263,28 @@ public class Board {
 		String weapon = null;
 		String room = null;
 		
-		while (person == null) {
-			m = rand.nextInt(deck.size());
-			if (deck[m].getType() == CardType.PERSON) {
-				person = deck[m].getCardName();
-			}
-		}
-		while (weapon == null) {
-			m = rand.nextInt(deck.size());
-			if (deck[m].getType() == CardType.weapon) {
-				weapon = deck[m].getCardName();
-			}
-		}
-		while (room == null) {
-			m = rand.nextInt(deck.size());
-			if (deck[m].getType() == CardType.room) {
-				room = deck[m].getCardName();
-			}
-		}
+		// multiple undefined types etc cause compile errors
 		
-		answer = new Solution(person, weapon, room); 
+//		while (person == null) {
+//			m = rand.nextInt(deck.size());
+//			if (deck.get(m).getType() == CardType.PERSON) {
+//				person = deck.get(m).getCardName();
+//			}
+//		}
+//		while (weapon == null) {
+//			m = rand.nextInt(deck.size());
+//			if (deck.get(m).getType() == CardType.weapon) {
+//				weapon = deck.get(m).getCardName();
+//			}
+//		}
+//		while (room == null) {
+//			m = rand.nextInt(deck.size());
+//			if (deck.get(m).getType() == CardType.room) {
+//				room = deck.get(m).getCardName();
+//			}
+//		}
+//		
+//		answer = new Solution(person, weapon, room); //this construtor is undefined
 	}
 	
 	// checks if accusation matches answer
