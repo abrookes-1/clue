@@ -24,17 +24,21 @@ public class CTest_GameSetupTests {
 		Set<Player> players = gameBoard.getPlayerInstances();
 		Boolean containsHumanPlayer = false;
 		Boolean containsMultipleHumanPlayer = false;
+		Boolean nonHumanPlayersAreComputers = true;
 		assert(players.size() == 6);
 		
 		for (Player pla: players) {
 			if (HumanPlayer.class.isInstance(pla)) {
 				if (containsHumanPlayer) containsMultipleHumanPlayer = true;
 				else containsHumanPlayer = true;
+			} else if(!ComputerPlayer.class.isInstance(pla)){
+				nonHumanPlayersAreComputers = false;
 			}
 		}
 		
 		assert(containsHumanPlayer);
 		assert(!containsMultipleHumanPlayer);
+		assert(nonHumanPlayersAreComputers);
 	}
 	
 }
