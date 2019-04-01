@@ -4,7 +4,8 @@ import static org.junit.Assert.*;
 
 import java.util.Set;
 
-import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.After;
 import org.junit.Test;
 
 import clueGame.Board;
@@ -14,8 +15,8 @@ import clueGame.ComputerPlayer;
 
 public class TestPlayers {
 	static Board gameBoard = Board.getInstance();
-	@Before
-	public void setup_game() {
+	@BeforeClass
+	public static void setup_game() {
 		gameBoard.setConfigFiles("ClueMap.csv", "RoomKey.txt", "players.txt", "weapons.txt");
 		gameBoard.initialize();
 	}
@@ -55,7 +56,6 @@ public class TestPlayers {
 		Boolean containsHumanPlayer = false;
 		Boolean containsMultipleHumanPlayer = false;
 		Boolean nonHumanPlayersAreComputers = true;
-		assert(players.size() == 6);
 		
 		for (Player pla: players) {
 			if (HumanPlayer.class.isInstance(pla)) {
@@ -75,7 +75,6 @@ public class TestPlayers {
 		Boolean containsHumanPlayer = false;
 		Boolean containsMultipleHumanPlayer = false;
 		Boolean nonHumanPlayersAreComputers = true;
-		assert(players.size() == 6);
 		
 		for (Player pla: players) {
 			if (HumanPlayer.class.isInstance(pla)) {
