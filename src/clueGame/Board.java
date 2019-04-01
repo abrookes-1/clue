@@ -227,6 +227,12 @@ public class Board {
             players.put(Color.getColor(input[1]), input[0]); // PDF has proper way to do string to color w/o errors if color not valid
             Card newCard = new Card(input[0], CardType.PERSON);
         	deck.add(newCard);
+        	if (playerInstances.size() == 0) {
+        		playerInstances.add(new HumanPlayer(input[0],Color.getColor(input[1])));
+        	} else {
+        		playerInstances.add(new ComputerPlayer(input[0],Color.getColor(input[1])));
+        	}
+        	
         }
 	}
 	
