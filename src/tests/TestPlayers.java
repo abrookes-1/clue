@@ -88,4 +88,18 @@ public class TestPlayers {
 		assert(!containsMultipleHumanPlayer);
 	}
 	
+	@Test
+	public void aboutEvenCards() {
+		Set<Player> players = gameBoard.getPlayerInstances();
+		int min = 999;
+		int max = -999;
+		
+		for (Player pla: players) {
+			if (pla.getSize() < min) {
+				min = pla.getSize();
+			} else if (pla.getSize() > max) {
+				max = pla.getSize();
+			}
+		}
+	}
 }
