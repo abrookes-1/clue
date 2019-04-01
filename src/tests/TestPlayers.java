@@ -12,7 +12,7 @@ import clueGame.Player;
 import clueGame.HumanPlayer;
 import clueGame.ComputerPlayer;
 
-public class CTest_GameSetupTests {
+public class TestPlayers {
 	static Board gameBoard = Board.getInstance();
 	@Before
 	public void setup_game() {
