@@ -6,13 +6,13 @@ public class Player {
 	private String playerName;
 	private int row;
 	private int column;
-	//private Color color;
+	private Color color;
 	private String colorString;
 	private Set<Card> cards;
 	
-	public Player(String character, String color) {
+	public Player(String character, Color color) {
 		this.playerName = character;
-		this.colorString = color;
+		this.color = color;
 	}
 	
 	public Card disproveSuggestion(Solution suggestion) throws Exception {
@@ -29,20 +29,22 @@ public class Player {
 	}
 	
 	public Color getColor() {
-		switch (colorString) {
-		case "WHITE":
-			return Color.white;
-		case "MAGENTA":
-			return Color.pink;
-		case "YELLOW":
-			return Color.yellow;
-		case "GREEN":
-			return Color.green;
-		case "BLUE":
-			return Color.blue;
-		case "RED":
-			return Color.red;
-		}
-		return Color.black;
+		
+		return color;
+//		switch (colorString) {
+//		case "WHITE":
+//			return Color.white;
+//		case "MAGENTA":
+//			return Color.pink;
+//		case "YELLOW":
+//			return Color.yellow;
+//		case "GREEN":
+//			return Color.green;
+//		case "BLUE":
+//			return Color.blue;
+//		case "RED":
+//			return Color.red;
+//		}
+//		return Color.black;
 	}
 }
