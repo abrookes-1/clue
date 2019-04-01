@@ -294,7 +294,7 @@ public class Board {
 		}
 		return false;
 	}
-	
+
 	// inputs are TBD
 	public Card handleSuggestion() {
 		return null;
@@ -303,6 +303,7 @@ public class Board {
 	// TODO: make these customizable by the player
 	// TODO: make these work with actual players config file (ex. players.txt)
 	private void setupPlayers() {
+		playerInstances.clear();
 		// instantiates one human player and one computer payer for each extra character.
 		// for now, these are hard coded
 		this.playerInstances.add(new HumanPlayer("Colonel Mayo", "WHITE"));

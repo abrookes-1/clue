@@ -19,7 +19,7 @@ public class CTest_GameSetupTests {
 		gameBoard.setConfigFiles("ClueMap.csv", "RoomKey.txt", "players.txt", "weapons.txt");
 		gameBoard.initialize();
 	}
-	
+
 	@Test
 	public void testPlayerCount() {
 		Set<Player> players = gameBoard.getPlayerInstances();
