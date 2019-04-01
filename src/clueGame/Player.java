@@ -15,6 +15,11 @@ public class Player {
 		this.color = color;
 	}
 	
+	public void dealCard(Card card) {
+		cards.add(card);
+	}
+	
+	// untested
 	public Card disproveSuggestion(Solution suggestion) throws Exception {
 		for (Card aCard: cards) {
 			if (aCard.getCardName() == suggestion.person) {
@@ -31,6 +36,7 @@ public class Player {
 	public Color getColor() {
 		
 		return color;
+		// this block used when this.color was type string
 //		switch (colorString) {
 //		case "WHITE":
 //			return Color.white;
