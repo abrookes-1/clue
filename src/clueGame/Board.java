@@ -249,8 +249,8 @@ public class Board {
 			m = rand.nextInt(deck.size());
 			n = rand.nextInt(deck.size());
 			tempCard = deck.get(m);
-//			deck[m] = deck[n]; // must be changed to not use index access (since deck is arraylist)
-//			deck[n] = tempCard;
+			deck.set(m,deck.get(n));
+			deck.set(n, tempCard);
 		}
 	}
 	
@@ -263,7 +263,24 @@ public class Board {
 		String weapon = null;
 		String room = null;
 		
-		// multiple undefined types etc cause compile errors
+		while (person == null) {
+			m = rand.nextInt(deck.size());
+			if (deck.get(m).getType() == CardType.PERSON) {
+				person = deck.get(m).getCardName();
+			}
+		}
+		while (weapon == null) {
+			m = rand.nextInt(deck.size());
+			if (deck.get(m).getType() == CardType.WEAPON) {
+				weapon = deck.get(m).getCardName();
+			}
+		}
+		while (room == null) {
+			m = rand.nextInt(deck.size());
+			if (deck.get(m).getType() == CardType.ROOM) {
+				room = deck.get(m).getCardName();
+			}
+		}
 		
 //		while (person == null) {
 //			m = rand.nextInt(deck.size());
@@ -411,5 +428,4 @@ public class Board {
 //	public Boolean checkAccusation(Solution accusation) {
 //		return null;
 //	}
-
 }
