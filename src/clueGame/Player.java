@@ -19,6 +19,14 @@ public class Player {
 		cards.add(card);
 	}
 	
+	public int getHandSize() {
+		return cards.size();
+	}
+	
+	public Set<Card> getHand(){
+		return cards;
+	}
+	
 	// untested
 	public Card disproveSuggestion(Solution suggestion) throws Exception {
 		for (Card aCard: cards) {
