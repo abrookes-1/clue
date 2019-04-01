@@ -394,6 +394,9 @@ public class Board {
 		} catch (BadConfigFormatException e) {
 			System.out.println("Bad Config4");  // io exception thrown by IntBoard Constructor
 		}
+		
+		//setup player objects
+		this.setupPlayers();
 	}
 
 //	public void selectAnswer() {
