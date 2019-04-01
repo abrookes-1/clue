@@ -207,7 +207,8 @@ public class Board {
             	throw new BadConfigFormatException(input[2]);
             }
             if (input[2].equals("Card")) {
-            	// TODO: create card and add to deck
+            	Card newCard = new Card(input[1], CardType.ROOM);
+            	deck.add(newCard);
             }
         }
 	}
@@ -223,7 +224,8 @@ public class Board {
 			line = in.nextLine();
             String[] input = line.split(delimeter);
             players.put(Color.getColor(input[1]), input[0]); // PDF has proper way to do string to color w/o errors if color not valid
-            // TODO: create card and add to deck
+            Card newCard = new Card(input[0], CardType.PERSON);
+        	deck.add(newCard);
         }
 	}
 	
@@ -236,7 +238,8 @@ public class Board {
         while (in.hasNextLine()) {
 			line = in.nextLine();
             weapons.add(line);
-            // TODO: create card and add to deck
+            Card newCard = new Card(line, CardType.WEAPON);
+        	deck.add(newCard);
         }
 	}
 	
