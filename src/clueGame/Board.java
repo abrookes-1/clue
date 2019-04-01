@@ -280,28 +280,8 @@ public class Board {
 			if (deck.get(m).getType() == CardType.ROOM) {
 				room = deck.get(m).getCardName();
 			}
-		}
-		
-//		while (person == null) {
-//			m = rand.nextInt(deck.size());
-//			if (deck.get(m).getType() == CardType.PERSON) {
-//				person = deck.get(m).getCardName();
-//			}
-//		}
-//		while (weapon == null) {
-//			m = rand.nextInt(deck.size());
-//			if (deck.get(m).getType() == CardType.weapon) {
-//				weapon = deck.get(m).getCardName();
-//			}
-//		}
-//		while (room == null) {
-//			m = rand.nextInt(deck.size());
-//			if (deck.get(m).getType() == CardType.room) {
-//				room = deck.get(m).getCardName();
-//			}
-//		}
-//		
-//		answer = new Solution(person, weapon, room); //this construtor is undefined
+		}	
+		answer = new Solution(person, weapon, room);
 	}
 	
 	// checks if accusation matches answer
