@@ -41,6 +41,7 @@ public class Board {
 		this.players = new HashMap<Color, String>();
 		this.weapons = new HashSet<String>();
 		this.playerInstances = new HashSet<Player>();
+		this.deck = new ArrayList<Card>();
 	}
 
 	// Uses boardConfigFile and populates an array with boardCells
