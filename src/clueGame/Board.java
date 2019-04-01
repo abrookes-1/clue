@@ -264,6 +264,16 @@ public class Board {
 		}
 	}
 	
+	private void dealDeck() {
+		int index = 0;
+		while (index < deck.size()) {
+			for (Player pla:playerInstances) {
+				pla.dealCard(deck.get(index));
+				index++;
+			}
+		}
+	}
+	
 	// select 3 random cards, one of each type and set as answer
 	public void selectAnswer() {
 		Random rand = new Random();
@@ -307,8 +317,7 @@ public class Board {
 		return null;
 	}
 	
-	// TODO: make these customizable by the player
-	// TODO: make these work with actual players config file (ex. players.txt)
+	
 	
 	// setters and getters
 	public void setConfigFiles(String b, String l, String p, String w) {
