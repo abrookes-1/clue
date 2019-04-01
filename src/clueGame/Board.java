@@ -246,9 +246,9 @@ public class Board {
 		for (int i = 0; i < deck.size(); ++i) {
 			m = rand.nextInt(deck.size());
 			n = rand.nextInt(deck.size());
-			tempCard = deck[m];
-			deck[m] = deck[n];
-			deck[n] = tempCard;
+			tempCard = deck.get(m);
+			deck.set(m,deck.get(n));
+			deck.set(n, tempCard);
 		}
 	}
 	
@@ -263,20 +263,20 @@ public class Board {
 		
 		while (person == null) {
 			m = rand.nextInt(deck.size());
-			if (deck[m].getType() == CardType.PERSON) {
-				person = deck[m].getCardName();
+			if (deck.get(m).getType() == CardType.PERSON) {
+				person = deck.get(m).getCardName();
 			}
 		}
 		while (weapon == null) {
 			m = rand.nextInt(deck.size());
-			if (deck[m].getType() == CardType.weapon) {
-				weapon = deck[m].getCardName();
+			if (deck.get(m).getType() == CardType.WEAPON) {
+				weapon = deck.get(m).getCardName();
 			}
 		}
 		while (room == null) {
 			m = rand.nextInt(deck.size());
-			if (deck[m].getType() == CardType.room) {
-				room = deck[m].getCardName();
+			if (deck.get(m).getType() == CardType.ROOM) {
+				room = deck.get(m).getCardName();
 			}
 		}
 		
@@ -374,18 +374,6 @@ public class Board {
 		} catch (BadConfigFormatException e) {
 			System.out.println("Bad Config4");  // io exception thrown by IntBoard Constructor
 		}
-	}
-
-	public void selectAnswer() {
-		
-	}
-	
-	public Card handleSuggestion() { //args tbd
-		return null;
-	}
-	
-	public Boolean checkAccusation(Solution accusation) {
-		return null;
 	}
 
 }
