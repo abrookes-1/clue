@@ -45,7 +45,7 @@ public class Board {
 	}
 
 	// Uses boardConfigFile and populates an array with boardCells
-	private void loadBoardConfig() throws FileNotFoundException, BadConfigFormatException {
+	public void loadBoardConfig() throws FileNotFoundException, BadConfigFormatException {
 		FileReader reader = new FileReader(boardConfigFile);
 		Scanner in = new Scanner(reader);
         String delimeter = ",";
