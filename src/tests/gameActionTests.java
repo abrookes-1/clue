@@ -37,10 +37,15 @@ public class gameActionTests {
 	}
 	
 //	(15pts) Make an accusation. Tests include:
-//	solution that is correct
+	@Test
+	public void testMakeAccusation() {
+	for (Player pla: gameBoard.getPlayerInstances()) {
+		
+	}
 //	solution with wrong person
 //	solution with wrong weapon
 //	solution with wrong room
+	}
 	
 //	(15pts) Create suggestion. Tests include:
 //	Room matches current location
