@@ -22,6 +22,10 @@ public class GUI_clue extends JPanel{
 	}
 	
 	public static void main(String[] args) {
+		//static Board gameBoard = Board.getInstance();
+		
+		
+		// begin gui functions
 		JFrame frame = new JFrame();
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
