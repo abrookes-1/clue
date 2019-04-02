@@ -268,8 +268,12 @@ public class Board {
 		int index = 0;
 		while (index < deck.size()) {
 			for (Player pla:playerInstances) {
-				pla.dealCard(deck.get(index));
-				index++;
+				if (index < deck.size()) {
+					pla.dealCard(deck.get(index));
+					index++;
+				} else {
+					break;
+				}
 			}
 		}
 	}
@@ -402,6 +406,10 @@ public class Board {
 		}
 		
 		//setup player objects
+		
+		shuffleDeck();
+		dealDeck();
+		
 	}
 
 //	public void selectAnswer() {

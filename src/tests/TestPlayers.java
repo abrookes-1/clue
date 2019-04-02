@@ -95,11 +95,13 @@ public class TestPlayers {
 		int max = -999;
 		
 		for (Player pla: players) {
-			if (pla.getSize() < min) {
-				min = pla.getSize();
-			} else if (pla.getSize() > max) {
-				max = pla.getSize();
+			if (pla.getHandSize() < min) {
+				min = pla.getHandSize();
+			} else if (pla.getHandSize() > max) {
+				max = pla.getHandSize();
 			}
 		}
+		
+		assert(max-min < 2);
 	}
 }
