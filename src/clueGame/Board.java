@@ -317,7 +317,13 @@ public class Board {
 	}
 
 	// inputs are TBD
-	public Card handleSuggestion() {
+	public Card handleSuggestion(Solution sugg, Player suggSource) {
+		Card temp;
+		for (Player pla: playerInstances) {
+			if (pla != suggSource) {
+				return pla.disproveSuggestion(sugg);
+			}
+		}
 		return null;
 	}
 	
