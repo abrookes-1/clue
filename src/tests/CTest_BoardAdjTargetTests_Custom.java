@@ -24,7 +24,7 @@ public class CTest_BoardAdjTargetTests_Custom {
 		// Board is singleton, get the only instance
 		board = Board.getInstance();
 		// set the file names to use my config files
-		board.setConfigFiles("ClueMap.csv", "RoomKey.txt");		
+		board.setConfigFiles("ClueMap.csv", "RoomKey.txt", "players.txt", "weapons.txt");
 		// Initialize will load BOTH config files 
 		board.initialize();
 	}
