@@ -365,9 +365,15 @@ public class Board {
 		return targets;
 	}
 	
+	public ArrayList<Card> getDeck() {
+		return deck;
+	}
+	
 	public static Board getInstance() {
 		return boardInstance;
 	}
+	
+	
 
 	// TODO: re-factor
 	public void initialize() {
