@@ -121,4 +121,15 @@ public class TestPlayers {
 			}
 		}
 	}
+	
+	@Test
+	public void testAllCardsDealt() {
+		// since we tested that no duplicate cards are dealt, ensuring the proper number of cards was dealt is sufficient
+		Set<Player> players = gameBoard.getPlayerInstances();
+		int sumPlayerCards = 0;
+		for (Player pla: players) {
+			sumPlayerCards += pla.getHandSize();
+		}
+		assert(sumPlayerCards == Board.getDeck().size());
+	}
 }
