@@ -56,11 +56,17 @@ public class gameActionTests {
 	
 //	(15pts) Handle suggestion - Board. Tests include:
 	public static void handleSuggestionBoard() {
-//	Suggestion no one can disprove returns null
-//	Suggestion only accusing player can disprove returns null
-//	Suggestion only human can disprove returns answer (i.e., card that disproves suggestion)
-//	Suggestion only human can disprove, but human is accuser, returns null
-//	Suggestion that two players can disprove, correct player (based on starting with next player in list) returns answer
-//	Suggestion that human and another player can disprove, other player is next in list, ensure other player returns answer
+	//	Suggestion no one can disprove returns null
+		assert(null == gameBoard.handleSuggestion(gameBoard.getAnswer(), null));
+	//	Suggestion only accusing player can disprove returns null
+		assert(null == gameBoard.handleSuggestion(  ~~  , null));
+	//	Suggestion only human can disprove returns answer (i.e., card that disproves suggestion)
+		assert( == gameBoard.handleSuggestion(gameBoard.getHuman().getSuggestionOnlyDisprove() , gameBoard.getHuman()));
+	//	Suggestion only human can disprove, but human is accuser, returns null
+		assert(null == gameBoard.handleSuggestion(gameBoard.getHuman().getSuggestionOnlyDisprove() , gameBoard.getHuman()));
+	//	Suggestion that two players can disprove, correct player (based on starting with next player in list) returns answer
+		
+	//	Suggestion that human and another player can disprove, other player is next in list, ensure other player returns answer
+		
 	}
 }

@@ -378,6 +378,9 @@ public class Board {
 	public static Board getInstance() {
 		return boardInstance;
 	}
+	public Solution getAnswer() {
+		return answer;
+	}
 	
 	
 
@@ -420,6 +423,7 @@ public class Board {
 		//setup player objects
 		
 		shuffleDeck();
+		selectAnswer();
 		dealDeck();
 		
 	}
