@@ -1,3 +1,284 @@
+commit 713e2e491b16f0640350b1350779ccfa43a5c4ec
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 19:16:07 2019 -0600
+
+    added checkduplicatecards tests
+
+commit a895915124e473d9d2be80adf786285b72b170b3
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Mon Apr 1 19:11:30 2019 -0600
+
+    Update TestPlayers.java
+
+commit f786997e68583789a8c4630271eaf4c26c1887c0
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Mon Apr 1 18:53:06 2019 -0600
+
+    Update TestPlayers.java
+
+commit 73d70a571b35bf054df0ab34996853eec1757214
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 18:51:10 2019 -0600
+
+    updated some test features
+
+commit 59e98cd566d170dc5af0e5d34c6fb9d1b4281987
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 18:49:40 2019 -0600
+
+    updated setconfigfiles method calls
+
+commit 5a8aaecbfeef75df687a4dd1560af41765fb381a
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Mon Apr 1 18:46:03 2019 -0600
+
+    Update CTest_BoardAdjTargetTests.java
+
+commit b7c68ca2bd3ce04c4412c02a37585b2900fba883
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Mon Apr 1 18:38:41 2019 -0600
+
+    Update CTest_BoardAdjTargetTests_Custom.java
+
+commit 2ece588bb710a76237fe652c96365f20eaa5c203
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Mon Apr 1 18:36:37 2019 -0600
+
+    AboutEvenCards test passes
+
+commit 0f1120276eddc5780e8628969aa924e70591df0b
+Merge: 7ffe4d4 05e878a
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 17:53:16 2019 -0600
+
+    Merge branch 'master' of https://github.com/abrookes-1/clue
+
+commit 05e878a56a280c6822f2754b14717e9f2161b58c
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Mon Apr 1 17:52:48 2019 -0600
+
+    Added test to check number of cards in each players hand
+
+commit 7ffe4d4dec458fb1852fbb623da2600b2f2cef99
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 17:52:26 2019 -0600
+
+    added gethand and gethandsize to player
+
+commit 8ddd9e0c4d0d832f4616985fed96c24568746a23
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Mon Apr 1 17:48:56 2019 -0600
+
+    Update Board.java
+
+commit d5ba87c2dc773c07c8f71a1e88b5fb362af923a8
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 17:47:45 2019 -0600
+
+    added dealcard function
+
+commit 99f1f74c851c7d6a4ebdfbdf35d25f38c55373aa
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 17:37:44 2019 -0600
+
+    updated testplayer class
+
+commit e68760c6ccb844145a0d6c612695bdc7929adfa0
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Mon Apr 1 17:29:17 2019 -0600
+
+    Update Board.java
+
+commit 30d219faaa5c3d66b97b296b88c62c5310e55290
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 17:22:46 2019 -0600
+
+    added deck initialization
+
+commit bcfbc10942bb3c353e8b84e0895b66d07b18dbf6
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 17:21:59 2019 -0600
+
+    removed setupPlayers function
+
+commit 0247f9a60d20696f5f246b83763ad6745c6e019d
+Merge: 246f9c3 5755436
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 17:19:23 2019 -0600
+
+    Merge branch 'master' of https://github.com/abrookes-1/clue
+
+commit 246f9c3acdf2745bfb6837a3eb9013b4eea73cca
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 17:19:04 2019 -0600
+
+    removed temp comment block from board.java
+
+commit 57554360d131adfe79b75d13b854958ba6425160
+Merge: 988e52d ce04ab7
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Mon Apr 1 17:18:26 2019 -0600
+
+    Merge branch 'master' of https://github.com/abrookes-1/clue
+
+commit 988e52d2e5255a753ca30d079914efc2a8d42e29
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Mon Apr 1 17:18:06 2019 -0600
+
+    Adds Cards on load
+
+commit ce04ab754a796c697efde77179f8bae775a9eda4
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 17:16:16 2019 -0600
+
+    changed player constructor type to color (not string)
+
+commit 4053b80190f9f93da88a9f19d42892516ec6aa03
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 17:11:00 2019 -0600
+
+    added arg to card constructor
+
+commit 6bbe2e481aac3967f08220a0ede4d34f7bfff943
+Merge: 4bfc461 4ee996f
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 14:28:57 2019 -0600
+
+    Merge branch 'master' of https://github.com/abrookes-1/clue
+
+commit 4bfc4615521a15038b2c48b04a0c7845fff6bf67
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 14:21:44 2019 -0600
+
+    implemented player.disprovesuggestion, added custom "gameplayException"
+
+commit df8a73c41d8198300f29b2c3e1018fc1548e78c4
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 14:10:16 2019 -0600
+
+    added getcolor to player class
+
+commit 6f31fea2bc6478e1e9beaeb706addff61123d4c7
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 13:23:29 2019 -0600
+
+    set setupPlayers to clear to fix duplicate issue
+
+commit 4ee996f8c0734ce7ba4e8e79f09aa006c359523e
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Mon Apr 1 10:48:44 2019 -0600
+
+    Updates to Board regarding deck & solution
+
+commit e5f028e35738f9d3113869677a28d80b9839031a
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 10:47:53 2019 -0600
+
+    added setupPlayers to board.initialize, testHumanPlayerExists now passing
+
+commit a6b0f047ac087bdcffdf85225d9b8985e9bfb2bf
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 10:45:39 2019 -0600
+
+    added appropriate constructors for human player and computer player
+
+commit 64a42eda31d05070fc89d9365775a5437b4d6c82
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 10:28:02 2019 -0600
+
+    spread player class test across multiple test functions to ease debugging (all failing)
+
+commit dae909386dbad2f3df60e00561d9ef35015b2b92
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 10:05:57 2019 -0600
+
+    added nonhumanplayersarecomputers condition to tests
+
+commit e887ee951888f0fe2c161bc1eeaebc9b9b4086d5
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 10:03:38 2019 -0600
+
+    wrote test for quantity and type of player objects (not running bc compile errors)
+
+commit c0ab93922c5e9751c91f9fae8aeb1e8562c69917
+Merge: 04ce9cf 1961bbc
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 09:03:56 2019 -0600
+
+    fixed minor issues causing merge error in board.java
+
+commit 04ce9cf5caf1937dc3a3de36455c09f1be617f45
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Sun Mar 31 13:15:03 2019 -0700
+
+    changes before player class
+
+commit 1961bbcab3eaa05e1e5106063b6b5552900576af
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Sun Mar 31 11:06:24 2019 -0600
+
+    checkAccusation method added and handleSuggestion skeleton added
+
+commit 457d20c69c16c5c10cfd88a316cb43e521d4cf0d
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Sun Mar 31 10:53:50 2019 -0600
+
+    Added selectAnswer method
+
+commit 29ed3212569d2e2e4eaeaf88ddce315e61c09ae1
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Sun Mar 31 10:19:07 2019 -0600
+
+    Added Player and Weapon files and the Fxns required to load them into the game
+
+commit 007d2d74cb33570752e0207e1f56383f86bbc065
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Mar 21 15:17:23 2019 -0600
+
+    added barebones classes relating to players
+
+commit ab1993c59a661d0a9aa121cc49c22388d5d9bcd7
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Mar 21 14:54:04 2019 -0600
+
+    5 - added comments to explain "getAdjacencies" logic
+
+commit 543d147341a002d31b75ffe67f7b6a850e27a91b
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Mar 21 14:48:58 2019 -0600
+
+    changed three board methods (including constructor) from public to private
+
+commit b4bf3e2c38cc9de6b29e27a0e6d11db504738d96
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Mar 21 14:45:15 2019 -0600
+
+    removed unreachable code in board.initialize (unreachable catch block)
+
+commit f3708772dae01572a59c317ac6597a931ebafc96
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Mar 21 14:40:42 2019 -0600
+
+    removed unused instance of "visited" set
+
+commit b94a456241f435ed31c77360b4f38b91141c2638
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Mar 21 14:39:03 2019 -0600
+
+    refactor - changed board getInstance method to return static instance of board class
+
+commit afb32dc69615caf1024ae708982d063df14f6718
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Mar 21 14:35:39 2019 -0600
+
+    added "refactor_change_list" and "before_after_code_snip" (both empty)
+
+commit d6097383e40285604cecc388acb6b721db0fef7d
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Mar 19 15:44:06 2019 -0600
+
+    added gitlog
+
 commit f413455359aff037f301d7f7359e587d37e70ea1
 Author: Aidan Brookes <aaabrookes@gmail.com>
 Date:   Tue Mar 19 15:35:37 2019 -0600
