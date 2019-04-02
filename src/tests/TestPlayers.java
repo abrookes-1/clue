@@ -130,6 +130,6 @@ public class TestPlayers {
 		for (Player pla: players) {
 			sumPlayerCards += pla.getHandSize();
 		}
-		assert(sumPlayerCards == Board.getDeck().size());
+		assert(sumPlayerCards == gameBoard.getDeck().size());
 	}
 }

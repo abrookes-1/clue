@@ -1,3 +1,35 @@
+commit be7d83a3af6f405c9149aa48a951e77a057eddb7
+Merge: e1dc5e6 ef98a74
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 19:22:17 2019 -0600
+
+    Merge branch 'master' of https://github.com/abrookes-1/clue
+
+commit e1dc5e635c3a1d6f4bc008f96a7ed2a589963fa4
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 19:20:50 2019 -0600
+
+    added test all cards dealt function
+
+commit ef98a74ea216ca4681f58fe9ee13c7e5bd8f9672
+Merge: e928648 fc3c50e
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Mon Apr 1 19:19:23 2019 -0600
+
+    Merge branch 'master' of https://github.com/abrookes-1/clue
+
+commit e928648804024e2272e7109516897a06eb14599b
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Mon Apr 1 19:19:21 2019 -0600
+
+    added getDeck method
+
+commit fc3c50e54c8cf76a0f3f6b9ceb534c34ce75eee1
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 19:16:59 2019 -0600
+
+    Update gitlog.txt
+
 commit 713e2e491b16f0640350b1350779ccfa43a5c4ec
 Author: Aidan Brookes <aaabrookes@gmail.com>
 Date:   Mon Apr 1 19:16:07 2019 -0600
