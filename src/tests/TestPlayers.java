@@ -104,4 +104,21 @@ public class TestPlayers {
 		
 		assert(max-min < 2);
 	}
+	
+	@Test
+	public void noCard() {
+		Set<Player> players = gameBoard.getPlayerInstances();
+		int min = 999;
+		int max = -999;
+		
+		for (Player pla: players) {
+			if (pla.getHandSize() < min) {
+				min = pla.getHandSize();
+			} else if (pla.getHandSize() > max) {
+				max = pla.getHandSize();
+			}
+		}
+		
+		assert(max-min < 2);
+	}
 }
