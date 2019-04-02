@@ -18,13 +18,22 @@ import clueGame.ComputerPlayer;
 public class gameActionTests {
 	static Board gameBoard = Board.getInstance();
 	
+	@BeforeClass
+	public static void setup() {
+		gameBoard.setConfigFiles("ClueMap.csv", "RoomKey.txt", "players.txt", "weapons.txt");
+		gameBoard.initialize();
+	}
+	
 //	(10pts) Select a target. Tests include:
 	@Test
 	public void testTargetSelection() {
 //	if no rooms in list, select randomly
+	
 		
 //	if room in list that was not just visited, must select it
+		
 //	if room just visited is in list, each target (including room) selected randomly
+		
 	}
 	
 //	(15pts) Make an accusation. Tests include:
