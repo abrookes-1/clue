@@ -2,6 +2,7 @@ package tests;
 
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.BeforeClass;
@@ -9,6 +10,7 @@ import org.junit.After;
 import org.junit.Test;
 
 import clueGame.Board;
+import clueGame.Card;
 import clueGame.Player;
 import clueGame.HumanPlayer;
 import clueGame.ComputerPlayer;
@@ -106,18 +108,13 @@ public class TestPlayers {
 	}
 	
 	@Test
-	public void noCard() {
+	public void noCardDuplicates() {
 		Set<Player> players = gameBoard.getPlayerInstances();
-		int min = 999;
-		int max = -999;
+		Set<Card> cards = new HashSet<Card>();
 		
-		for (Player pla: players) {
-			if (pla.getHandSize() < min) {
-				min = pla.getHandSize();
-			} else if (pla.getHandSize() > max) {
-				max = pla.getHandSize();
-			}
-		}
+		//get all cards into cards set
+		//check for dups
+		
 		
 		assert(max-min < 2);
 	}
