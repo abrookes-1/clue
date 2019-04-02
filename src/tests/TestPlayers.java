@@ -110,12 +110,15 @@ public class TestPlayers {
 	@Test
 	public void noCardDuplicates() {
 		Set<Player> players = gameBoard.getPlayerInstances();
-		Set<Card> cards = new HashSet<Card>();
-		
-		//get all cards into cards set
-		//check for dups
-		
-		
-		assert(max-min < 2);
+		// check hand of each player
+		for (Player pla: players) {
+			for (Card car: pla.getHand()) {
+				for (Player pla2: players) {
+					if (pla2 != pla) {
+						assert(!pla2.getHand().contains(car));
+					}
+				}
+			}
+		}
 	}
 }
