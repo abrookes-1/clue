@@ -13,6 +13,13 @@ import javax.swing.border.TitledBorder;
 
 public class GUI_clue extends JPanel{
 	
+	public GUI_clue() {
+//		setLayout(new GridLayout(2,0));
+//		JPanel panel = createNamePanel();
+//		add(panel);
+//		panel = createButtonPanel();
+//		add(panel);
+	}
 	
 	public static void main(String[] args) {
 		JFrame frame = new JFrame();
