@@ -18,7 +18,7 @@ public class ComputerPlayer extends Player{
 		
 	}
 	
-	public void createSuggestion() { // args tbd
-		
+	public Solution createSuggestion() { // args tbd
+		return null;
 	}
 }

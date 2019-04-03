@@ -32,7 +32,8 @@ public class Board {
 	private String weaponConfigFile;
 	private ArrayList<Card> deck; 
 	private Solution answer;
-	private Set<Player> playerInstances; 
+	private Set<Player> playerInstances;
+	private Set<ComputerPlayer> compPlayerInstances;
 	
 	// Constructor
 	private Board() {
@@ -41,6 +42,7 @@ public class Board {
 		this.players = new HashMap<Color, String>();
 		this.weapons = new HashSet<String>();
 		this.playerInstances = new HashSet<Player>();
+		this.compPlayerInstances = new HashSet<ComputerPlayer>();
 		this.deck = new ArrayList<Card>();
 	}
 
@@ -220,6 +222,7 @@ public class Board {
 		Scanner in = new Scanner(reader);
         String delimeter = ", ";
         String line;
+        ComputerPlayer cpla;
         
         while (in.hasNextLine()) {
 			line = in.nextLine();
@@ -230,7 +233,9 @@ public class Board {
         	if (playerInstances.size() == 0) {
         		playerInstances.add(new HumanPlayer(input[0],Color.getColor(input[1])));
         	} else {
-        		playerInstances.add(new ComputerPlayer(input[0],Color.getColor(input[1])));
+        		cpla = new ComputerPlayer(input[0],Color.getColor(input[1]));
+        		playerInstances.add(cpla);
+        		compPlayerInstances.add(cpla);
         	}
         	
         }
@@ -349,6 +354,10 @@ public class Board {
 
 	public Set<Player> getPlayerInstances(){
 		return this.playerInstances;
+	}
+	
+	public Set<ComputerPlayer> getCompPlayerInstances(){
+		return this.compPlayerInstances;
 	}
 	
 	public int getNumRows() {
