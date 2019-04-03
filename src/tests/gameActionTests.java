@@ -55,25 +55,59 @@ public class gameActionTests {
 //	solution with wrong room
 	}
 	
-//	(15pts) Create suggestion. Tests include:
-//	Room matches current location
-//	If only one weapon not seen, it's selected
-//	If only one person not seen, it's selected (can be same test as weapon)
-//	If multiple weapons not seen, one of them is randomly selected
-//	If multiple persons not seen, one of them is randomly selected
+	//	(15pts) Create suggestion. Tests include:
+	@Test
+	public static void createSuggestion() {
+		Player pla = gameBoard.getPlayerInstances().get(0); // cant actually access element via iterator b/c Set
+		Solution testSuggestion = pla.createSuggestion();
+		//	Room matches current location
+		assert(gameBoard.getLegend().get(gameBoard.getCellAt(pla.getRow(), pla.getCol()).getInitial()) == testSuggestion.room);
+		//	If only one weapon not seen, it's selected
+		if (pla.getUnseenWeapons().size() == 1) {
+			assert(pla.getUnseenWeapons().contains(testSuggestion.weapon));
+		}
+		//	If only one person not seen, it's selected (can be same test as weapon)
+		if (pla.getUnseenPeople().size() == 1) {
+			assert(pla.getUnseenPeople().contains(testSuggestion.person));
+		}
+		//	If multiple weapons not seen, one of them is randomly selected
+		if (pla.getUnseenWeapons().size() > 1) {
+			assert(pla.getUnseenWeapons().contains(testSuggestion.weapon));
+		}
+		//	If multiple persons not seen, one of them is randomly selected
+		if (pla.getUnseenPeople().size() > 1) {
+			assert(pla.getUnseenPeople().contains(testSuggestion.person));
+		}
+	}
 	
-//	(15pts) Disprove suggestion - ComputerPlayer. Tests include:
-//	If player has only one matching card it should be returned
-//	If players has >1 matching card, returned card should be chosen randomly
-//	If player has no matching cards, null is returned
-	
-//	(15pts) Handle suggestion - Board. Tests include:
+	//	(15pts) Disprove suggestion - ComputerPlayer. Tests include:
+	@Test
+	public static void disproveSuggestionComp() {
+		Player pla = gameBoard.getPlayerInstances().get(0); // cant actually access element via iterator b/c Set
+		Card roomFromHand = pla.getRoomFromHand();
+		Solution suggestionToDisprove = new Solution(gameBoard.getAnswer().person, gameBoard.getAnswer().weapon, roomFromHand.getCardName());
+		//	If player has only one matching card it should be returned
+		assert(pla.disproveSuggestion(suggestionToDisprove) == roomFromHand);
+		//	If players has >1 matching card, returned card should be chosen randomly
+		assert(pla.disproveSuggestion(testSuggestion == one of those cards); 
+		//	If player has no matching cards, null is returned
+		assert(pla.disproveSuggestion(Solution with no cards in common with players hand) == null);
+	}
+		
+	//	(15pts) Handle suggestion - Board. Tests include:
+	@Test
 	public static void handleSuggestionBoard() {
-//	Suggestion no one can disprove returns null
-//	Suggestion only accusing player can disprove returns null
-//	Suggestion only human can disprove returns answer (i.e., card that disproves suggestion)
-//	Suggestion only human can disprove, but human is accuser, returns null
-//	Suggestion that two players can disprove, correct player (based on starting with next player in list) returns answer
-//	Suggestion that human and another player can disprove, other player is next in list, ensure other player returns answer
+		//	Suggestion no one can disprove returns null
+		assert(null == gameBoard.handleSuggestion(gameBoard.getAnswer(), null));
+		//	Suggestion only accusing player can disprove returns null
+		assert(null == gameBoard.handleSuggestion(  ~suggestion must be a person + weapon in accusers hand~  , accuser));
+		//	Suggestion only human can disprove returns answer (i.e., card that disproves suggestion)
+		assert(  ~card must be the person or weapon card from suggestion~  == gameBoard.handleSuggestion(  ~suggestion must be a person + weapon in accusers hand~  , some computer player);
+		//	Suggestion only human can disprove, but human is accuser, returns null
+		assert(null == gameBoard.handleSuggestion(  ~suggestion must be a person + weapon in human players hand~  , gameBoard.getHuman()));
+		//	Suggestion that two players can disprove, correct player (based on starting with next player in list) returns answer
+			// does this imply an array for playerInstances instead of a set??
+		//	Suggestion that human and another player can disprove, other player is next in list, ensure other player returns answer
+			// no clue how to test
 	}
 }

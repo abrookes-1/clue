@@ -10,11 +10,15 @@ public class Player {
 	private Color color;
 	private String colorString;
 	private Set<Card> cards;
+	private Set<Card> unseenWeapons;
+	private Set<Card> unseenPeople;
 	
 	public Player(String character, Color color) {
 		this.playerName = character;
 		this.color = color;
 		this.cards = new HashSet<Card>();
+		this.unseenWeapons = new HashSet<Card>();
+		this.unseenPeople = new HashSet<Card>();
 	}
 	
 	public void dealCard(Card card) {
@@ -29,7 +33,24 @@ public class Player {
 		return cards;
 	}
 	
+	public int getRow() {
+		return row;
+	}
+	
+	public int getCol() {
+		return column;
+	}
+	
+	public Set<Card> getUnseenWeapons() {
+		return unseenWeapons;
+	}
+	
+	public Set<Card> getUnseenPeople() {
+		return unseenPeople;
+	}
+	
 	// untested
+	// TODO: make logic to return random card if two or more meet suggestion
 	public Card disproveSuggestion(Solution suggestion) throws Exception {
 		for (Card aCard: cards) {
 			if (aCard.getCardName() == suggestion.person) {

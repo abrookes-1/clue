@@ -32,7 +32,7 @@ public class Board {
 	private String weaponConfigFile;
 	private ArrayList<Card> deck; 
 	private Solution answer;
-	private Set<Player> playerInstances;
+	private Set<Player> playerInstances; 
 	
 	// Constructor
 	private Board() {
@@ -316,7 +316,7 @@ public class Board {
 		return false;
 	}
 
-	// inputs are TBD
+	// Checks if any player other than the accuser is able to disprove a suggestion
 	public Card handleSuggestion(Solution sugg, Player suggSource) {
 		Card temp;
 		for (Player pla: playerInstances) {
@@ -378,6 +378,9 @@ public class Board {
 	public static Board getInstance() {
 		return boardInstance;
 	}
+	public Solution getAnswer() {
+		return answer;
+	}
 	
 	public Solution getAnswer() {
 		return answer;
@@ -423,6 +426,7 @@ public class Board {
 		//setup player objects
 		
 		shuffleDeck();
+		selectAnswer();
 		dealDeck();
 		
 	}
