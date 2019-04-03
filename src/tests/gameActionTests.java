@@ -12,6 +12,7 @@ import org.junit.Test;
 import clueGame.Board;
 import clueGame.Card;
 import clueGame.Player;
+import clueGame.Solution;
 import clueGame.HumanPlayer;
 import clueGame.ComputerPlayer;
 
@@ -50,12 +51,21 @@ public class gameActionTests {
 	//	(15pts) Create suggestion. Tests include:
 	@Test
 	public static void createSuggestion() {
-	//	Room matches current location
-		assert(gameBoard.getCellAt(pla.getRow(), pla.getColumn()).getInitial() == player suggestion room);
-	//	If only one weapon not seen, it's selected
-	//	If only one person not seen, it's selected (can be same test as weapon)
-	//	If multiple weapons not seen, one of them is randomly selected
-	//	If multiple persons not seen, one of them is randomly selected
+		Solution testSuggestion = pla.createSuggestion();
+		//	Room matches current location
+		assert(gameBoard.getCellAt(pla.getRow(), pla.getColumn()).getInitial() == testSuggestion.room);
+		//	If only one weapon not seen, it's selected
+		if (pla.getUnseenWeapons().size() == 1) {
+			assert(pla.getUnseenWeapons().contains(testSuggestion.weapon));
+		}
+		//	If only one person not seen, it's selected (can be same test as weapon)
+		if (pla.getUnseenPeople().size() == 1) {
+			assert(pla.getUnseenPeople().contains(testSuggestion.person));
+		}
+		//	If multiple weapons not seen, one of them is randomly selected
+		
+		//	If multiple persons not seen, one of them is randomly selected
+		
 	}
 	
 	//	(15pts) Disprove suggestion - ComputerPlayer. Tests include:
