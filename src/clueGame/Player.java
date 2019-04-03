@@ -29,6 +29,14 @@ public class Player {
 		return cards;
 	}
 	
+	public int getRow() {
+		return row;
+	}
+	
+	public int getCol() {
+		return column;
+	}
+	
 	// untested
 	// TODO: make logic to return random card if two or more meet suggestion
 	public Card disproveSuggestion(Solution suggestion) throws Exception {

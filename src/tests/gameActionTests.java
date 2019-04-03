@@ -47,14 +47,19 @@ public class gameActionTests {
 //	solution with wrong room
 	}
 	
-//	(15pts) Create suggestion. Tests include:
-//	Room matches current location
-//	If only one weapon not seen, it's selected
-//	If only one person not seen, it's selected (can be same test as weapon)
-//	If multiple weapons not seen, one of them is randomly selected
-//	If multiple persons not seen, one of them is randomly selected
+	//	(15pts) Create suggestion. Tests include:
+	@Test
+	public static void createSuggestion() {
+	//	Room matches current location
+		assert(gameBoard.getCellAt(pla.getRow(), pla.getColumn()).getInitial() == player suggestion room);
+	//	If only one weapon not seen, it's selected
+	//	If only one person not seen, it's selected (can be same test as weapon)
+	//	If multiple weapons not seen, one of them is randomly selected
+	//	If multiple persons not seen, one of them is randomly selected
+	}
 	
-//	(15pts) Disprove suggestion - ComputerPlayer. Tests include:
+	//	(15pts) Disprove suggestion - ComputerPlayer. Tests include:
+	@Test
 	public static void disproveSuggestionComp() {
 		for (Player pla: gameBoard.getPlayerInstances()) {
 			//	If player has only one matching card it should be returned
@@ -66,7 +71,8 @@ public class gameActionTests {
 		}
 	}
 		
-//	(15pts) Handle suggestion - Board. Tests include:
+	//	(15pts) Handle suggestion - Board. Tests include:
+	@Test
 	public static void handleSuggestionBoard() {
 		//	Suggestion no one can disprove returns null
 		assert(null == gameBoard.handleSuggestion(gameBoard.getAnswer(), null));
