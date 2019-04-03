@@ -10,11 +10,15 @@ public class Player {
 	private Color color;
 	private String colorString;
 	private Set<Card> cards;
+	private Set<Card> unseenWeapons;
+	private Set<Card> unseenPeople;
 	
 	public Player(String character, Color color) {
 		this.playerName = character;
 		this.color = color;
 		this.cards = new HashSet<Card>();
+		this.unseenWeapons = new HashSet<Card>();
+		this.unseenPeople = new HashSet<Card>();
 	}
 	
 	public void dealCard(Card card) {
@@ -35,6 +39,14 @@ public class Player {
 	
 	public int getCol() {
 		return column;
+	}
+	
+	public Set<Card> getUnseenWeapons() {
+		return unseenWeapons;
+	}
+	
+	public Set<Card> getUnseenPeople() {
+		return unseenPeople;
 	}
 	
 	// untested
