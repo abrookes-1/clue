@@ -28,12 +28,12 @@ public class gameActionTests {
 //	(10pts) Select a target. Tests include:
 	@Test
 	public void testTargetSelection() {
-//	if no rooms in list, select randomly
+		//	if no rooms in list, select randomly
 	
 		
-//	if room in list that was not just visited, must select it
+		//	if room in list that was not just visited, must select it
 		
-//	if room just visited is in list, each target (including room) selected randomly
+		//	if room just visited is in list, each target (including room) selected randomly
 		
 	}
 	
@@ -43,7 +43,7 @@ public class gameActionTests {
 		Solution ans = gameBoard.getAnswer();
 		Solution anscopy = new Solution(ans.person, ans.weapon, ans.room);
 		
-//	solution with wrong person
+		//	solution with wrong person
 		if (anscopy.person != "Ms. Rose") {
 			anscopy.person = "Ms. Rose";
 		} else {
@@ -51,13 +51,13 @@ public class gameActionTests {
 		}
 		assert(!gameBoard.checkAccusation(anscopy));
 		
-//	solution with wrong weapon
-//	solution with wrong room
+		//	solution with wrong weapon
+		//	solution with wrong room
 	}
 	
 	//	(15pts) Create suggestion. Tests include:
 	@Test
-	public static void createSuggestion() {
+	public static void testCreateSuggestion() {
 		// get all computer players in game
 		Set<ComputerPlayer> compPlayers = gameBoard.getCompPlayerInstances();
 		
