@@ -388,10 +388,6 @@ public class Board {
 		return answer;
 	}
 	
-	public Solution getAnswer() {
-		return answer;
-	}
-	
 
 	// TODO: re-factor
 	public void initialize() {
