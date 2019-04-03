@@ -57,7 +57,7 @@ public class gameActionTests {
 	
 	//	(15pts) Create suggestion. Tests include:
 	@Test
-	public static void testCreateSuggestion() {
+	public void testCreateSuggestion() {
 		// get all computer players in game
 		Set<ComputerPlayer> compPlayers = gameBoard.getCompPlayerInstances();
 		

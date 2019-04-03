@@ -19,6 +19,10 @@ public class ComputerPlayer extends Player{
 	}
 	
 	public Solution createSuggestion() { // args tbd
-		return null;
+		String person = "";
+		String weapon = "";
+		String room = "";
+		Solution sol = new Solution(person, weapon, room);
+		return sol;
 	}
 }
