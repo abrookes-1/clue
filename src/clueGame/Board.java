@@ -321,7 +321,13 @@ public class Board {
 		Card temp;
 		for (Player pla: playerInstances) {
 			if (pla != suggSource) {
-				return pla.disproveSuggestion(sugg);
+				try {
+					if (pla != suggSource) {
+						return pla.disproveSuggestion(sugg);
+					}
+				} catch (gamePlayException e) {
+					if (e.getMessage() == "card may not be disproved");
+				}
 			}
 		}
 		return null;
