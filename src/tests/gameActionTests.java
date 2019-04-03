@@ -12,6 +12,7 @@ import org.junit.Test;
 import clueGame.Board;
 import clueGame.Card;
 import clueGame.Player;
+import clueGame.Solution;
 import clueGame.HumanPlayer;
 import clueGame.ComputerPlayer;
 
@@ -38,11 +39,18 @@ public class gameActionTests {
 	
 //	(15pts) Make an accusation. Tests include:
 	@Test
-	public void testMakeAccusation() {
-	for (Player pla: gameBoard.getPlayerInstances()) {
+	public void testCheckAccusation() {
+		Solution ans = gameBoard.getAnswer();
+		Solution anscopy = new Solution(ans.person, ans.weapon, ans.room);
 		
-	}
 //	solution with wrong person
+		if (anscopy.person != "Ms. Rose") {
+			anscopy.person = "Ms. Rose";
+		} else {
+			anscopy.person = "Mr. Blue";
+		}
+		assert(!gameBoard.checkAccusation(anscopy));
+		
 //	solution with wrong weapon
 //	solution with wrong room
 	}

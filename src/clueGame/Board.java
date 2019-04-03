@@ -379,6 +379,9 @@ public class Board {
 		return boardInstance;
 	}
 	
+	public Solution getAnswer() {
+		return answer;
+	}
 	
 
 	// TODO: re-factor
