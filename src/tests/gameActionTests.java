@@ -55,23 +55,30 @@ public class gameActionTests {
 //	If multiple persons not seen, one of them is randomly selected
 	
 //	(15pts) Disprove suggestion - ComputerPlayer. Tests include:
-//	If player has only one matching card it should be returned
-//	If players has >1 matching card, returned card should be chosen randomly
-//	If player has no matching cards, null is returned
-	
+	public static void disproveSuggestionComp() {
+		for (Player pla: gameBoard.getPlayerInstances()) {
+			//	If player has only one matching card it should be returned
+			assert(pla.disproveSuggestion(Solution with one card in players hand) == that one card);
+			//	If players has >1 matching card, returned card should be chosen randomly
+			assert(pla.disproveSuggestion(Solution with >1 card in players hand) == one of those cards); // no clue how to check the randomness without repeating several times??
+			//	If player has no matching cards, null is returned
+			assert(pla.disproveSuggestion(Solution with no cards in common with players hand) == null);
+		}
+	}
+		
 //	(15pts) Handle suggestion - Board. Tests include:
 	public static void handleSuggestionBoard() {
-	//	Suggestion no one can disprove returns null
+		//	Suggestion no one can disprove returns null
 		assert(null == gameBoard.handleSuggestion(gameBoard.getAnswer(), null));
-	//	Suggestion only accusing player can disprove returns null
-		assert(null == gameBoard.handleSuggestion(  ~~  , null));
-	//	Suggestion only human can disprove returns answer (i.e., card that disproves suggestion)
-		assert( == gameBoard.handleSuggestion(gameBoard.getHuman().getSuggestionOnlyDisprove() , gameBoard.getHuman()));
-	//	Suggestion only human can disprove, but human is accuser, returns null
-		assert(null == gameBoard.handleSuggestion(gameBoard.getHuman().getSuggestionOnlyDisprove() , gameBoard.getHuman()));
-	//	Suggestion that two players can disprove, correct player (based on starting with next player in list) returns answer
-		
-	//	Suggestion that human and another player can disprove, other player is next in list, ensure other player returns answer
-		
+		//	Suggestion only accusing player can disprove returns null
+		assert(null == gameBoard.handleSuggestion(  ~suggestion must be a person + weapon in accusers hand~  , accuser));
+		//	Suggestion only human can disprove returns answer (i.e., card that disproves suggestion)
+		assert(  ~card must be the person or weapon card from suggestion~  == gameBoard.handleSuggestion(  ~suggestion must be a person + weapon in accusers hand~  , some computer player);
+		//	Suggestion only human can disprove, but human is accuser, returns null
+		assert(null == gameBoard.handleSuggestion(  ~suggestion must be a person + weapon in human players hand~  , gameBoard.getHuman()));
+		//	Suggestion that two players can disprove, correct player (based on starting with next player in list) returns answer
+			// does this imply an array for playerInstances instead of a set??
+		//	Suggestion that human and another player can disprove, other player is next in list, ensure other player returns answer
+			// no clue how to test
 	}
 }

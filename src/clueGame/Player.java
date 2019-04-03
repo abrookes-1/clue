@@ -30,6 +30,7 @@ public class Player {
 	}
 	
 	// untested
+	// TODO: make logic to return random card if two or more meet suggestion
 	public Card disproveSuggestion(Solution suggestion) throws Exception {
 		for (Card aCard: cards) {
 			if (aCard.getCardName() == suggestion.person) {
