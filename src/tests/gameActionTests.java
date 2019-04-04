@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import clueGame.Board;
 import clueGame.Card;
+import clueGame.CardType;
 import clueGame.Player;
 import clueGame.Solution;
 import clueGame.HumanPlayer;
@@ -147,31 +148,58 @@ public class gameActionTests {
 		}
 	}
 	
-	/*
+	
 	//	(15pts) Disprove suggestion - ComputerPlayer. Tests include:
 	@Test
-	public static void disproveSuggestionComp() {
+	public void disproveSuggestionComp() {
 		// get all computer players in game
 		Set<ComputerPlayer> compPlayers = gameBoard.getCompPlayerInstances();
 		
-		Solution testSuggestion;
+		Solution suggestionToDisprove = new Solution(gameBoard.getAnswer().person, gameBoard.getAnswer().weapon, gameBoard.getAnswer().room);
+		int it = 0;
 		for (ComputerPlayer pla: compPlayers) {
-			//Card roomFromHand = pla.getRoomFromHand();
-			Solution suggestionToDisprove = new Solution(gameBoard.getAnswer().person, gameBoard.getAnswer().weapon, roomFromHand.getCardName());
+			if (it == 2) {
+				for (Card card:pla.getHand()) {
+					if (card.getType() == CardType.PERSON) {
+						suggestionToDisprove.person = card.getCardName();
+					}
+				}
+				for (Card card:pla.getHand()) {
+					if (card.getType() == CardType.WEAPON) {
+						suggestionToDisprove.weapon = card.getCardName();
+					}
+				}
+			} else if (it == 4) {
+				for (Card card:pla.getHand()) {
+					if (card.getType() == CardType.ROOM) {
+						suggestionToDisprove.room = card.getCardName();
+					}
+				}
+			}
+			it++;
+		}
 		
+		it = 0;
+		for (ComputerPlayer pla: compPlayers) {
+			
 			//	If player has only one matching card it should be returned
-			assert(pla.disproveSuggestion(suggestionToDisprove) == roomFromHand);
+			if (it==4) {
+				assert(pla.disproveSuggestion(suggestionToDisprove).getCardName() == suggestionToDisprove.room);
+			}
 			//	If players has >1 matching card, returned card should be chosen randomly
-			assert(pla.disproveSuggestion(testSuggestion == one of those cards); 
+			else if (it==2) {
+				assert(pla.disproveSuggestion(suggestionToDisprove).getCardName() == suggestionToDisprove.person || pla.disproveSuggestion(suggestionToDisprove).getCardName() == suggestionToDisprove.weapon); 
+			}
 			//	If player has no matching cards, null is returned
-			assert(pla.disproveSuggestion(Solution with no cards in common with players hand) == null);
-		
-		
+			else {
+				assert(pla.disproveSuggestion(suggestionToDisprove) == null);
+			}
+			it++;
 		}
 		
 
 	}
-	*/
+	
 	
 //		
 //	//	(15pts) Handle suggestion - Board. Tests include:
