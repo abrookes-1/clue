@@ -1,3 +1,199 @@
+commit 73491daaf57792a9a97c8388b3e89af1720e21d7
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 3 22:16:26 2019 -0600
+
+    Update gameActionTests.java
+
+commit 69dfc5c63db027db16ed2f2c16fa55d12317495f
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 3 22:06:45 2019 -0600
+
+    HandleSuggestion half-working
+
+commit d38a4e0a6e97f0505c267668d560a754fdff48bc
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 3 21:19:24 2019 -0600
+
+    DisproveSuggestion Test Passes
+
+commit 0aab469d47f8d98c4a9255c789d6096be31232c3
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 3 20:48:59 2019 -0600
+
+    testCreateSuggestion in working order
+
+commit 57c9772b458a295d401e80336b3355f1c1832f61
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 3 20:29:14 2019 -0600
+
+    Worked on AI for computer players creating suggestions
+
+commit 2a841560e69f109629be53cce3d48547bd2bba62
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 3 19:09:27 2019 -0600
+
+    Fixed CheckAccusation method and expanded tests
+
+commit 2e0d459f7b2a83f0c69335d2cec1ca47fc25ef2a
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Wed Apr 3 18:19:31 2019 -0600
+
+    made disproveSuggestion return a random card
+
+commit 0b203eefa21bb984b1b2e0cdb21a6ccc5a8111b2
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Wed Apr 3 18:09:18 2019 -0600
+
+    updated createSuggestion, disproveSuggestion
+
+commit f23ee4976b2edd60e73459327042efee7ff0c964
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Wed Apr 3 17:56:59 2019 -0600
+
+    updated createSuggestion to have sensible return type (not null)
+
+commit 5fa5ff93f7df9e5f09d987659d1139b3de4a30b9
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Wed Apr 3 17:41:44 2019 -0600
+
+    Update gameActionTests.java
+
+commit c2e304360a7ed77626ce499db4333af06dcc55fe
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Wed Apr 3 17:37:07 2019 -0600
+
+    updated createSuggestion test
+
+commit 26c93b9103d3a6cf6a8929d9e92d21e94da05c3f
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Wed Apr 3 17:21:32 2019 -0600
+
+    removed duplicate board.getAnswer()
+
+commit 632da8fe27ba0815aafc990e436234a69d801b7e
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Wed Apr 3 17:20:51 2019 -0600
+
+    fixed handleSuggestion functionality
+
+commit c601b6851b003751af060093a50a3d2950256687
+Merge: f7f203b f079f66
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Wed Apr 3 17:12:00 2019 -0600
+
+    Merge branch 'master' of https://github.com/abrookes-1/clue
+
+commit f7f203b766b922e42bb3f7206c977aba07d9b9c8
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Wed Apr 3 17:11:39 2019 -0600
+
+    wrote testCheckAccusation
+
+commit f079f666c29ada59f6c1aeb823ccf06ac507dbbc
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 3 12:50:17 2019 -0600
+
+    Improved tests for disproveSuggestion
+
+commit 852fdafc7a9539c28487870c1ab8640454ed28c3
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 3 11:05:31 2019 -0600
+
+    Update gameActionTests.java
+
+commit f888dd6c74e9ae23472c168cbe193f6e4dfa9218
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 3 10:05:06 2019 -0600
+
+    Started Tests for createSuggestion
+
+commit 7df3e8ecdc9d8ac68b27564d1433b773723b3509
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 3 09:53:37 2019 -0600
+
+    Tried to set up disproveSuggestion tests
+
+commit be947acf29526dcff5c7155055252d8616a76060
+Merge: 95f11c1 081635e
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 2 15:25:11 2019 -0600
+
+    Merge branch 'master' of https://github.com/abrookes-1/clue
+
+commit 95f11c19762cc2d685234ce8e17c18600269ffea
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 2 15:25:07 2019 -0600
+
+    HandleSuggestion test edits
+
+commit 081635ee7d38f7e41b77accca96d1a669a67bd33
+Merge: 206591b 8ee9e7f
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 2 15:03:17 2019 -0600
+
+    Merge branch 'master' of https://github.com/abrookes-1/clue
+
+commit 206591b74626549c3c6352a734184afa9dc9b0c5
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 2 15:03:10 2019 -0600
+
+    added ISHUMAN
+
+commit 8ee9e7fec943e61d0def3765debce198abbb8800
+Merge: 48c8d8f bbe8c61
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 2 15:02:34 2019 -0600
+
+    Merge branch 'master' of https://github.com/abrookes-1/clue
+
+commit 48c8d8f78eba5681c1b612a54dba0654adaf251c
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 2 15:02:32 2019 -0600
+
+    Did tests work
+
+commit bbe8c61be2f856f04592ef907a22a22f6f4bfccb
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 2 14:33:07 2019 -0600
+
+    added @beforeclass to gameActionTests
+
+commit ab1b57640a045c2f2535bafa0ebf6e325c480afb
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 2 14:30:32 2019 -0600
+
+    inserted comments in gameActionTests
+
+commit cad9e9329007c14ec585f878dd1102f20517803a
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 2 14:25:52 2019 -0600
+
+    added gameactiontests
+
+commit b7c66d0263de99cac9e50342cf3b8bf865903efb
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 2 14:15:54 2019 -0600
+
+    Update GUI_clue.java
+
+commit f5d49fda13696329a7c95ccd281580dd1e97cf73
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 2 14:13:52 2019 -0600
+
+    added code for guid window (empty)
+
+commit 14727e01aa064f9d16e89adf378f06039e4ddf3b
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 2 14:08:28 2019 -0600
+
+    Create GUI_clue.java
+
+commit 19590e80b9c826cc9bbf1fd1d521105264ebc881
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Mon Apr 1 19:23:24 2019 -0600
+
+    updated git log
+
 commit be7d83a3af6f405c9149aa48a951e77a057eddb7
 Merge: e1dc5e6 ef98a74
 Author: Aidan Brookes <aaabrookes@gmail.com>
