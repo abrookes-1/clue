@@ -44,18 +44,37 @@ public class gameActionTests {
 		Solution anscopy = new Solution(ans.person, ans.weapon, ans.room);
 		
 		//	solution with wrong person
-		if (anscopy.person != "Ms. Rose") {
-			anscopy.person = "Ms. Rose";
-		} else {
-			anscopy.person = "Mr. Blue";
+		for (String person:gameBoard.getPlayers()) {
+			if (anscopy.person != person) {
+				anscopy.person = person;
+				break;
+			}
 		}
 		assert(!gameBoard.checkAccusation(anscopy));
 		
 		//	solution with wrong weapon
+		anscopy.person = ans.person;
+		for (String weapon:gameBoard.getWeapons()) {
+			if (anscopy.weapon != weapon) {
+				anscopy.weapon = weapon;
+				break;
+			}
+		}
+		assert(!gameBoard.checkAccusation(anscopy));
+		
 		//	solution with wrong room
+		anscopy.weapon = ans.weapon;
+		for (String room:gameBoard.getRooms()) {
+			if (anscopy.room != room) {
+				anscopy.room = room;
+				break;
+			}
+		}
+		assert(!gameBoard.checkAccusation(anscopy));
+		
 	}
 	
-	//	(15pts) Create suggestion. Tests include:
+	//	(15pts) Create suggestion. - Computer Player Tests include:
 	@Test
 	public void testCreateSuggestion() {
 		// get all computer players in game
@@ -88,6 +107,7 @@ public class gameActionTests {
 		}
 	}
 	
+	/*
 	//	(15pts) Disprove suggestion - ComputerPlayer. Tests include:
 	@Test
 	public static void disproveSuggestionComp() {
@@ -111,6 +131,7 @@ public class gameActionTests {
 		
 
 	}
+	*/
 //		
 //	//	(15pts) Handle suggestion - Board. Tests include:
 //	@Test

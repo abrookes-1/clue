@@ -314,8 +314,12 @@ public class Board {
 	
 	// checks if accusation matches answer
 	public Boolean checkAccusation(Solution accusation) {
-		if (accusation == answer) {
-			return true;
+		if (accusation.person.equals(answer.person)) {
+			if (accusation.weapon.equals(answer.weapon)) {
+				if (accusation.room.equals(answer.room)) {
+					return true;
+				}
+			}
 		}
 		return false;
 	}
@@ -387,8 +391,29 @@ public class Board {
 	public static Board getInstance() {
 		return boardInstance;
 	}
+	
 	public Solution getAnswer() {
 		return answer;
+	}
+	
+	public Set<String> getPlayers() {
+		Set<String> toReturn = new HashSet<String>();
+		for (String item:players.values()) {
+			toReturn.add(item);
+		}
+		return toReturn;
+	}
+	
+	public Set<String> getWeapons() {
+		return weapons;
+	}
+	
+	public Set<String> getRooms() {
+		Set<String> toReturn = new HashSet<String>();
+		for (String item:legend.values()) {
+			toReturn.add(item);
+		}
+		return toReturn;
 	}
 	
 
