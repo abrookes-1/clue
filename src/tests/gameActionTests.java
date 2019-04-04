@@ -79,7 +79,7 @@ public class gameActionTests {
 	public void testCreateSuggestion() {
 		// get all computer players in game
 		Set<ComputerPlayer> compPlayers = gameBoard.getCompPlayerInstances();
-		
+		boolean willAssert;
 		Solution testSuggestion;
 		for (ComputerPlayer pla: compPlayers) {
 			testSuggestion = pla.createSuggestion();
@@ -89,21 +89,61 @@ public class gameActionTests {
 			
 			//	If only one weapon not seen, it's selected
 			if (pla.getUnseenWeapons().size() == 1) {
-				assert(pla.getUnseenWeapons().contains(testSuggestion.weapon));
+				willAssert = false;
+				for (Card card:pla.getUnseenWeapons()) {
+					if (card.getCardName() == testSuggestion.weapon) {
+						willAssert = true;
+					}	
+				}
+				if (willAssert) {
+					assert(true);
+				} else {
+					assert(false);
+				}
 			}
 			
 			//	If only one person not seen, it's selected (can be same test as weapon)
 			if (pla.getUnseenPeople().size() == 1) {
-				assert(pla.getUnseenPeople().contains(testSuggestion.person));
+				willAssert = false;
+				for (Card card:pla.getUnseenPeople()) {
+					if (card.getCardName() == testSuggestion.person) {
+						willAssert = true;
+					}	
+				}
+				if (willAssert) {
+					assert(true);
+				} else {
+					assert(false);
+				}
 			}
 			//	If multiple weapons not seen, one of them is randomly selected
-			if (pla.getUnseenWeapons().size() > 1) {
-				assert(pla.getUnseenWeapons().contains(testSuggestion.weapon));
+			
+			willAssert = false;
+			for (Card card:pla.getUnseenWeapons()) {
+				if (card.getCardName() == testSuggestion.weapon) {
+					willAssert = true;
+				}	
 			}
+			if (willAssert) {
+				assert(true);
+			} else {
+				assert(false);
+			}
+			
 			//	If multiple persons not seen, one of them is randomly selected
-			if (pla.getUnseenPeople().size() > 1) {
-				assert(pla.getUnseenPeople().contains(testSuggestion.person));
+		
+			willAssert = false;
+			for (Card card:pla.getUnseenPeople()) {
+				if (card.getCardName() == testSuggestion.person) {
+					willAssert = true;
+				}	
 			}
+			if (willAssert) {
+				assert(true);
+			} else {
+				assert(false);
+			}
+			
 		}
 	}
 	
