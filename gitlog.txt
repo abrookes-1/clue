@@ -1,3 +1,51 @@
+commit ab1796d8d8925e2ad6afe22f596d603db80fcb2d
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 4 15:27:49 2019 -0600
+
+    Update GUI_clue.java
+
+commit 0ecbdc1b8195e46183bb6a669b4c633e6a0c8961
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 4 14:30:16 2019 -0600
+
+    Update GUI_clue.java
+
+commit 3bd0040f9675bb94a5020afd18cc5465e4670b7b
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 4 14:29:31 2019 -0600
+
+    Update GUI_clue.java
+
+commit ca2c1595fe9110b5da83e1b8d9d54440bd7f00bb
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 4 14:23:01 2019 -0600
+
+    Update GUI_clue.java
+
+commit 65252828815ed6fdbfb3230b695575453928e646
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 4 14:16:54 2019 -0600
+
+    Update GUI_clue.java
+
+commit 4e8eab61b3bde347b882a6ac3bade94c80a1fd50
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Apr 4 13:44:31 2019 -0600
+
+    Gives players starting positions
+
+commit 03950667e7c95c921c3f0d4e4a5bdbdd046a9f25
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Apr 4 11:40:35 2019 -0600
+
+    General Refactoring in Board.java
+
+commit 5cd4e5a79a38fc899362a748a4a7a683cc558201
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 3 22:19:29 2019 -0600
+
+    Updated gitlog.txt will be submitting
+
 commit 73491daaf57792a9a97c8388b3e89af1720e21d7
 Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
 Date:   Wed Apr 3 22:16:26 2019 -0600
