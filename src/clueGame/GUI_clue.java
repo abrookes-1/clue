@@ -12,7 +12,19 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 public class GUI_clue extends JPanel{
-	 private JPanel createNamePanel() {
+
+	public GUI_clue(int rows, int cols) {
+		setLayout(new GridLayout(rows, cols));
+		JPanel panel = createNamePanel("Controls");
+		add(panel);
+		panel = createNamePanel("Board");
+		add(panel);
+//		panel = createButtonPanel();
+//		add(panel);
+		// create
+	}
+	
+		 private JPanel createNamePanel(String panelTitle) {
 		 	JPanel panel = new JPanel();
 		 	// Use a grid layout, 1 row, 2 elements (label, text)
 			panel.setLayout(new GridLayout(1,1));
@@ -20,18 +32,10 @@ public class GUI_clue extends JPanel{
 //			name = new JTextField(20);
 //			panel.add(nameLabel);
 //			panel.add(name);
-			panel.setBorder(new TitledBorder (new EtchedBorder(), "Who are you?"));
+			panel.setBorder(new TitledBorder (new EtchedBorder(), panelTitle));
 			return panel;
 	}
-	
-	public GUI_clue(int rows, int cols) {
-		setLayout(new GridLayout(rows, cols));
-		JPanel panel = createNamePanel();
-		add(panel);
-//		panel = createButtonPanel();
-//		add(panel);
-	}
-	
+		 
 	public static void main(String[] args) {
 		Board gameBoard = Board.getInstance();
 		gameBoard.setConfigFiles("ClueMap.csv", "RoomKey.txt", "players.txt", "weapons.txt");
