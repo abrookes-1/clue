@@ -44,6 +44,14 @@ public class Player {
 		return cards;
 	}
 	
+	public void setRow(int row) {
+		this.row = row;
+	}
+	
+	public void setCol(int col) {
+		this.column = col;
+	}
+	
 	public int getRow() {
 		return row;
 	}

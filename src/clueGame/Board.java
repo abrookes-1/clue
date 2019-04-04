@@ -23,8 +23,10 @@ public class Board {
 	private String weaponConfigFile;
 	
 	private Map< BoardCell, Set<BoardCell> > adjacencyMap;
-	private Set<BoardCell> targets = new HashSet<BoardCell>();
+	private Set<BoardCell> targets;
 	private ArrayList<ArrayList<BoardCell>> boardCells;
+	private ArrayList<Integer> startingRows = new ArrayList<Integer>(Arrays.asList(0,6,6,13,15,22));
+	private ArrayList<Integer> startingColumns = new ArrayList<Integer>(Arrays.asList(14,0,24,0,24,16));
 	
 	private Map<Character, String> legend;
 	private Map<Color, String> characters;
@@ -40,6 +42,8 @@ public class Board {
 	// Constructor
 	private Board() {
 		super();
+		this.targets = new HashSet<BoardCell>();
+		
 		this.legend = new HashMap<Character, String>();
 		this.characters = new HashMap<Color, String>();
 		this.weapons = new HashSet<String>();
@@ -369,6 +373,14 @@ public class Board {
 		return null;
 	}
 	
+	public void assignStartingPositions() {
+		int i = 0;
+		for (Player pla:playerInstances) {
+			pla.setRow(startingRows.get(i));
+			pla.setCol(startingColumns.get(i));
+			i++;
+		}
+	}
 	
 	/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 * 	~~~~	Setters and Getters 	~~~~
@@ -456,6 +468,7 @@ public class Board {
 	public void setLegend(Map<Character, String> legend) {
 		this.legend = legend;
 	}
+	
 
 
 	// TODO: re-factor maybe
@@ -502,6 +515,7 @@ public class Board {
 		 * 		- set players to starting positions on board
 		 * 		- other methods idk lmao
 		 */
+		assignStartingPositions();
 		
 	}
 }
