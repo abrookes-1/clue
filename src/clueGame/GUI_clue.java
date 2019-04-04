@@ -14,15 +14,22 @@ import javax.swing.border.TitledBorder;
 public class GUI_clue extends JPanel{
 
 	public GUI_clue(int rows, int cols) {
-		setLayout(new GridLayout(rows, cols));
-		JPanel panel = createNamePanel("Controls");
+		setLayout(new GridLayout(2, 2));
+		JPanel panel = createNamePanel("Board");
+		panel.setLayout(new GridLayout(rows, cols));
+		fillBoard(panel);
 		add(panel);
-		panel = createNamePanel("Board");
+		panel = createNamePanel("Controls");
 		add(panel);
+
 //		panel = createButtonPanel();
 //		add(panel);
 		// create
 	}
+	
+		public void fillBoard(JPanel board) {
+			
+		}
 	
 		 private JPanel createNamePanel(String panelTitle) {
 		 	JPanel panel = new JPanel();
@@ -48,7 +55,7 @@ public class GUI_clue extends JPanel{
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Clue");
-		frame.setSize(250, 150);
+		frame.setSize(800, 500);
 		
 		GUI_clue gui_clue = new GUI_clue(rows, cols);
 		frame.add(gui_clue, BorderLayout.CENTER);
