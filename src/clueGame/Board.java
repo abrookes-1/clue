@@ -33,6 +33,7 @@ public class Board {
 	private Solution answer;
 	private Set<Player> playerInstances;
 	private Set<ComputerPlayer> compPlayerInstances;
+	private HumanPlayer onlyHuman;
 	
 	// Constructor
 	private Board() {
@@ -230,7 +231,8 @@ public class Board {
             Card newCard = new Card(input[0], CardType.PERSON);
         	deck.add(newCard);
         	if (playerInstances.size() == 0) {
-        		playerInstances.add(new HumanPlayer(input[0],Color.getColor(input[1])));
+        		onlyHuman = new HumanPlayer(input[0],Color.getColor(input[1]));
+        		playerInstances.add(onlyHuman);
         	} else {
         		cpla = new ComputerPlayer(input[0],Color.getColor(input[1]));
         		playerInstances.add(cpla);
@@ -358,6 +360,8 @@ public class Board {
 			if (pla != suggSource) {
 				result = pla.disproveSuggestion(sugg);
 				if (result != null) return result;
+			} else {
+				return null;
 			}
 		}
 		return null;
@@ -433,6 +437,10 @@ public class Board {
 	
 	public Set<String> getWeapons() {
 		return weapons;
+	}
+	
+	public HumanPlayer getHuman() {
+		return onlyHuman;
 	}
 	
 	public Set<String> getRooms() {
