@@ -45,7 +45,7 @@ public class gameActionTests {
 		Solution anscopy = new Solution(ans.person, ans.weapon, ans.room);
 		
 		//	solution with wrong person
-		for (String person:gameBoard.getPlayers()) {
+		for (String person:gameBoard.getCharacters()) {
 			if (anscopy.person != person) {
 				anscopy.person = person;
 				break;

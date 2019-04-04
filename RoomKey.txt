@@ -1,11 +1,11 @@
-L, Library, Card
-D, Dining room, Card
-K, Kitchen, Card
-P, Parlor, Card
-G, Gym, Card
-B, Bowling Alley, Card
-T, Theatre, Card
-A, Armory, Card
-S, Swimming Pool, Card
-X, Closet, Other
-W, Walkway, Other
+L,Library,Card
+D,Dining room,Card
+K,Kitchen,Card
+P,Parlor,Card
+G,Gym,Card
+B,Bowling Alley,Card
+T,Theatre,Card
+A,Armory,Card
+S,Swimming Pool,Card
+X,Closet,Other
+W,Walkway,Other

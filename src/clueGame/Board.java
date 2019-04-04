@@ -10,27 +10,29 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-//import clueGame.Solution;
-//import clueGame.Card;
-//import clueGame.BoardCell;
-//import clueGame.BadConfigFormatException;
+
 
 public class Board {
 	private static Board boardInstance = new Board();
 	private int boardWidth;
 	private int boardHeight;
-	private Map<Character, String> legend;
-	private Map<Color, String> players;
-	private Set<String> weapons;
-	private Map< BoardCell, Set<BoardCell> > adjacencyMap;
-	private Set<BoardCell> targets = new HashSet<BoardCell>();
-	private ArrayList<ArrayList<BoardCell>> boardCells;
+	
 	private String boardConfigFile;
 	private String roomConfigFile;
 	private String playerConfigFile;
 	private String weaponConfigFile;
+	
+	private Map< BoardCell, Set<BoardCell> > adjacencyMap;
+	private Set<BoardCell> targets = new HashSet<BoardCell>();
+	private ArrayList<ArrayList<BoardCell>> boardCells;
+	
+	private Map<Character, String> legend;
+	private Map<Color, String> characters;
+	private Set<String> weapons;
+
 	private ArrayList<Card> deck; 
 	private Solution answer;
+	
 	private Set<Player> playerInstances;
 	private Set<ComputerPlayer> compPlayerInstances;
 	private HumanPlayer onlyHuman;
@@ -39,11 +41,11 @@ public class Board {
 	private Board() {
 		super();
 		this.legend = new HashMap<Character, String>();
-		this.players = new HashMap<Color, String>();
+		this.characters = new HashMap<Color, String>();
 		this.weapons = new HashSet<String>();
+		this.deck = new ArrayList<Card>();
 		this.playerInstances = new HashSet<Player>();
 		this.compPlayerInstances = new HashSet<ComputerPlayer>();
-		this.deck = new ArrayList<Card>();
 	}
 
 	// Uses boardConfigFile and populates an array with boardCells
@@ -154,10 +156,9 @@ public class Board {
 							(cellBelow.getInitial() == 'W' || cellBelow.getDoorDirection() != DoorDirection.NONE)) {
 						thisAdj.add(cellBelow);
 					}
-				} else { // if current cell is neither walkway nor door (as of now this should never happen)
+				} else { // if current cell is neither walkway nor door 
 					
 				}
-				
 				
 				// Put Set of adjacent cells into map for current cell
 				adjacents.put(cell, thisAdj);
@@ -177,6 +178,8 @@ public class Board {
 						helperTargets(adj, pathLength - 1, visited, origin); // recursively calls itself, reducing the pathLength and passing along a Set of previous BoardCells
 					}
 				} else { // add doors when not on even roll
+					// TODO: I don't completely understand what "not on even roll" means 
+					// should it only add doors if origin.getDoorDirection() == DoorDirection.NONE???
 					targets.add(adj);
 				}
 			}
@@ -199,7 +202,7 @@ public class Board {
 	public void loadRoomConfig() throws FileNotFoundException, BadConfigFormatException {
 		FileReader reader = new FileReader(roomConfigFile);
 		Scanner in = new Scanner(reader);
-        String delimeter = ", ";
+        String delimeter = ",";
         String line;
         
         while (in.hasNextLine()) {
@@ -220,14 +223,14 @@ public class Board {
 	public void loadPlayerConfig() throws FileNotFoundException, BadConfigFormatException {
 		FileReader reader = new FileReader(playerConfigFile);
 		Scanner in = new Scanner(reader);
-        String delimeter = ", ";
+        String delimeter = ",";
         String line;
         ComputerPlayer cpla;
         
         while (in.hasNextLine()) {
 			line = in.nextLine();
             String[] input = line.split(delimeter);
-            players.put(Color.getColor(input[1]), input[0]); // PDF has proper way to do string to color w/o errors if color not valid
+            characters.put(Color.getColor(input[1]), input[0]); // PDF has proper way to do string to color w/o errors if color not valid
             Card newCard = new Card(input[0], CardType.PERSON);
         	deck.add(newCard);
         	if (playerInstances.size() == 0) {
@@ -238,7 +241,6 @@ public class Board {
         		playerInstances.add(cpla);
         		compPlayerInstances.add(cpla);
         	}
-        	
         }
 	}
 	
@@ -270,6 +272,7 @@ public class Board {
 		}
 	}
 	
+	// Distributes cards in deck evenly to players
 	private void dealDeck() {
 		int index = 0;
 		while (index < deck.size()) {
@@ -284,6 +287,7 @@ public class Board {
 		}
 	}
 	
+	// To use before selecting answer, will create sets of cards of each type and set tham as unseen for each player
 	private void setUnseen() {
 		Set<Card> toReturn1 = new HashSet<Card>();
 		Set<Card> toReturn2 = new HashSet<Card>();
@@ -353,40 +357,38 @@ public class Board {
 		return false;
 	}
 
-	// Checks if any player other than the accuser is able to disprove a suggestion
+	// Checks if any player other than the accuser is able to disprove a suggestion, returns disproving card
 	public Card handleSuggestion(Solution sugg, Player suggSource) {
 		Card result;
 		for (Player pla: playerInstances) {
 			if (pla != suggSource) {
 				result = pla.disproveSuggestion(sugg);
 				if (result != null) return result;
-			} else {
-				return null;
-			}
+			} 
 		}
 		return null;
 	}
 	
 	
-	
-	// setters and getters
-	public void setConfigFiles(String b, String l, String p, String w) {
-		this.roomConfigFile = l;
-		this.boardConfigFile = b;
-		this.playerConfigFile = p;
-		this.weaponConfigFile = w;
+	/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 * 	~~~~	Setters and Getters 	~~~~
+	 *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 */ 
+	 
+	public static Board getInstance() {
+		return boardInstance;
+	}
+
+	public Set<BoardCell> getTargets() {
+		return targets;
 	}
 	
 	public BoardCell getCellAt(int row, int col) {
 		return boardCells.get(row).get(col);
 	}
-
-	public Set<Player> getPlayerInstances(){
-		return this.playerInstances;
-	}
 	
-	public Set<ComputerPlayer> getCompPlayerInstances(){
-		return this.compPlayerInstances;
+	public Set<BoardCell> getAdjList(int x, int y) {
+		return adjacencyMap.get(this.getCellAt(x,y));
 	}
 	
 	public int getNumRows() {
@@ -397,39 +399,25 @@ public class Board {
 		return boardWidth;
 	}
 
+	public Set<Player> getPlayerInstances(){
+		return this.playerInstances;
+	}
+	
+	public Set<ComputerPlayer> getCompPlayerInstances(){
+		return this.compPlayerInstances;
+	}
+	
+	public HumanPlayer getHuman() {
+		return onlyHuman;
+	}
+	
 	public Map<Character, String> getLegend() {
 		return legend;
 	}
 	
-	public void setLegend(Map<Character, String> legend) {
-		this.legend = legend;
-	}
-
-	// getter for adjacency list given a specific cell
-	public Set<BoardCell> getAdjList(int x, int y) {
-		return adjacencyMap.get(this.getCellAt(x,y));
-	}
-		
-	// getter for Targets Set
-	public Set<BoardCell> getTargets() {
-		return targets;
-	}
-	
-	public ArrayList<Card> getDeck() {
-		return deck;
-	}
-	
-	public static Board getInstance() {
-		return boardInstance;
-	}
-	
-	public Solution getAnswer() {
-		return answer;
-	}
-	
-	public Set<String> getPlayers() {
+	public Set<String> getCharacters() {
 		Set<String> toReturn = new HashSet<String>();
-		for (String item:players.values()) {
+		for (String item:characters.values()) {
 			toReturn.add(item);
 		}
 		return toReturn;
@@ -437,10 +425,6 @@ public class Board {
 	
 	public Set<String> getWeapons() {
 		return weapons;
-	}
-	
-	public HumanPlayer getHuman() {
-		return onlyHuman;
 	}
 	
 	public Set<String> getRooms() {
@@ -451,60 +435,73 @@ public class Board {
 		return toReturn;
 	}
 	
+	public ArrayList<Card> getDeck() {
+		return deck;
+	}
+	
+	public Solution getAnswer() {
+		return answer;
+	}
+	
+	
+	
+	public void setConfigFiles(String b, String l, String p, String w) {
+		this.roomConfigFile = l;
+		this.boardConfigFile = b;
+		this.playerConfigFile = p;
+		this.weaponConfigFile = w;
+	}
 
-	// TODO: re-factor
+	
+	public void setLegend(Map<Character, String> legend) {
+		this.legend = legend;
+	}
+
+
+	// TODO: re-factor maybe
 	public void initialize() {
 		try {
 			this.loadRoomConfig();
 		} catch (FileNotFoundException e) {
 			System.out.println(e);  // file not found exception thrown by IntBoard Constructor
 		} catch (BadConfigFormatException e) {
-			System.out.println("Bad Config2:" + e.getMessage());  // io exception thrown by IntBoard Constructor
+			System.out.println("Bad Config2: " + e.getMessage());  // io exception thrown by IntBoard Constructor
 		}
 		try {
 			this.loadBoardConfig();
 		} catch (FileNotFoundException e) {
 			System.out.println(e); // file not found exception thrown by IntBoard Constructor
 		} catch (BadConfigFormatException e) {
-			System.out.println("Bad Config1");  // io exception thrown by IntBoard Constructor
+			System.out.println("Bad Config2: " + e.getMessage());  // io exception thrown by IntBoard Constructor
 		}
 		this.adjacencyMap = calcAdjacencies();
 		
-		// add methods here to instantiate human and computer players
-		// call methods to create deck and deal cards
 		
 		try {
 			this.loadPlayerConfig();
 		} catch (FileNotFoundException e) {
 			System.out.println(e); // file not found exception thrown by IntBoard Constructor
 		} catch (BadConfigFormatException e) {
-			System.out.println("Bad Config3");  // io exception thrown by IntBoard Constructor
+			System.out.println("Bad Config2: " + e.getMessage());
 		}
 		try {
 			this.loadWeaponConfig();
 		} catch (FileNotFoundException e) {
 			System.out.println(e); // file not found exception thrown by IntBoard Constructor
 		} catch (BadConfigFormatException e) {
-			System.out.println("Bad Config4");  // io exception thrown by IntBoard Constructor
+			System.out.println("Bad Config2: " + e.getMessage());
 		}
 		
-		//setup player objects
+		//Create deck and deal cards
 		shuffleDeck();
 		setUnseen();
 		selectAnswer();
 		dealDeck();
 		
+		/* TODO: add methods here to instantiate human and computer players on the game board
+		 * 		- set players to starting positions on board
+		 * 		- other methods idk lmao
+		 */
+		
 	}
-
-//	public void selectAnswer() {
-//		
-//	}
-//	
-//	public Card handleSuggestion() { //args tbd
-//		return null;
-//	}
-//	
-//	public Boolean checkAccusation(Solution accusation) {
-//		return null;
-//	}
 }

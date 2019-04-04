@@ -1,6 +1,6 @@
-Colonel Mayo, WHITE
-Mrs. Byzantium, MAGENTA
-Professor Apricot, YELLOW
-Mrs. Quail, GREEN
-Mr. Blue, BLUE
-Ms. Rose, RED
+Colonel Mayo,WHITE
+Mrs. Byzantium,MAGENTA
+Professor Apricot,YELLOW
+Mrs. Quail,GREEN
+Mr. Blue,BLUE
+Ms. Rose,RED
