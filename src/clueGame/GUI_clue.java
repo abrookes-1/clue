@@ -26,21 +26,21 @@ public class GUI_clue extends JPanel{
 //		add(panel);
 		// create
 	}
+
+	public void fillBoard(JPanel board) {
+		
+	}
 	
-		public void fillBoard(JPanel board) {
-			
-		}
-	
-		 private JPanel createNamePanel(String panelTitle) {
-		 	JPanel panel = new JPanel();
-		 	// Use a grid layout, 1 row, 2 elements (label, text)
-			panel.setLayout(new GridLayout(1,1));
-//		 	JLabel nameLabel = new JLabel("Name");
-//			name = new JTextField(20);
-//			panel.add(nameLabel);
-//			panel.add(name);
-			panel.setBorder(new TitledBorder (new EtchedBorder(), panelTitle));
-			return panel;
+	 private JPanel createNamePanel(String panelTitle) {
+	 	JPanel panel = new JPanel();
+	 	// Use a grid layout, 1 row, 2 elements (label, text)
+		panel.setLayout(new GridLayout(1,1));
+//	 	JLabel nameLabel = new JLabel("Name");
+//		name = new JTextField(20);
+//		panel.add(nameLabel);
+//		panel.add(name);
+		panel.setBorder(new TitledBorder (new EtchedBorder(), panelTitle));
+		return panel;
 	}
 		 
 	public static void main(String[] args) {
