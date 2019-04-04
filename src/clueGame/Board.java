@@ -10,7 +10,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
-import clueGame.*;
 //import clueGame.Solution;
 //import clueGame.Card;
 //import clueGame.BoardCell;
@@ -323,16 +322,11 @@ public class Board {
 
 	// Checks if any player other than the accuser is able to disprove a suggestion
 	public Card handleSuggestion(Solution sugg, Player suggSource) {
-		Card temp;
+		Card result;
 		for (Player pla: playerInstances) {
 			if (pla != suggSource) {
-				try {
-					if (pla != suggSource) {
-						return pla.disproveSuggestion(sugg);
-					}
-				} catch (gamePlayException e) {
-					if (e.getMessage() == "card may not be disproved");
-				}
+				result = pla.disproveSuggestion(sugg);
+				if (result != null) return result;
 			}
 		}
 		return null;
