@@ -228,15 +228,19 @@ public class gameActionTests {
 		// Suggestion only human can disprove returns answer (i.e., card that disproves suggestion)
 		assert(suggestionToHandle.room == gameBoard.handleSuggestion(suggestionToHandle, null).getCardName());
 			
-		
-			
-		
-			//assert(  ~card must be the person or weapon card from suggestion~  == gameBoard.handleSuggestion(  ~suggestion must be a person + weapon in accusers hand~  , some computer player);
-
-		//	Suggestion that two players can disprove, correct player (based on starting with next player in list) returns answer
-			// does this imply an array for playerInstances instead of a set??
-		//	Suggestion that human and another player can disprove, other player is next in list, ensure other player returns answer
-			// no clue how to test
+		for (Player pla:gameBoard.getCompPlayerInstances()) {
+			for (Card card:pla.getHand()) {
+				if (card.getType() == CardType.WEAPON) {
+					suggestionToHandle.weapon = card.getCardName();
+					break;
+				}
+			}
+			break;
+		}
+		//Suggestion that two players can disprove, correct player (based on starting with next player in list) returns answer
+			//assert(suggestionToHandle.room == gameBoard.handleSuggestion(suggestionToHandle, pla).getCardName());
+		// Suggestion that human and another player can disprove, other player is next in list, ensure other player returns answer
+			//assert(suggestionToHandle.room == gameBoard.handleSuggestion(suggestionToHandle, null).getCardName());
 			
 	}
 	
