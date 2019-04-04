@@ -29,7 +29,7 @@ public class gameActionTests {
 	@Test
 	public void testTargetSelection() {
 		//	if no rooms in list, select randomly
-	
+		
 		
 		//	if room in list that was not just visited, must select it
 		
@@ -89,18 +89,28 @@ public class gameActionTests {
 	}
 	
 	//	(15pts) Disprove suggestion - ComputerPlayer. Tests include:
-//	@Test
-//	public static void disproveSuggestionComp() {
-//		Player pla = gameBoard.getPlayerInstances().get(0); // cant actually access element via iterator b/c Set
-//		Card roomFromHand = pla.getRoomFromHand();
-//		Solution suggestionToDisprove = new Solution(gameBoard.getAnswer().person, gameBoard.getAnswer().weapon, roomFromHand.getCardName());
-//		//	If player has only one matching card it should be returned
-//		assert(pla.disproveSuggestion(suggestionToDisprove) == roomFromHand);
-//		//	If players has >1 matching card, returned card should be chosen randomly
-//		assert(pla.disproveSuggestion(testSuggestion == one of those cards); 
-//		//	If player has no matching cards, null is returned
-//		assert(pla.disproveSuggestion(Solution with no cards in common with players hand) == null);
-//	}
+	@Test
+	public static void disproveSuggestionComp() {
+		// get all computer players in game
+		Set<ComputerPlayer> compPlayers = gameBoard.getCompPlayerInstances();
+		
+		Solution testSuggestion;
+		for (ComputerPlayer pla: compPlayers) {
+			//Card roomFromHand = pla.getRoomFromHand();
+			Solution suggestionToDisprove = new Solution(gameBoard.getAnswer().person, gameBoard.getAnswer().weapon, roomFromHand.getCardName());
+		
+			//	If player has only one matching card it should be returned
+			assert(pla.disproveSuggestion(suggestionToDisprove) == roomFromHand);
+			//	If players has >1 matching card, returned card should be chosen randomly
+			assert(pla.disproveSuggestion(testSuggestion == one of those cards); 
+			//	If player has no matching cards, null is returned
+			assert(pla.disproveSuggestion(Solution with no cards in common with players hand) == null);
+		
+		
+		}
+		
+
+	}
 //		
 //	//	(15pts) Handle suggestion - Board. Tests include:
 //	@Test

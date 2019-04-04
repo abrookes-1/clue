@@ -1,6 +1,7 @@
 package clueGame;
 import java.awt.Color;
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
 
 public class Player {
@@ -49,17 +50,36 @@ public class Player {
 		return unseenPeople;
 	}
 	
-	// untested
-	// TODO: make logic to return random card if two or more meet suggestion
-	public Card disproveSuggestion(Solution suggestion) {
+	//returns all cards which disprove
+	public Set<Card> findCardsDisprove(Solution suggestion){
+		Set<Card> cardsDisp = new HashSet<Card>();
 		for (Card aCard: cards) {
 			if (aCard.getCardName() == suggestion.person) {
-				return aCard;
+				cardsDisp.add(aCard);
 			} else if (aCard.getCardName() == suggestion.room) {
-				return aCard;
+				cardsDisp.add(aCard);
 			} else if (aCard.getCardName() == suggestion.weapon) {
-				return aCard;
+				cardsDisp.add(aCard);
 			}
+		}
+		return cardsDisp;
+	}
+	
+	// untested
+	public Card disproveSuggestion(Solution suggestion) {
+		Set<Card> cardsDisp = findCardsDisprove(suggestion);
+		
+		// get random card from set
+		int size = cardsDisp.size();
+		//return null if empty
+		if (size == 0) return null;
+		int item = new Random().nextInt(size);
+		int i = 0;
+		for(Card aCard : cardsDisp)
+		{
+		    if (i == item)
+		        return aCard;
+		    i++;
 		}
 		return null;
 	}
