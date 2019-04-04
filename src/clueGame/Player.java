@@ -13,6 +13,7 @@ public class Player {
 	private Set<Card> cards;
 	private Set<Card> unseenWeapons;
 	private Set<Card> unseenPeople;
+	private Set<Card> unseenRooms;
 	
 	public Player(String character, Color color) {
 		this.playerName = character;
@@ -24,6 +25,15 @@ public class Player {
 	
 	public void dealCard(Card card) {
 		cards.add(card);
+		if (card.getType() == CardType.PERSON) {
+			unseenPeople.remove(card);
+		}
+		if (card.getType() == CardType.WEAPON) {
+			unseenWeapons.remove(card);
+		}
+		if (card.getType() == CardType.ROOM) {
+			unseenRooms.remove(card);
+		}
 	}
 	
 	public int getHandSize() {
@@ -42,12 +52,33 @@ public class Player {
 		return column;
 	}
 	
+	public String getRoom() {
+		return Board.getInstance().getLegend().get(Board.getInstance().getCellAt(row, column).getInitial());
+	}
+	
+	public void setUnseenPeople(Set<Card> unseen) {
+		this.unseenPeople = unseen;
+	}
+	
+	public void setUnseenWeapons(Set<Card> unseen) {
+		this.unseenWeapons = unseen;
+	}
+	
+	public void setUnseenRooms(Set<Card> unseen) {
+		this.unseenRooms = unseen;
+	}
+	
+	
+	public Set<Card> getUnseenPeople() {
+		return unseenPeople;
+	}
+	
 	public Set<Card> getUnseenWeapons() {
 		return unseenWeapons;
 	}
 	
-	public Set<Card> getUnseenPeople() {
-		return unseenPeople;
+	public Set<Card> getUnseenRooms() {
+		return unseenRooms;
 	}
 	
 	//returns all cards which disprove

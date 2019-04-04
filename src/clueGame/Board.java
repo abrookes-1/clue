@@ -282,6 +282,30 @@ public class Board {
 		}
 	}
 	
+	private void setUnseen() {
+		Set<Card> toReturn1 = new HashSet<Card>();
+		Set<Card> toReturn2 = new HashSet<Card>();
+		Set<Card> toReturn3 = new HashSet<Card>();
+		
+		for (Card card:deck) {
+			if (card.getType() == CardType.PERSON) {
+				toReturn1.add(card);
+			}
+			if (card.getType() == CardType.WEAPON) {
+				toReturn2.add(card);
+			}
+			if (card.getType() == CardType.ROOM) {
+				toReturn3.add(card);
+			}
+		}
+		
+		for (Player pla:playerInstances) {
+			pla.setUnseenPeople(toReturn1);
+			pla.setUnseenWeapons(toReturn2);
+			pla.setUnseenRooms(toReturn3);
+		}
+	}
+	
 	// select 3 random cards, one of each type and set as answer
 	public void selectAnswer() {
 		Random rand = new Random();
@@ -295,18 +319,21 @@ public class Board {
 			m = rand.nextInt(deck.size());
 			if (deck.get(m).getType() == CardType.PERSON) {
 				person = deck.get(m).getCardName();
+				deck.remove(m);
 			}
 		}
 		while (weapon == null) {
 			m = rand.nextInt(deck.size());
 			if (deck.get(m).getType() == CardType.WEAPON) {
 				weapon = deck.get(m).getCardName();
+				deck.remove(m);
 			}
 		}
 		while (room == null) {
 			m = rand.nextInt(deck.size());
 			if (deck.get(m).getType() == CardType.ROOM) {
 				room = deck.get(m).getCardName();
+				deck.remove(m);
 			}
 		}	
 		answer = new Solution(person, weapon, room);
@@ -454,8 +481,8 @@ public class Board {
 		}
 		
 		//setup player objects
-		
 		shuffleDeck();
+		setUnseen();
 		selectAnswer();
 		dealDeck();
 		
