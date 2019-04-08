@@ -15,50 +15,43 @@ import javax.swing.border.TitledBorder;
 public class GUI_clue extends JPanel{
 
 	public GUI_clue(int rows, int cols, Board game) {
-		//setLayout(new GridLayout(2, 0));
-		JPanel panel = createNamePanel("", 2, 0);
+		setLayout(new GridLayout(2,0));
+		JPanel panel = controlPanel();
 		add(panel);
-		//panel = createBoardPanel();
-		//add(panel);
-		JButton button;
-		JLabel label;
-		JTextField textField;
+		panel = displayPanel();
+		add(panel);
+
+	}
+
+	private JPanel controlPanel() {
+		// no layout specified, so this is flow
 		
+		JTextField whoseTurn = new JTextField(20);
+		JLabel label = new JLabel("Whose Turn?");
+		JButton nextPlayer = new JButton("Next Player");
+		JButton makeAccusation = new JButton("Make Accusation");
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(0,3));
+		JPanel col1 = new JPanel();
+		JPanel col2 = new JPanel();
+		JPanel col3 = new JPanel();
 		
-		
-		//JPanel panel = createNamePanel("Board", 0, 0);
-		//panel.setLayout(new GridLayout(rows, cols));
-		//fillBoard(game, panel, rows, cols);
-		//add(panel);
-		
-		
-		// begin row 1
-		JPanel row1 = createNamePanel("", 0, 3);
-		panel = createNamePanel("", 0, 0);
-		textField = new JTextField(20);
-		textField.setEditable(false);
-		textField.setBackground(null);
-		label = new JLabel("Who's Turn?");
-		panel.add(label);
-		panel.add(textField);
-		row1.add(panel);
-		// buttons
-		panel = createNoNamePanel(0, 2);
-		button = new JButton("Next player");
-		// button.add() // add listener
-		row1.add(button);
-		button = new JButton("Make an accusation");
-		// button.add() // add listener
-		row1.add(button);
-		//row1.add(panel);
-		add(row1);
-		// end row1
-		
-		// begin row 2
-		
-		
-		
-		JPanel controls = createNamePanel("Controls", 0, 0);
+		whoseTurn.setEditable(false);
+		whoseTurn.setBackground(null);
+
+		col1.add(label);
+		col1.add(whoseTurn);
+		col2.add(nextPlayer);
+		col3.add(makeAccusation);
+		panel.add(col1);
+		panel.add(col2);
+		panel.add(col3);
+		return panel;
+	}
+	
+	private JPanel displayPanel() {
+		JPanel panel = new JPanel();
+		/*
 		panel = createNamePanel("Die", 0, 0);
 		textField = new JTextField(6);
 		textField.setEditable(false);
@@ -83,45 +76,17 @@ public class GUI_clue extends JPanel{
 		panel.add(label);
 		panel.add(textField);
 		controls.add(panel);
-		
-		add(controls);
-		
-
-//		panel = createButtonPanel();
-//		add(panel);
-		// create
-	}
-
-	public void fillBoard(Board game, JPanel board, int rows, int cols) {
-		for (int i=0; i<rows; i++) {
-			for (int j=0; j<cols; j++) {
-				JPanel cell = createBoardCell(game.getCellAt(i, j));
-				board.add(cell);
-			}
-		}
+		*/
+		return panel;
 	}
 	
 	 private JPanel createNamePanel(String panelTitle, int grid_rows, int grid_cols) {
 	 	JPanel panel = new JPanel();
-	 	// Use a grid layout, 1 row, 2 elements (label, text)
 	 	if (grid_rows != 0 || grid_cols != 0) {
 	 		panel.setLayout(new GridLayout(grid_rows, grid_cols));
 	 	}
 		panel.setBorder(new TitledBorder (new EtchedBorder(), panelTitle));
 		return panel;
-		
-		/*
-	      JPanel panel = new JPanel();
-	      // Use a grid layout, 1 row, 2 elements 
-	      //(label, text)
-		panel.setLayout(new GridLayout(1,2));
-		      JLabel nameLabel = new JLabel("Name");
-		name = new JTextField(20);
-		panel.add(nameLabel);
-		panel.add(name);
-		panel.setBorder(new TitledBorder (new 
-		EtchedBorder(), "Who are you?"));
-		return panel;*/
 	}
 	 
 	 private JPanel createNoNamePanel(int grid_rows, int grid_cols) {
@@ -133,19 +98,6 @@ public class GUI_clue extends JPanel{
 			panel.setBorder(new EtchedBorder());
 			return panel;
 		}
-	 
-	 private JPanel createBoardCell(BoardCell boardCell) {
-	 	JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(1,1));
-		
-		if (boardCell.getInitial() == 'W') {
-			panel.setBorder(new EtchedBorder());
-			panel.setBackground(Color.yellow);
-		} else {
-			panel.setBackground(Color.gray);
-		}
-		return panel;
-	}
 		
 	 
 	public static void main(String[] args) {
@@ -162,7 +114,7 @@ public class GUI_clue extends JPanel{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Clue");
 		frame.setSize(1000, 300);
-		//frame.setSize(1000, 800);
+		//frame.setSize(1000, 800); // size with board
 		
 		GUI_clue gui = new GUI_clue(rows, cols, gameBoard);
 		frame.add(gui, BorderLayout.CENTER);
