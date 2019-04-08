@@ -16,10 +16,11 @@ public class GUI_clue extends JPanel{
 
 	public GUI_clue(int rows, int cols, Board game) {
 		setLayout(new GridLayout(2,0));
-		JPanel panel = controlPanel();
+		JPanel panel = displayBoard();
 		add(panel);
-		panel = displayPanel();
+		panel = controlPanel();
 		add(panel);
+		
 
 	}
 
@@ -27,35 +28,6 @@ public class GUI_clue extends JPanel{
 		JTextField whoseTurn = new JTextField(16);
 		whoseTurn.setEditable(false);
 		whoseTurn.setBackground(null);
-		JLabel label = new JLabel("Whose Turn?");
-		JButton nextPlayer = new JButton("Next Player");
-		JButton makeAccusation = new JButton("Make Accusation");
-		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(0,3));
-		JPanel col1 = new JPanel();
-		JPanel col2 = new JPanel();
-		JPanel col3 = new JPanel();
-		col2.setLayout(new GridLayout(0,1));
-		col3.setLayout(new GridLayout(0,1));
-		
-
-		col1.add(label);
-		col1.add(whoseTurn);
-		col2.add(nextPlayer);
-		col3.add(makeAccusation);
-		panel.add(col1);
-		panel.add(col2);
-		panel.add(col3);
-		return panel;
-	}
-	
-	private JPanel displayPanel() {
-		JPanel panel = new JPanel();
-		JPanel col1 = new JPanel();
-		JPanel col2 = new JPanel();
-		JPanel col3 = new JPanel();
-		
-		JLabel label;
 		JTextField die = new JTextField(3);
 		die.setEditable(false);
 		die.setBackground(null);
@@ -65,29 +37,69 @@ public class GUI_clue extends JPanel{
 		JTextField guessResult = new JTextField(12);
 		guessResult.setEditable(false);
 		guessResult.setBackground(null);
+		JLabel label = new JLabel("Whose Turn?");
+		JButton nextPlayer = new JButton("Next Player");
+		JButton makeAccusation = new JButton("Make Accusation");
 		
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(2,0));
+		JPanel row = new JPanel();
+		row.setLayout(new GridLayout(0,3));
+		JPanel col = new JPanel();
+
+		// Row 1
+		col.add(label);
+		col.add(whoseTurn);
+		row.add(col);
 		
-		col1.setBorder(new TitledBorder (new EtchedBorder(), "Die"));
+		col = new JPanel();
+		col.setLayout(new GridLayout(0,1));
+		col.add(nextPlayer);
+		row.add(col);
+		
+		col = new JPanel();
+		col.setLayout(new GridLayout(0,1));
+		col.add(makeAccusation);
+		row.add(col);
+		
+		panel.add(row);
+		
+		// Row 2
+		row = new JPanel();
+		col = new JPanel();
+		col.setBorder(new TitledBorder (new EtchedBorder(), "Die"));
 		label = new JLabel("Roll");
-		col1.add(label);
-		col1.add(die);
-		panel.add(col1);
+		col.add(label);
+		col.add(die);
+		row.add(col);
 		
-		col2.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
+		col = new JPanel();
+		col.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
 		label = new JLabel("Guess");
-		col2.add(label);
-		col2.add(guess);
-		panel.add(col2);
+		col.add(label);
+		col.add(guess);
+		row.add(col);
 		
-		col3.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
+		col = new JPanel();
+		col.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
 		label = new JLabel("Response");
-		col3.add(label);
-		col3.add(guessResult);
-		panel.add(col3);
+		col.add(label);
+		col.add(guessResult);
+		row.add(col);
+		
+		panel.add(row);
 		
 		return panel;
 	}
 	
+	private JPanel displayBoard() {
+		JPanel panel = new JPanel();
+		
+		
+		
+		return panel;
+	}
+	/*
 	 private JPanel createNamePanel(String panelTitle, int grid_rows, int grid_cols) {
 	 	JPanel panel = new JPanel();
 	 	if (grid_rows != 0 || grid_cols != 0) {
@@ -107,7 +119,7 @@ public class GUI_clue extends JPanel{
 			return panel;
 		}
 		
-	 
+	 */
 	public static void main(String[] args) {
 		// Set up board & game
 		Board gameBoard = Board.getInstance();
@@ -121,7 +133,7 @@ public class GUI_clue extends JPanel{
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Clue");
-		frame.setSize(800, 200);
+		frame.setSize(900, 800);
 		//frame.setSize(1000, 800); // size with board
 		
 		GUI_clue gui = new GUI_clue(rows, cols, gameBoard);
