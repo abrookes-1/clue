@@ -15,12 +15,17 @@ import javax.swing.border.TitledBorder;
 public class GUI_clue extends JPanel{
 
 	public GUI_clue(int rows, int cols, Board game) {
-		JPanel panel;
+		//setLayout(new GridLayout(2, 0));
+		JPanel panel = createNamePanel("", 2, 0);
+		add(panel);
+		//panel = createBoardPanel();
+		//add(panel);
 		JButton button;
 		JLabel label;
 		JTextField textField;
 		
-		setLayout(new GridLayout(2, 0));
+		
+		
 		//JPanel panel = createNamePanel("Board", 0, 0);
 		//panel.setLayout(new GridLayout(rows, cols));
 		//fillBoard(game, panel, rows, cols);
@@ -28,7 +33,7 @@ public class GUI_clue extends JPanel{
 		
 		
 		// begin row 1
-		JPanel row1 = createNamePanel("Row1", 0, 3);
+		JPanel row1 = createNamePanel("", 0, 3);
 		panel = createNamePanel("", 0, 0);
 		textField = new JTextField(20);
 		textField.setEditable(false);
@@ -104,6 +109,19 @@ public class GUI_clue extends JPanel{
 	 	}
 		panel.setBorder(new TitledBorder (new EtchedBorder(), panelTitle));
 		return panel;
+		
+		/*
+	      JPanel panel = new JPanel();
+	      // Use a grid layout, 1 row, 2 elements 
+	      //(label, text)
+		panel.setLayout(new GridLayout(1,2));
+		      JLabel nameLabel = new JLabel("Name");
+		name = new JTextField(20);
+		panel.add(nameLabel);
+		panel.add(name);
+		panel.setBorder(new TitledBorder (new 
+		EtchedBorder(), "Who are you?"));
+		return panel;*/
 	}
 	 
 	 private JPanel createNoNamePanel(int grid_rows, int grid_cols) {
@@ -128,8 +146,10 @@ public class GUI_clue extends JPanel{
 		}
 		return panel;
 	}
-		 
+		
+	 
 	public static void main(String[] args) {
+		// Set up board & game
 		Board gameBoard = Board.getInstance();
 		gameBoard.setConfigFiles("ClueMap.csv", "RoomKey.txt", "players.txt", "weapons.txt");
 		gameBoard.initialize();
@@ -144,9 +164,8 @@ public class GUI_clue extends JPanel{
 		frame.setSize(1000, 300);
 		//frame.setSize(1000, 800);
 		
-		GUI_clue gui_clue = new GUI_clue(rows, cols, gameBoard);
-		frame.add(gui_clue, BorderLayout.CENTER);
-		
+		GUI_clue gui = new GUI_clue(rows, cols, gameBoard);
+		frame.add(gui, BorderLayout.CENTER);
 		frame.setVisible(true);
 	}
 }
