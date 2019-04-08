@@ -24,9 +24,9 @@ public class GUI_clue extends JPanel{
 	}
 
 	private JPanel controlPanel() {
-		// no layout specified, so this is flow
-		
 		JTextField whoseTurn = new JTextField(20);
+		whoseTurn.setEditable(false);
+		whoseTurn.setBackground(null);
 		JLabel label = new JLabel("Whose Turn?");
 		JButton nextPlayer = new JButton("Next Player");
 		JButton makeAccusation = new JButton("Make Accusation");
@@ -36,8 +36,7 @@ public class GUI_clue extends JPanel{
 		JPanel col2 = new JPanel();
 		JPanel col3 = new JPanel();
 		
-		whoseTurn.setEditable(false);
-		whoseTurn.setBackground(null);
+		
 
 		col1.add(label);
 		col1.add(whoseTurn);
