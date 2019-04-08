@@ -24,7 +24,7 @@ public class GUI_clue extends JPanel{
 	}
 
 	private JPanel controlPanel() {
-		JTextField whoseTurn = new JTextField(20);
+		JTextField whoseTurn = new JTextField(16);
 		whoseTurn.setEditable(false);
 		whoseTurn.setBackground(null);
 		JLabel label = new JLabel("Whose Turn?");
@@ -35,7 +35,8 @@ public class GUI_clue extends JPanel{
 		JPanel col1 = new JPanel();
 		JPanel col2 = new JPanel();
 		JPanel col3 = new JPanel();
-		
+		col2.setLayout(new GridLayout(0,1));
+		col3.setLayout(new GridLayout(0,1));
 		
 
 		col1.add(label);
@@ -50,32 +51,40 @@ public class GUI_clue extends JPanel{
 	
 	private JPanel displayPanel() {
 		JPanel panel = new JPanel();
-		/*
-		panel = createNamePanel("Die", 0, 0);
-		textField = new JTextField(6);
-		textField.setEditable(false);
-		textField.setBackground(null);
+		JPanel col1 = new JPanel();
+		JPanel col2 = new JPanel();
+		JPanel col3 = new JPanel();
+		
+		JLabel label;
+		JTextField die = new JTextField(3);
+		die.setEditable(false);
+		die.setBackground(null);
+		JTextField guess = new JTextField(25);
+		guess.setEditable(false);
+		guess.setBackground(null);
+		JTextField guessResult = new JTextField(12);
+		guessResult.setEditable(false);
+		guessResult.setBackground(null);
+		
+		
+		col1.setBorder(new TitledBorder (new EtchedBorder(), "Die"));
 		label = new JLabel("Roll");
-		panel.add(label);
-		panel.add(textField);
-		controls.add(panel);
-		panel = createNamePanel("Guess", 0, 0);
-		textField = new JTextField(35);
-		textField.setEditable(false);
-		textField.setBackground(null);
+		col1.add(label);
+		col1.add(die);
+		panel.add(col1);
+		
+		col2.setBorder(new TitledBorder (new EtchedBorder(), "Guess"));
 		label = new JLabel("Guess");
-		panel.add(label);
-		panel.add(textField);
-		controls.add(panel);
-		panel = createNamePanel("Guess Result", 0, 0);
-		textField = new JTextField(16);
-		textField.setEditable(false);
-		textField.setBackground(null);
+		col2.add(label);
+		col2.add(guess);
+		panel.add(col2);
+		
+		col3.setBorder(new TitledBorder (new EtchedBorder(), "Guess Result"));
 		label = new JLabel("Response");
-		panel.add(label);
-		panel.add(textField);
-		controls.add(panel);
-		*/
+		col3.add(label);
+		col3.add(guessResult);
+		panel.add(col3);
+		
 		return panel;
 	}
 	
@@ -112,7 +121,7 @@ public class GUI_clue extends JPanel{
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setTitle("Clue");
-		frame.setSize(1000, 300);
+		frame.setSize(800, 200);
 		//frame.setSize(1000, 800); // size with board
 		
 		GUI_clue gui = new GUI_clue(rows, cols, gameBoard);
