@@ -2,6 +2,7 @@ package clueGame;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 
@@ -13,14 +14,18 @@ import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-public class GUI_clue extends JPanel{
+public class GUI_clue extends JFrame{
 
-	public GUI_clue(int rows, int cols, Board game) {
-		setLayout(new GridLayout(2,0));
+	public GUI_clue(Board game) {
+		setSize(900, 800);
+		setTitle("Clue");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		
 		JPanel panel;
 		add(game);
 		panel = controlPanel();
-		add(panel);
+		add(panel, BorderLayout.SOUTH);
 	
 	}
 
@@ -125,19 +130,8 @@ public class GUI_clue extends JPanel{
 		Board gameBoard = Board.getInstance();
 		gameBoard.setConfigFiles("ClueMap.csv", "RoomKey.txt", "players.txt", "weapons.txt");
 		gameBoard.initialize();
-		int rows = gameBoard.getNumRows();
-		int cols = gameBoard.getNumColumns();
 		
-		// begin gui functions
-		JFrame frame = new JFrame();
-		
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setTitle("Clue");
-		frame.setSize(900, 800);
-		//frame.setSize(1000, 800); // size with board
-		
-		GUI_clue gui = new GUI_clue(rows, cols, gameBoard);
-		frame.add(gui, BorderLayout.CENTER);
-		frame.setVisible(true);
+		GUI_clue gui = new GUI_clue(gameBoard);
+		gui.setVisible(true);
 	}
 }
