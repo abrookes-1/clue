@@ -17,7 +17,6 @@ public class GUI_clue extends JPanel{
 
 	public GUI_clue(int rows, int cols, Board game) {
 		setLayout(new GridLayout(2,0));
-		Graphics g = null;
 		JPanel panel;
 		add(game);
 		panel = controlPanel();

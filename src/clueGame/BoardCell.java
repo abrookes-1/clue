@@ -11,6 +11,7 @@ public class BoardCell {
 	private int row;
 	private int column;
 	private char initial; 
+	private final int SIZE = 20;
 	private DoorDirection direction;
 	
 	// Constructor
@@ -23,10 +24,16 @@ public class BoardCell {
 	}
 
 	public void draw(Graphics g) {
-		g.setColor(Color.YELLOW);
-		g.fillRect(10, 10, 20, 20);
-		g.setColor(Color.BLACK);
-		g.drawRect(10, 10, 20, 20);
+		if (initial == 'W') {
+			g.setColor(Color.YELLOW);
+			g.fillRect(row*SIZE, column*SIZE, SIZE, SIZE);
+			g.setColor(Color.BLACK);
+			g.drawRect(row*SIZE, column*SIZE, SIZE, SIZE);
+		} else {
+			g.setColor(Color.GRAY);
+			g.fillRect(row*SIZE, column*SIZE, SIZE, SIZE);
+		}
+		
 	}
 	
 	// Getters
