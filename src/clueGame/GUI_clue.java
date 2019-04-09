@@ -2,6 +2,7 @@ package clueGame;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -16,12 +17,12 @@ public class GUI_clue extends JPanel{
 
 	public GUI_clue(int rows, int cols, Board game) {
 		setLayout(new GridLayout(2,0));
-		JPanel panel = displayBoard(game);
-		add(panel);
+		Graphics g = null;
+		JPanel panel;
+		add(game);
 		panel = controlPanel();
 		add(panel);
-		
-
+	
 	}
 
 	private JPanel controlPanel() {
@@ -92,7 +93,7 @@ public class GUI_clue extends JPanel{
 		return panel;
 	}
 	
-	private JPanel displayBoard(Board game) {
+	private JPanel displayBoard(Board game, Graphics g) {
 		JPanel panel = new JPanel();
 		
 		
