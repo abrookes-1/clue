@@ -17,29 +17,27 @@ import javax.swing.border.TitledBorder;
 public class GUI_clue extends JFrame{
 
 	public GUI_clue(Board game) {
-		setSize(900, 800);
+		setSize(660, 700);
 		setTitle("Clue");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		
-		JPanel panel;
 		add(game);
-		panel = controlPanel();
+		JPanel panel = controlPanel();
 		add(panel, BorderLayout.SOUTH);
 	
 	}
 
 	private JPanel controlPanel() {
-		JTextField whoseTurn = new JTextField(16);
+		JTextField whoseTurn = new JTextField(14);
 		whoseTurn.setEditable(false);
 		whoseTurn.setBackground(null);
 		JTextField die = new JTextField(3);
 		die.setEditable(false);
 		die.setBackground(null);
-		JTextField guess = new JTextField(25);
+		JTextField guess = new JTextField(20);
 		guess.setEditable(false);
 		guess.setBackground(null);
-		JTextField guessResult = new JTextField(12);
+		JTextField guessResult = new JTextField(10);
 		guessResult.setEditable(false);
 		guessResult.setBackground(null);
 		JLabel label = new JLabel("Whose Turn?");
