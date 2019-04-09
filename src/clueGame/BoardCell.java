@@ -4,6 +4,9 @@
 
 package clueGame;
 
+import java.awt.Color;
+import java.awt.Graphics;
+
 public class BoardCell {
 	private int row;
 	private int column;
@@ -19,6 +22,13 @@ public class BoardCell {
 		this.direction = DoorDirection.NONE;
 	}
 
+	public void draw(Graphics g) {
+		g.setColor(Color.YELLOW);
+		g.fillRect(10, 10, 20, 20);
+		g.setColor(Color.BLACK);
+		g.drawRect(10, 10, 20, 20);
+	}
+	
 	// Getters
 	public int getRow() {
 		return row;

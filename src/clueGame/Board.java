@@ -4,7 +4,11 @@
 
 package clueGame;
 import java.awt.Color;
+import java.awt.Graphics;
 import java.util.Random;
+
+import javax.swing.JPanel;
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -12,7 +16,7 @@ import java.util.*;
 
 
 
-public class Board {
+public class Board extends JPanel{
 	private static Board boardInstance = new Board();
 	private int boardWidth;
 	private int boardHeight;
@@ -379,6 +383,14 @@ public class Board {
 			pla.setRow(startingRows.get(i));
 			pla.setCol(startingColumns.get(i));
 			i++;
+		}
+	}
+	
+	public void paintComponent(Graphics g) {
+		for (ArrayList<BoardCell> row:boardCells) {
+			for (BoardCell cell:row) {
+				cell.draw(g);
+			}
 		}
 	}
 	
