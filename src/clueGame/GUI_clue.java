@@ -17,7 +17,7 @@ import javax.swing.border.TitledBorder;
 public class GUI_clue extends JFrame{
 
 	public GUI_clue(Board game) {
-		setSize(660, 700);
+		setSize(660, 680);
 		setTitle("Clue");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

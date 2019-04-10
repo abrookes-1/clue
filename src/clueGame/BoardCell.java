@@ -12,6 +12,7 @@ public class BoardCell {
 	private int column;
 	private char initial; 
 	private final int SIZE = 20;
+	private final int THICKNESS = 3;
 	private DoorDirection direction;
 	
 	// Constructor
@@ -26,12 +27,33 @@ public class BoardCell {
 	public void draw(Graphics g) {
 		if (initial == 'W') {
 			g.setColor(Color.YELLOW);
-			g.fillRect(row*SIZE, column*SIZE, SIZE, SIZE);
+			g.fillRect(column*SIZE, row*SIZE, SIZE, SIZE);
 			g.setColor(Color.BLACK);
-			g.drawRect(row*SIZE, column*SIZE, SIZE, SIZE);
+			g.drawRect(column*SIZE, row*SIZE, SIZE, SIZE);
 		} else {
 			g.setColor(Color.GRAY);
-			g.fillRect(row*SIZE, column*SIZE, SIZE, SIZE);
+			g.fillRect(column*SIZE, row*SIZE, SIZE, SIZE);
+		}
+		if (direction != DoorDirection.NONE) {
+			g.setColor(Color.BLUE);
+			switch (direction) {
+			case DOWN:
+				g.fillRect(column*SIZE, row*SIZE + SIZE - THICKNESS, SIZE, THICKNESS);
+				break;
+			case RIGHT:
+				g.fillRect(column*SIZE + SIZE - THICKNESS, row*SIZE, THICKNESS, SIZE);
+				break;
+			case UP:
+				g.fillRect(column*SIZE, row*SIZE, SIZE, THICKNESS);
+				break;
+			case LEFT:
+				g.fillRect(column*SIZE, row*SIZE, THICKNESS, SIZE);
+				break;
+			default: 
+				// shouldnt happen, maybe error here or something lmao
+				break;
+			}
+			
 		}
 		
 	}
