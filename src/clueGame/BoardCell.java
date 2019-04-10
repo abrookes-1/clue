@@ -6,6 +6,7 @@ package clueGame;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.Map;
 
 public class BoardCell {
 	private int row;
@@ -30,8 +31,11 @@ public class BoardCell {
 			g.fillRect(column*SIZE, row*SIZE, SIZE, SIZE);
 			g.setColor(Color.BLACK);
 			g.drawRect(column*SIZE, row*SIZE, SIZE, SIZE);
+		} else if (initial == 'X') {
+			g.setColor(Color.BLACK);
+			g.fillRect(column*SIZE, row*SIZE, SIZE, SIZE);
 		} else {
-			g.setColor(Color.GRAY);
+			g.setColor(Color.LIGHT_GRAY);
 			g.fillRect(column*SIZE, row*SIZE, SIZE, SIZE);
 		}
 		if (direction != DoorDirection.NONE) {
@@ -55,6 +59,12 @@ public class BoardCell {
 			}
 			
 		}
+		
+	}
+	
+	public void drawLabel(Graphics g, Map<Character, String> legend) {
+		g.setColor(Color.BLUE);
+		g.drawString(legend.get(initial), column*SIZE, row*SIZE);
 		
 	}
 	

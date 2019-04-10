@@ -17,14 +17,13 @@ import javax.swing.border.TitledBorder;
 public class GUI_clue extends JFrame{
 
 	public GUI_clue(Board game) {
-		setSize(660, 680);
+		setSize(660, 660);
 		setTitle("Clue");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		add(game);
 		JPanel panel = controlPanel();
 		add(panel, BorderLayout.SOUTH);
-	
 	}
 
 	private JPanel controlPanel() {

@@ -127,7 +127,6 @@ public class Player {
 	
 	public void draw(Graphics g) {
 		g.setColor(color);
-		System.out.println(color);
 		g.fillOval(column*SIZE, row*SIZE, SIZE, SIZE);
 		g.setColor(Color.BLACK);
 		g.drawOval(column*SIZE, row*SIZE, SIZE, SIZE);
@@ -144,7 +143,7 @@ public class Player {
 		case "MAGENTA":
 			return Color.pink;
 		case "YELLOW":
-			return Color.yellow;
+			return Color.getHSBColor(46, 97, 30); // more orange-ish as to distinguish from walkways
 		case "GREEN":
 			return Color.green;
 		case "BLUE":

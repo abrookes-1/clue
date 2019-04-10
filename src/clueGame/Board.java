@@ -32,6 +32,7 @@ public class Board extends JPanel{
 	private ArrayList<Integer> startingRows = new ArrayList<Integer>(Arrays.asList(0,6,6,13,15,22));
 	private ArrayList<Integer> startingColumns = new ArrayList<Integer>(Arrays.asList(14,0,24,0,24,16));
 	
+	private Set<BoardCell> roomLabelCells;
 	private Map<Character, String> legend;
 	private Map<String, String> characters;
 	private Set<String> weapons;
@@ -43,11 +44,13 @@ public class Board extends JPanel{
 	private Set<ComputerPlayer> compPlayerInstances;
 	private HumanPlayer onlyHuman;
 	
+	
 	// Constructor
 	private Board() {
 		super();
 		this.targets = new HashSet<BoardCell>();
 		
+		this.roomLabelCells = new HashSet<BoardCell>();
 		this.legend = new HashMap<Character, String>();
 		this.characters = new HashMap<String, String>();
 		this.weapons = new HashSet<String>();
@@ -81,6 +84,9 @@ public class Board extends JPanel{
             		BoardCell cell = new BoardCell(row, col, input[col].charAt(0));
             		if (input[col].length() == 2) {
             			cell.setDirection(input[col].charAt(1));
+            			if (input[col].charAt(1) == 'Z') {
+            				roomLabelCells.add(cell);
+            			}
             		} 
                 	thisRow.add(cell);
             	}
@@ -394,6 +400,9 @@ public class Board extends JPanel{
 		}
 		for (Player pla:playerInstances) {
 			pla.draw(g);
+		}
+		for (BoardCell cell:roomLabelCells) {
+			cell.drawLabel(g, legend);
 		}
 	}
 	
