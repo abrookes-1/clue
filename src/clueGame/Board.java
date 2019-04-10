@@ -402,7 +402,7 @@ public class Board extends JPanel{
 			pla.draw(g);
 		}
 		for (BoardCell cell:roomLabelCells) {
-			cell.drawLabel(g, legend);
+			cell.drawLabel(g);
 		}
 	}
 	

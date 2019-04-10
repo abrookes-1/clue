@@ -62,9 +62,9 @@ public class BoardCell {
 		
 	}
 	
-	public void drawLabel(Graphics g, Map<Character, String> legend) {
+	public void drawLabel(Graphics g) {
 		g.setColor(Color.BLUE);
-		g.drawString(legend.get(initial), column*SIZE, row*SIZE);
+		g.drawString(Board.getInstance().getLegend().get(initial), column*SIZE, row*SIZE);
 		
 	}
 	
