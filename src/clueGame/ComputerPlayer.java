@@ -7,7 +7,7 @@ import java.util.Set;
 public class ComputerPlayer extends Player{
 	public static final boolean ISHUMAN = false;
 	
-	public ComputerPlayer(String character, Color color) {
+	public ComputerPlayer(String character, String color) {
 		super(character, color);
 	}
 	

@@ -11,7 +11,7 @@ public class BoardCell {
 	private int row;
 	private int column;
 	private char initial; 
-	private final int SIZE = 20;
+	private final int SIZE = 20; 
 	private final int THICKNESS = 3;
 	private DoorDirection direction;
 	

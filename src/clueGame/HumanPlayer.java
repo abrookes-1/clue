@@ -5,7 +5,7 @@ import java.awt.Color;
 public class HumanPlayer extends Player{
 	public static final boolean ISHUMAN = true;
 	
-	public HumanPlayer(String character, Color color) {
+	public HumanPlayer(String character, String color) {
 		super(character, color);
 	}
 }

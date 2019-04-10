@@ -33,7 +33,7 @@ public class Board extends JPanel{
 	private ArrayList<Integer> startingColumns = new ArrayList<Integer>(Arrays.asList(14,0,24,0,24,16));
 	
 	private Map<Character, String> legend;
-	private Map<Color, String> characters;
+	private Map<String, String> characters;
 	private Set<String> weapons;
 
 	private ArrayList<Card> deck; 
@@ -49,7 +49,7 @@ public class Board extends JPanel{
 		this.targets = new HashSet<BoardCell>();
 		
 		this.legend = new HashMap<Character, String>();
-		this.characters = new HashMap<Color, String>();
+		this.characters = new HashMap<String, String>();
 		this.weapons = new HashSet<String>();
 		this.deck = new ArrayList<Card>();
 		this.playerInstances = new HashSet<Player>();
@@ -238,14 +238,14 @@ public class Board extends JPanel{
         while (in.hasNextLine()) {
 			line = in.nextLine();
             String[] input = line.split(delimeter);
-            characters.put(Color.getColor(input[1]), input[0]); // PDF has proper way to do string to color w/o errors if color not valid
+            characters.put(input[1], input[0]); // PDF has proper way to do string to color w/o errors if color not valid
             Card newCard = new Card(input[0], CardType.PERSON);
         	deck.add(newCard);
         	if (playerInstances.size() == 0) {
-        		onlyHuman = new HumanPlayer(input[0],Color.getColor(input[1]));
+        		onlyHuman = new HumanPlayer(input[0],input[1]);
         		playerInstances.add(onlyHuman);
         	} else {
-        		cpla = new ComputerPlayer(input[0],Color.getColor(input[1]));
+        		cpla = new ComputerPlayer(input[0],input[1]);
         		playerInstances.add(cpla);
         		compPlayerInstances.add(cpla);
         	}
@@ -391,6 +391,9 @@ public class Board extends JPanel{
 			for (BoardCell cell:row) {
 				cell.draw(g);
 			}
+		}
+		for (Player pla:playerInstances) {
+			pla.draw(g);
 		}
 	}
 	
