@@ -6,7 +6,7 @@ import java.util.Random;
 import java.util.Set;
 
 public class Player {
-	private String playerName;
+	private String character;
 	private int row;
 	private int column;
 	private Color color; 
@@ -18,7 +18,7 @@ public class Player {
 	private Set<Card> unseenRooms;
 	
 	public Player(String character, String color) {
-		this.playerName = character;
+		this.character = character;
 		this.color = getColor(color);
 		this.cards = new HashSet<Card>();
 		this.unseenWeapons = new HashSet<Card>();
@@ -60,6 +60,10 @@ public class Player {
 	
 	public int getCol() {
 		return column;
+	}
+	
+	public String getCharacter() {
+		return character;
 	}
 	
 	public String getRoom() {
