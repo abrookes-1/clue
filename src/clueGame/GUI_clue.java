@@ -9,7 +9,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -20,6 +23,7 @@ import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
 public class GUI_clue extends JFrame{
+	NotesDialog notes;
 
 	public GUI_clue(Board game) {
 		setSize(660, 660);
@@ -33,6 +37,43 @@ public class GUI_clue extends JFrame{
 		JMenuBar fileMenu = new JMenuBar();
 		setJMenuBar(fileMenu);
 		fileMenu.add(createFileMenu());
+		
+		notes = new NotesDialog(game);
+		notes.setLocationRelativeTo(this);
+		
+		notes.setSize(400, 600);
+	}
+	
+	class NotesDialog extends JDialog {
+		public NotesDialog(Board game) {
+			setTitle("Detective Notes");
+			setLayout(new GridLayout(3,2));
+			JPanel panel;
+			panel = createNamePanel("People", 0, 0);
+			for (String person: game.getCharacters()) {
+				panel.add(new JCheckBox(person, false));
+			}
+			add(panel);
+			panel = createNamePanel("Person Guess", 0, 0);
+			panel.add(new JComboBox(game.getCharacters().toArray()));
+			add(panel);
+			panel = createNamePanel("Rooms", 0, 0);
+			for (String room: game.getRooms()) {
+				panel.add(new JCheckBox(room, false));
+			}
+			add(panel);
+			panel = createNamePanel("Room Guess", 0, 0);
+			panel.add(new JComboBox(game.getRooms().toArray()));
+			add(panel);
+			panel = createNamePanel("Weapons", 0, 0);
+			for (String weapon: game.getWeapons()) {
+				panel.add(new JCheckBox(weapon, false));
+			}
+			add(panel);
+			panel = createNamePanel("Weapon Guess", 0, 0);
+			panel.add(new JComboBox(game.getWeapons().toArray()));
+			add(panel);
+		}
 	}
 	
 	private JMenu createFileMenu() {
@@ -58,7 +99,7 @@ public class GUI_clue extends JFrame{
 		JMenuItem item = new JMenuItem("Notes");
 		class MenuItemListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
+				notes.setVisible(true);
 			}
 		}
 		item.addActionListener(new MenuItemListener());
@@ -141,7 +182,7 @@ public class GUI_clue extends JFrame{
 		
 		return panel;
 	}
-	/*
+
 	 private JPanel createNamePanel(String panelTitle, int grid_rows, int grid_cols) {
 	 	JPanel panel = new JPanel();
 	 	if (grid_rows != 0 || grid_cols != 0) {
@@ -150,7 +191,7 @@ public class GUI_clue extends JFrame{
 		panel.setBorder(new TitledBorder (new EtchedBorder(), panelTitle));
 		return panel;
 	}
-	 
+	 /*
 	 private JPanel createNoNamePanel(int grid_rows, int grid_cols) {
 		 	JPanel panel = new JPanel();
 		 	// Use a grid layout, 1 row, 2 elements (label, text)
