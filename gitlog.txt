@@ -1,3 +1,138 @@
+commit bfd0ebe20f3ac6f86dbad013f3792e1c21b1336b
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 11 14:56:04 2019 -0600
+
+    added cards tab
+
+commit 49933a996fcf9480b5e542a01d15f83ada58f95f
+Merge: 9c906f4 f5b0f2a
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 11 14:27:25 2019 -0600
+
+    Merge branch 'C21A' of https://github.com/abrookes-1/clue into C21A
+
+commit 9c906f410d6c4f778cde2c397b470bd9c5388d6f
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 11 14:27:13 2019 -0600
+
+    Update GUI_clue.java
+
+commit f5b0f2a06384aadef24db711ecec8dbd05f411e9
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Apr 11 14:26:56 2019 -0600
+
+    added getCharacter to player
+
+commit 08eb94584656b1f38e6a1d0176f65b71626c736a
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Apr 11 14:18:09 2019 -0600
+
+    Delete DrawPanel.java
+
+commit 9e59741bb87f341bd7bfd8d32c384e9b9ea83cce
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 11 13:59:31 2019 -0600
+
+    added detective notes dialog
+
+commit a0ccc35a5a57fc0e94ccbffc91ad3707ddac1e42
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 10 12:23:46 2019 -0600
+
+    Fixed label calls (literally only two lines)
+
+commit 28f8a6a4f4042b6cfcc0cae9035fb555d3d31bf9
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 10 12:19:40 2019 -0600
+
+    Added file menu functionality with working exit item
+
+commit 95da03782888fe219548c5408d339dc42ce3319e
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 10 11:51:56 2019 -0600
+
+    Added room labels
+
+commit eb97e1adcda7c75b20809b3fa5a3e53007e9e100
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 10 09:55:01 2019 -0600
+
+    Shows players with correct colors
+    
+    maybe have a different color for the yellow character lmao
+
+commit fd45cbeae420fad7b46af3b153b9bf1915da6f1d
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 10 09:31:48 2019 -0600
+
+    Added doors
+
+commit 8913db979605ed2d0eac10c2c092f47cf4e76948
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 9 16:12:42 2019 -0600
+
+    Update GUI_clue.java
+
+commit a4dc7d70936a425b10b79cd09cc43c888e15dd6f
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 9 16:08:53 2019 -0600
+
+    Made GUI_clue a JFrame instead of its own panel
+
+commit c9a96050d031bbc22a61c84883e198c405bc5e58
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 9 14:55:35 2019 -0600
+
+    board displaying somehwat correctly...
+
+commit d57d08e7710889621f16c2c68709af38f950e233
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 9 14:44:54 2019 -0600
+
+    got cells displaying
+
+commit 03a7c0743e6bdd52224776763d820e1476e5f280
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 9 13:59:59 2019 -0600
+
+    started boardGui
+
+commit 257c23b1d65eda816dd382d2e7c64243e54d62df
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Mon Apr 8 16:48:04 2019 -0600
+
+    Refactored the refactor
+
+commit 3810603a68a96f7906fb02404143ac8c139d0b2b
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Mon Apr 8 16:27:05 2019 -0600
+
+    Finished Refactor
+
+commit e4507b3d063edaa8477d11b209e972c6a455ace0
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Mon Apr 8 16:01:23 2019 -0600
+
+    Update GUI_clue.java
+
+commit 6a41256e709b55f0e27a121cc3a1df5e02bb4f61
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Mon Apr 8 15:54:07 2019 -0600
+
+    Refactored first row of control
+
+commit 705cf5686570cf8198cf03925ea6a4cd7111ccc7
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Mon Apr 8 15:31:40 2019 -0600
+
+    Started Refactoring
+
+commit 956a481421e75efb714f3867f1ab01cd8a180d29
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 4 15:28:51 2019 -0600
+
+    Update gitlog.txt
+
 commit ab1796d8d8925e2ad6afe22f596d603db80fcb2d
 Author: Aidan Brookes <aaabrookes@gmail.com>
 Date:   Thu Apr 4 15:27:49 2019 -0600
