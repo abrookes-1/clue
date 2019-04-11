@@ -45,6 +45,8 @@ public class GUI_clue extends JFrame{
 		
 		String message = "You are " + game.getHuman().getCharacter() + ". Are you ready to play Clue?";
 		JOptionPane.showMessageDialog(this, message, "Welcom to Clue", JOptionPane.INFORMATION_MESSAGE);
+		
+		add(cardsPanel(game), BorderLayout.EAST);
 	}
 	
 	class NotesDialog extends JDialog {
@@ -109,6 +111,51 @@ public class GUI_clue extends JFrame{
 		
 		return item;
 	}
+	
+	private JPanel cardsPanel(Board game) {
+		JPanel cpanel = createNamePanel("Cards", 3, 0);
+		JPanel panel;
+		JTextField text;
+		
+		panel = createNamePanel("People", 0, 1);
+		for (Card card: game.getHuman().getHand()) {
+			if (card.getType() == CardType.PERSON) {
+				text = new JTextField(card.getCardName(), 8);
+				text.setEditable(false);
+				text.setBackground(null);
+				panel.add(text);
+			}
+		}
+		cpanel.add(panel);
+		
+		
+		panel = createNamePanel("Rooms", 0, 1);
+		for (Card card: game.getHuman().getHand()) {
+			if (card.getType() == CardType.ROOM) {
+				text = new JTextField(card.getCardName(), 8);
+				text.setEditable(false);
+				text.setBackground(null);
+				panel.add(text);
+			}
+		}
+		cpanel.add(panel);
+		
+		
+		panel = createNamePanel("Weapons", 0, 1);
+		for (Card card: game.getHuman().getHand()) {
+			if (card.getType() == CardType.WEAPON) {
+				text = new JTextField(card.getCardName(), 8);
+				text.setEditable(false);
+				text.setBackground(null);
+				panel.add(text);
+			}
+		}
+		cpanel.add(panel);
+		
+		
+		return cpanel;
+	}
+	
 
 	private JPanel controlPanel() {
 		JTextField whoseTurn = new JTextField(14);
