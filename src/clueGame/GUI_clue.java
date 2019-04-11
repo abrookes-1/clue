@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EtchedBorder;
@@ -40,8 +41,10 @@ public class GUI_clue extends JFrame{
 		
 		notes = new NotesDialog(game);
 		notes.setLocationRelativeTo(this);
-		
 		notes.setSize(400, 600);
+		
+		String message = "You are " + game.getHuman().getCharacter() + ". Are you ready to play Clue?";
+		JOptionPane.showMessageDialog(this, message, "Welcom to Clue", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 	class NotesDialog extends JDialog {
