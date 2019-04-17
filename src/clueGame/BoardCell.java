@@ -38,6 +38,10 @@ public class BoardCell {
 			g.setColor(Color.LIGHT_GRAY);
 			g.fillRect(column*SIZE, row*SIZE, SIZE, SIZE);
 		}
+		
+		//if ( is target ) color as light blue lmao
+		
+		// draw doors
 		if (direction != DoorDirection.NONE) {
 			g.setColor(Color.BLUE);
 			switch (direction) {
@@ -60,12 +64,22 @@ public class BoardCell {
 			
 		}
 		
+		
 	}
 	
 	public void drawLabel(Graphics g) {
 		g.setColor(Color.BLUE);
 		g.drawString(Board.getInstance().getLegend().get(initial), column*SIZE, row*SIZE);
 		
+	}
+	
+	public boolean containsClick(int mouseX, int mouseY) {
+		if (mouseX > column*SIZE && mouseX < column*SIZE + SIZE) {
+			if (mouseY > row*SIZE && mouseY < row*SIZE + SIZE) {
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	// Getters

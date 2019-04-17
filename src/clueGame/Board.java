@@ -43,7 +43,7 @@ public class Board extends JPanel{
 	private Set<Player> playerInstances;
 	private Set<ComputerPlayer> compPlayerInstances;
 	private HumanPlayer onlyHuman;
-	Iterator<Player> iter
+	Iterator<Player> iter;
 	
 	// Constructor
 	private Board() {
@@ -124,22 +124,22 @@ public class Board extends JPanel{
 			return false;
 		}
 		Player currentPlayer = getNextPlayer();
-		check whether human or computer
-		if human
-			roll
-			calctargets with roll
-			draw targets on map
-			get selection
-			move player
-			check room
-			allow player to make guess if in room
-		if computer
-			roll
-			calctargets with roll
-			choose from targets
-			move player
-			check room
-			make guess if in room
+		// check whether human or computer
+		// if human
+		// 	roll
+		// 	calctargets with roll
+		// 	draw targets on map
+		// 	get selection
+		// 	move player
+		// 	check room
+		// 	allow player to make guess if in room
+		// if computer
+		// 	roll
+		// 	calctargets with roll
+		// 	choose from targets
+		// 	move player
+		// 	check room
+		// 	make guess if in room
 		
 		
 		
@@ -274,7 +274,7 @@ public class Board extends JPanel{
             }
         }
 	}
-	
+
 	// Uses playerConfigFile and populates an Map with a legend with colors corresponding to player characters
 	public void loadPlayerConfig() throws FileNotFoundException, BadConfigFormatException {
 		FileReader reader = new FileReader(playerConfigFile);
@@ -522,7 +522,6 @@ public class Board extends JPanel{
 	}
 	
 	
-	
 	public void setConfigFiles(String b, String l, String p, String w) {
 		this.roomConfigFile = l;
 		this.boardConfigFile = b;
@@ -576,6 +575,7 @@ public class Board extends JPanel{
 		setUnseen();
 		selectAnswer();
 		dealDeck();
+		
 		
 		/* TODO: add methods here to instantiate human and computer players on the game board
 		 * 		- set players to starting positions on board
