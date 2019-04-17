@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -47,9 +49,41 @@ public class GUI_clue extends JFrame{
 		JOptionPane.showMessageDialog(this, message, "Welcom to Clue", JOptionPane.INFORMATION_MESSAGE);
 		
 		add(cardsPanel(game), BorderLayout.EAST);
+		
+		
+		addMouseListener(new MouseSelectListener(game));
 	}
 	
-	class NotesDialog extends JDialog {
+	private class NextTurnListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("Works lmao");
+			//game.startNextPlayer();
+		}
+	}
+	
+	private class MouseSelectListener implements MouseListener {
+		private Board board;
+		MouseSelectListener(Board board) {
+			this.board = board;
+		}
+		public void mousePressed (MouseEvent event) {}
+		public void mouseReleased (MouseEvent event) {}
+		public void mouseEntered (MouseEvent event) {}
+		public void mouseExited (MouseEvent event) {}
+		public void mouseClicked (MouseEvent event) {
+			for (BoardCell target:board.getTargets()) {
+				if (target.containsClick(event.getX(), event.getY())) {
+					// make sure this can only be done by human player on human player turn
+					// move player to selected cell
+					// currentPlayer.move(target);
+					// repaint probably
+					// game.repaint(); //??
+				}
+			}
+		}
+	}
+	
+	private class NotesDialog extends JDialog {
 		public NotesDialog(Board game) {
 			setTitle("Detective Notes");
 			setLayout(new GridLayout(3,2));
@@ -180,6 +214,9 @@ public class GUI_clue extends JFrame{
 		row.setLayout(new GridLayout(0,3));
 		JPanel col = new JPanel();
 
+		// add action listeners
+		nextPlayer.addActionListener(new NextTurnListener());
+		
 		// Row 1
 		col.add(label);
 		col.add(whoseTurn);
@@ -224,14 +261,14 @@ public class GUI_clue extends JFrame{
 		
 		return panel;
 	}
-	
-	private JPanel displayBoard(Board game, Graphics g) {
-		JPanel panel = new JPanel();
-		
-		
-		
-		return panel;
-	}
+	 
+//	private JPanel displayBoard(Board game, Graphics g) {
+//		JPanel panel = new JPanel();
+//		
+//		
+//		
+//		return panel;
+//	}
 
 	 private JPanel createNamePanel(String panelTitle, int grid_rows, int grid_cols) {
 	 	JPanel panel = new JPanel();

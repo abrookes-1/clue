@@ -44,7 +44,6 @@ public class Board extends JPanel{
 	private Set<ComputerPlayer> compPlayerInstances;
 	private HumanPlayer onlyHuman;
 	
-	
 	// Constructor
 	private Board() {
 		super();
@@ -232,7 +231,7 @@ public class Board extends JPanel{
             }
         }
 	}
-	
+
 	// Uses playerConfigFile and populates an Map with a legend with colors corresponding to player characters
 	public void loadPlayerConfig() throws FileNotFoundException, BadConfigFormatException {
 		FileReader reader = new FileReader(playerConfigFile);
@@ -480,7 +479,6 @@ public class Board extends JPanel{
 	}
 	
 	
-	
 	public void setConfigFiles(String b, String l, String p, String w) {
 		this.roomConfigFile = l;
 		this.boardConfigFile = b;
@@ -534,6 +532,7 @@ public class Board extends JPanel{
 		setUnseen();
 		selectAnswer();
 		dealDeck();
+		
 		
 		/* TODO: add methods here to instantiate human and computer players on the game board
 		 * 		- set players to starting positions on board
