@@ -43,7 +43,7 @@ public class Board extends JPanel{
 	private Set<Player> playerInstances;
 	private Set<ComputerPlayer> compPlayerInstances;
 	private HumanPlayer onlyHuman;
-	
+	Iterator<Player> iter
 	
 	// Constructor
 	private Board() {
@@ -57,6 +57,7 @@ public class Board extends JPanel{
 		this.deck = new ArrayList<Card>();
 		this.playerInstances = new HashSet<Player>();
 		this.compPlayerInstances = new HashSet<ComputerPlayer>();
+		iter = playerInstances.iterator();
 	}
 
 	// Uses boardConfigFile and populates an array with boardCells
@@ -104,6 +105,47 @@ public class Board extends JPanel{
         		throw new BadConfigFormatException();
         	}
         }
+	}
+	
+	private Player getNextPlayer() {
+		if (!iter.hasNext()) {
+			iter = playerInstances.iterator();
+		}
+		return iter.next();
+	}
+	
+	private String currentPlayerIsDone () {
+		return null;
+	}
+	
+	public boolean startNextPlayer () {
+		// returns false if the current palyer's turn is not done
+		if (currentPlayerIsDone() == null) {
+			return false;
+		}
+		Player currentPlayer = getNextPlayer();
+		check whether human or computer
+		if human
+			roll
+			calctargets with roll
+			draw targets on map
+			get selection
+			move player
+			check room
+			allow player to make guess if in room
+		if computer
+			roll
+			calctargets with roll
+			choose from targets
+			move player
+			check room
+			make guess if in room
+		
+		
+		
+		
+		
+		return true;
 	}
 
 	// Populates a map of cells with a Set of their respective adjacent cells
