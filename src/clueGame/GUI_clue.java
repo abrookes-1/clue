@@ -68,6 +68,8 @@ public class GUI_clue extends JFrame{
 				die.setText(Integer.toString(gameBoard.getDie()));
 				whoseTurn.setText(gameBoard.getCurrentPlayer().getCharacter());
 				guessResult.setText(gameBoard.getResponse());
+			} else {
+				// unhide window that says you shuold finish your turn
 			}
 		}
 	}
