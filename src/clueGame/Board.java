@@ -115,6 +115,10 @@ public class Board extends JPanel{
         	}
         }
 	}
+	
+	public boolean humanPlayerIsInRoom() {
+		return humanPlayerInRoom;
+	}
 
 	private void nextPlayer() {
 		if (!iter.hasNext()) {
