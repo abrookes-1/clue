@@ -16,9 +16,10 @@ public class ComputerPlayer extends Player{
 	}
 	
 	public void makeAccusation() {
-		
+		// if possible, make an accusation, else do nothing
 	}
 	
+	@Override
 	public Solution createSuggestion() { // args tbd
 		String person = null;
 		String weapon = null;
