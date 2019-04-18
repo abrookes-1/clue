@@ -44,7 +44,7 @@ public class GUI_clue extends JFrame{
 		
 		notes = new NotesDialog(gameBoard);
 		notes.setLocationRelativeTo(this);
-		notes.setSize(400, 600);
+		notes.setSize(500, 600);
 		
 		String message = "You are " + gameBoard.getHuman().getCharacter() + ". Are you ready to play Clue?";
 		JOptionPane.showMessageDialog(this, message, "Welcom to Clue", JOptionPane.INFORMATION_MESSAGE);
