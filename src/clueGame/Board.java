@@ -528,9 +528,15 @@ public class Board extends JPanel{
 	
 	public Set<String> getRooms() {
 		Set<String> toReturn = new HashSet<String>();
-		for (String item:legend.values()) {
-			toReturn.add(item);
+		for (Card item: deck) {
+			if (item.getType() == CardType.ROOM) {
+				toReturn.add(item.getCardName());
+			}
 		}
+//		for (String item:legend.values()) {
+//			
+//			toReturn.add(item);
+//		}
 		return toReturn;
 	}
 	
