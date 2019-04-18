@@ -123,10 +123,6 @@ public class Board extends JPanel{
 		return currentPlayer;
 	}
 	
-	private String currentPlayerIsDone () {
-		return null;
-	}
-	
 	public void finishedTurn() {
 		humanFinished = true;
 	}
@@ -140,11 +136,6 @@ public class Board extends JPanel{
 	}
 	
 	public boolean startNextPlayer () {
-		
-		// returns false if the current palyer's turn is not done
-		if (currentPlayerIsDone() == null) {
-			//return false;
-		}
 		nextPlayer();
 		roll();
 		calcTargets(currentPlayer.getRow(), currentPlayer.getCol(), getDie());
@@ -157,22 +148,6 @@ public class Board extends JPanel{
 			targets.clear();
 			repaint();
 		}
-		// check whether human or computer
-		// if human
-		// 	roll
-		// 	calctargets with roll
-		// 	draw targets on map
-		// 	get selection
-		// 	move player
-		// 	check room
-		// 	allow player to make guess if in room
-		// if computer
-		// 	roll
-		// 	calctargets with roll
-		// 	choose from targets
-		// 	move player
-		// 	check room
-		// 	make guess if in room
 		
 		
 		return true;

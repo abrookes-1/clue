@@ -61,7 +61,6 @@ public class GUI_clue extends JFrame{
 				gameBoard.startNextPlayer();
 				die.setText(Integer.toString(gameBoard.getDie()));
 				whoseTurn.setText(gameBoard.getCurrentPlayer().getCharacter());
-				//repaint();
 			}
 		}
 	}
