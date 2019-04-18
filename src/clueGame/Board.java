@@ -117,7 +117,10 @@ public class Board extends JPanel{
 	}
 	
 	public boolean humanPlayerIsInRoom() {
-		return humanPlayerInRoom;
+		if (getCellAt(onlyHuman.getRow(), onlyHuman.getCol()).getInitial() != 'W'){
+			return true;
+		}
+		return false;
 	}
 
 	private void nextPlayer() {

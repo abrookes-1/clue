@@ -27,6 +27,7 @@ import javax.swing.border.TitledBorder;
 
 public class GUI_clue extends JFrame{
 	NotesDialog notes;
+	SugDialog sug;
 	static Board gameBoard;
 
 	public GUI_clue() {
@@ -46,6 +47,10 @@ public class GUI_clue extends JFrame{
 		notes.setLocationRelativeTo(this);
 		notes.setSize(500, 600);
 		
+		sug = new SugDialog(gameBoard);
+		sug.setLocationRelativeTo(this);
+		sug.setSize(300, 200);
+		
 		String message = "You are " + gameBoard.getHuman().getCharacter() + ". Are you ready to play Clue?";
 		JOptionPane.showMessageDialog(this, message, "Welcom to Clue", JOptionPane.INFORMATION_MESSAGE);
 		
@@ -57,6 +62,7 @@ public class GUI_clue extends JFrame{
 	
 	private class NextTurnListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			
 			if (gameBoard.isFinished()){
 				gameBoard.startNextPlayer();
 				die.setText(Integer.toString(gameBoard.getDie()));
@@ -78,6 +84,10 @@ public class GUI_clue extends JFrame{
 					gameBoard.getCurrentPlayer().setCol(target.getColumn());
 					gameBoard.getTargets().clear();
 					repaint();
+					if (gameBoard.humanPlayerIsInRoom()) {
+						// open dialog for human player to make suggestion
+						sug.setVisible(true);
+					}
 					gameBoard.finishedTurn();
 					break;
 				}
@@ -114,6 +124,42 @@ public class GUI_clue extends JFrame{
 			panel = createNamePanel("Weapon Guess", 0, 0);
 			panel.add(new JComboBox(game.getWeapons().toArray()));
 			add(panel);
+		}
+	}
+	
+	JTextField roomAnswer;
+	JComboBox personAnswer;
+	JComboBox weaponAnswer;
+	JButton submit;
+	JButton cancel;
+	
+	private class SugDialog extends JDialog {
+		public SugDialog(Board game) {
+			setLayout(new GridLayout(4,2));
+			JTextField yourRoom = new JTextField("Your Room");
+			JTextField person = new JTextField("Person");
+			JTextField weapon = new JTextField("Weapon");
+			yourRoom.setEditable(false);
+			person.setEditable(false);
+			weapon.setEditable(false);
+			yourRoom.setBackground(null);
+			person.setBackground(null);
+			weapon.setBackground(null);
+			roomAnswer = new JTextField("");
+			personAnswer = new JComboBox(gameBoard.getCharacters().toArray());
+			weaponAnswer = new JComboBox(gameBoard.getWeapons().toArray());
+			submit = new JButton("Submit");
+			cancel = new JButton("Cancel");
+			roomAnswer.setEditable(false);
+			add(yourRoom);
+			add(roomAnswer);
+			add(person);
+			add(personAnswer);
+			add(weapon);
+			add(weaponAnswer);
+			add(submit);
+			add(cancel);
+			
 		}
 	}
 	
