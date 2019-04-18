@@ -38,8 +38,12 @@ public class BoardCell {
 			g.setColor(Color.LIGHT_GRAY);
 			g.fillRect(column*SIZE, row*SIZE, SIZE, SIZE);
 		}
-		
-		//if ( is target ) color as light blue lmao
+		if ( Board.getInstance().getTargets().contains(this) ) {
+			g.setColor(Color.CYAN);
+			g.fillRect(column*SIZE, row*SIZE, SIZE, SIZE);
+			g.setColor(Color.BLACK);
+			g.drawRect(column*SIZE, row*SIZE, SIZE, SIZE);
+		}
 		
 		// draw doors
 		if (direction != DoorDirection.NONE) {

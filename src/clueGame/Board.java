@@ -43,7 +43,12 @@ public class Board extends JPanel{
 	private Set<Player> playerInstances;
 	private Set<ComputerPlayer> compPlayerInstances;
 	private HumanPlayer onlyHuman;
+	
+	
+	private int die;
+	Player currentPlayer;
 	Iterator<Player> iter;
+	
 	
 	// Constructor
 	private Board() {
@@ -107,27 +112,36 @@ public class Board extends JPanel{
         }
 	}
 	
-	private Player getNextPlayer() {
+	private void nextPlayer() {
 		if (!iter.hasNext()) {
 			iter = playerInstances.iterator();
 		}
-		return iter.next();
+		currentPlayer = iter.next();
+	}
+	
+	public Player getCurrentPlayer() {
+		return currentPlayer;
 	}
 	
 	private String currentPlayerIsDone () {
 		return null;
 	}
 	
+	public int getDie() {
+		return die;
+	}
+	
 	public boolean startNextPlayer () {
 		// returns false if the current palyer's turn is not done
 		if (currentPlayerIsDone() == null) {
-			return false;
+			//return false;
 		}
-		Player currentPlayer = getNextPlayer();
-		
-		calcTargets(currentPlayer.getCol(), currentPlayer.getRow(), roll());
-		if (!currentPlayer.isHuman) {
-			//draw targets on map
+		nextPlayer();
+		roll();
+		calcTargets(currentPlayer.getRow(), currentPlayer.getCol(), getDie());
+		repaint();
+		if (currentPlayer.isHuman) {
+			//repaint();
 		}
 		// check whether human or computer
 		// if human
@@ -150,9 +164,9 @@ public class Board extends JPanel{
 		return true;
 	}
 	
-	private int roll() {
+	private void roll() {
 		Random rand = new Random();
-		return rand.nextInt(6);
+		die = rand.nextInt(5) + 1;
 	}
 	
 	// Populates a map of cells with a Set of their respective adjacent cells

@@ -27,13 +27,14 @@ import javax.swing.border.TitledBorder;
 
 public class GUI_clue extends JFrame{
 	NotesDialog notes;
+	static Board gameBoard;
 
-	public GUI_clue(Board game) {
+	public GUI_clue() {
 		setSize(660, 660);
 		setTitle("Clue");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		add(game);
+		add(gameBoard);
 		JPanel panel = controlPanel();
 		add(panel, BorderLayout.SOUTH);
 		
@@ -41,38 +42,37 @@ public class GUI_clue extends JFrame{
 		setJMenuBar(fileMenu);
 		fileMenu.add(createFileMenu());
 		
-		notes = new NotesDialog(game);
+		notes = new NotesDialog(gameBoard);
 		notes.setLocationRelativeTo(this);
 		notes.setSize(400, 600);
 		
-		String message = "You are " + game.getHuman().getCharacter() + ". Are you ready to play Clue?";
+		String message = "You are " + gameBoard.getHuman().getCharacter() + ". Are you ready to play Clue?";
 		JOptionPane.showMessageDialog(this, message, "Welcom to Clue", JOptionPane.INFORMATION_MESSAGE);
 		
-		add(cardsPanel(game), BorderLayout.EAST);
+		add(cardsPanel(gameBoard), BorderLayout.EAST);
 		
 		
-		addMouseListener(new MouseSelectListener(game));
+		addMouseListener(new MouseSelectListener());
 	}
 	
 	private class NextTurnListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			System.out.println("Works lmao");
-			//game.startNextPlayer();
+			gameBoard.startNextPlayer();
+			die.setText(Integer.toString(gameBoard.getDie()));
+			repaint();
 		}
 	}
 	
 	private class MouseSelectListener implements MouseListener {
-		private Board board;
-		MouseSelectListener(Board board) {
-			this.board = board;
-		}
 		public void mousePressed (MouseEvent event) {}
 		public void mouseReleased (MouseEvent event) {}
 		public void mouseEntered (MouseEvent event) {}
 		public void mouseExited (MouseEvent event) {}
 		public void mouseClicked (MouseEvent event) {
-			for (BoardCell target:board.getTargets()) {
+			if ()
+			for (BoardCell target:gameBoard.getTargets()) {
 				if (target.containsClick(event.getX(), event.getY())) {
+					
 					// make sure this can only be done by human player on human player turn
 					// move player to selected cell
 					// currentPlayer.move(target);
@@ -190,23 +190,30 @@ public class GUI_clue extends JFrame{
 		return cpanel;
 	}
 	
+	JTextField whoseTurn = new JTextField(14);
+	
+	JTextField die = new JTextField(3);
+	
+	JTextField guess = new JTextField(20);
+
+	JTextField guessResult = new JTextField(10);
+
+	JLabel label = new JLabel("Whose Turn?");
+	JButton nextPlayer = new JButton("Next Player");
+	JButton makeAccusation = new JButton("Make Accusation");
 
 	private JPanel controlPanel() {
-		JTextField whoseTurn = new JTextField(14);
 		whoseTurn.setEditable(false);
 		whoseTurn.setBackground(null);
-		JTextField die = new JTextField(3);
+		
 		die.setEditable(false);
 		die.setBackground(null);
-		JTextField guess = new JTextField(20);
+		
 		guess.setEditable(false);
 		guess.setBackground(null);
-		JTextField guessResult = new JTextField(10);
+		
 		guessResult.setEditable(false);
 		guessResult.setBackground(null);
-		JLabel label = new JLabel("Whose Turn?");
-		JButton nextPlayer = new JButton("Next Player");
-		JButton makeAccusation = new JButton("Make Accusation");
 		
 		JPanel panel = new JPanel();
 		panel.setLayout(new GridLayout(2,0));
@@ -292,11 +299,11 @@ public class GUI_clue extends JFrame{
 	 */
 	public static void main(String[] args) {
 		// Set up board & game
-		Board gameBoard = Board.getInstance();
+		gameBoard = Board.getInstance();
 		gameBoard.setConfigFiles("ClueMap.csv", "RoomKey.txt", "players.txt", "weapons.txt");
 		gameBoard.initialize();
 		
-		GUI_clue gui = new GUI_clue(gameBoard);
+		GUI_clue gui = new GUI_clue();
 		gui.setVisible(true);
 	}
 }
