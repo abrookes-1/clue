@@ -26,6 +26,10 @@ public class Player {
 		this.unseenPeople = new HashSet<Card>();
 	}
 	
+	public Solution createSuggestion() {
+		return null;
+	}
+	
 	public void dealCard(Card card) {
 		cards.add(card);
 		if (card.getType() == CardType.PERSON) {

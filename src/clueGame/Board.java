@@ -48,6 +48,7 @@ public class Board extends JPanel{
 	private int die;
 	Player currentPlayer;
 	Iterator<Player> iter;
+	Card reason;
 	
 	
 	// Constructor
@@ -135,6 +136,10 @@ public class Board extends JPanel{
 		return die;
 	}
 	
+	public String getResponse() {
+		return reason.getCardName();
+	}
+	
 	public boolean startNextPlayer () {
 		nextPlayer();
 		roll();
@@ -145,6 +150,11 @@ public class Board extends JPanel{
 		} else {
 			currentPlayer.setRow(targets.iterator().next().getRow());
 			currentPlayer.setCol(targets.iterator().next().getColumn());
+			if (getCellAt(currentPlayer.getRow(), currentPlayer.getCol()).getInitial() != 'W') {
+				// make suggestion
+				reason = handleSuggestion(currentPlayer.createSuggestion(), currentPlayer);
+				
+			}
 			targets.clear();
 			repaint();
 		}
