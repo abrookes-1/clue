@@ -80,7 +80,7 @@ public class BoardCell {
 	}
 	
 	public boolean containsClick(int mouseX, int mouseY) {
-		Rectangle rect = new Rectangle(column*SIZE, row*SIZE+2*SIZE+6, SIZE, SIZE);
+		Rectangle rect = new Rectangle(column*SIZE, row*SIZE + 2*SIZE + 6, SIZE, SIZE);
 		if (rect.contains(new Point(mouseX, mouseY))) {
 				return true;
 			}
@@ -91,12 +91,15 @@ public class BoardCell {
 	public int getRow() {
 		return row;
 	}
+	
 	public int getColumn() {
 		return column;
 	}
+	
 	public char getInitial() {
 		return initial;
 	}
+	
 	public DoorDirection getDoorDirection() {
 		return this.direction;
 	}
