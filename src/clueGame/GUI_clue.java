@@ -76,6 +76,7 @@ public class GUI_clue extends JFrame{
 					gameBoard.getCurrentPlayer().setCol(target.getColumn());
 					gameBoard.getTargets().clear();
 					repaint();
+					break;
 				}
 			}
 		}
