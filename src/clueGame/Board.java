@@ -139,9 +139,8 @@ public class Board extends JPanel{
 		nextPlayer();
 		roll();
 		calcTargets(currentPlayer.getRow(), currentPlayer.getCol(), getDie());
-		repaint();
 		if (currentPlayer.isHuman) {
-			//repaint();
+			repaint();
 		}
 		// check whether human or computer
 		// if human

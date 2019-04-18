@@ -59,7 +59,8 @@ public class GUI_clue extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			gameBoard.startNextPlayer();
 			die.setText(Integer.toString(gameBoard.getDie()));
-			repaint();
+			whoseTurn.setText(gameBoard.getCurrentPlayer().getCharacter());
+			//repaint();
 		}
 	}
 	
@@ -69,15 +70,12 @@ public class GUI_clue extends JFrame{
 		public void mouseEntered (MouseEvent event) {}
 		public void mouseExited (MouseEvent event) {}
 		public void mouseClicked (MouseEvent event) {
-			if ()
 			for (BoardCell target:gameBoard.getTargets()) {
 				if (target.containsClick(event.getX(), event.getY())) {
-					
-					// make sure this can only be done by human player on human player turn
-					// move player to selected cell
-					// currentPlayer.move(target);
-					// repaint probably
-					// game.repaint(); //??
+					gameBoard.getCurrentPlayer().setRow(target.getRow());
+					gameBoard.getCurrentPlayer().setCol(target.getColumn());
+					gameBoard.getTargets().clear();
+					repaint();
 				}
 			}
 		}

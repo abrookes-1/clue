@@ -6,6 +6,8 @@ package clueGame;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.util.Map;
 
 public class BoardCell {
@@ -78,11 +80,10 @@ public class BoardCell {
 	}
 	
 	public boolean containsClick(int mouseX, int mouseY) {
-		if (mouseX > column*SIZE && mouseX < column*SIZE + SIZE) {
-			if (mouseY > row*SIZE && mouseY < row*SIZE + SIZE) {
+		Rectangle rect = new Rectangle(column*SIZE, row*SIZE+2*SIZE+6, SIZE, SIZE);
+		if (rect.contains(new Point(mouseX, mouseY))) {
 				return true;
 			}
-		}
 		return false;
 	}
 	
