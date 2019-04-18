@@ -16,6 +16,7 @@ public class Player {
 	private Set<Card> unseenWeapons;
 	private Set<Card> unseenPeople;
 	private Set<Card> unseenRooms;
+	public boolean isHuman = false;
 	
 	public Player(String character, String color) {
 		this.character = character;

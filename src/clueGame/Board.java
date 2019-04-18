@@ -124,6 +124,11 @@ public class Board extends JPanel{
 			return false;
 		}
 		Player currentPlayer = getNextPlayer();
+		
+		calcTargets(currentPlayer.getCol(), currentPlayer.getRow(), roll());
+		if (!currentPlayer.isHuman) {
+			//draw targets on map
+		}
 		// check whether human or computer
 		// if human
 		// 	roll
@@ -142,12 +147,14 @@ public class Board extends JPanel{
 		// 	make guess if in room
 		
 		
-		
-		
-		
 		return true;
 	}
-
+	
+	private int roll() {
+		Random rand = new Random();
+		return rand.nextInt(6);
+	}
+	
 	// Populates a map of cells with a Set of their respective adjacent cells
 	private Map< BoardCell, Set<BoardCell> > calcAdjacencies() {
 		Map< BoardCell, Set<BoardCell> > adjacents = new HashMap< BoardCell, Set<BoardCell> >();
@@ -212,7 +219,7 @@ public class Board extends JPanel{
 							(cellBelow.getInitial() == 'W' || cellBelow.getDoorDirection() != DoorDirection.NONE)) {
 						thisAdj.add(cellBelow);
 					}
-				} else { // if current cell is neither walkway nor door 
+				} else { // if current cell is neither walkway nor door  do nothing for now
 					
 				}
 				
@@ -291,6 +298,7 @@ public class Board extends JPanel{
         	deck.add(newCard);
         	if (playerInstances.size() == 0) {
         		onlyHuman = new HumanPlayer(input[0],input[1]);
+        		onlyHuman.isHuman = true;
         		playerInstances.add(onlyHuman);
         	} else {
         		cpla = new ComputerPlayer(input[0],input[1]);
@@ -577,11 +585,8 @@ public class Board extends JPanel{
 		dealDeck();
 		
 		
-		/* TODO: add methods here to instantiate human and computer players on the game board
-		 * 		- set players to starting positions on board
-		 * 		- other methods idk lmao
-		 */
 		assignStartingPositions();
+		//makeHumanFirst();
 		
 	}
 }
