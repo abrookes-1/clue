@@ -57,10 +57,12 @@ public class GUI_clue extends JFrame{
 	
 	private class NextTurnListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			gameBoard.startNextPlayer();
-			die.setText(Integer.toString(gameBoard.getDie()));
-			whoseTurn.setText(gameBoard.getCurrentPlayer().getCharacter());
-			//repaint();
+			if (gameBoard.isFinished()){
+				gameBoard.startNextPlayer();
+				die.setText(Integer.toString(gameBoard.getDie()));
+				whoseTurn.setText(gameBoard.getCurrentPlayer().getCharacter());
+				//repaint();
+			}
 		}
 	}
 	
@@ -76,6 +78,7 @@ public class GUI_clue extends JFrame{
 					gameBoard.getCurrentPlayer().setCol(target.getColumn());
 					gameBoard.getTargets().clear();
 					repaint();
+					gameBoard.finishedTurn();
 					break;
 				}
 			}

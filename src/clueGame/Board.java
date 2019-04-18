@@ -44,7 +44,7 @@ public class Board extends JPanel{
 	private Set<ComputerPlayer> compPlayerInstances;
 	private HumanPlayer onlyHuman;
 	
-	
+	private boolean humanFinished = true;
 	private int die;
 	Player currentPlayer;
 	Iterator<Player> iter;
@@ -127,11 +127,20 @@ public class Board extends JPanel{
 		return null;
 	}
 	
+	public void finishedTurn() {
+		humanFinished = true;
+	}
+	
+	public boolean isFinished() {
+		return humanFinished;
+	}
+	
 	public int getDie() {
 		return die;
 	}
 	
 	public boolean startNextPlayer () {
+		
 		// returns false if the current palyer's turn is not done
 		if (currentPlayerIsDone() == null) {
 			//return false;
@@ -140,7 +149,8 @@ public class Board extends JPanel{
 		roll();
 		calcTargets(currentPlayer.getRow(), currentPlayer.getCol(), getDie());
 		if (currentPlayer.isHuman) {
-			repaint();
+			humanFinished = false;
+			repaint(); // ensures targets are drawn
 		} else {
 			currentPlayer.setRow(targets.iterator().next().getRow());
 			currentPlayer.setCol(targets.iterator().next().getColumn());
