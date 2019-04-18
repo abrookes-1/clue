@@ -139,6 +139,7 @@ public class Board extends JPanel{
 	}
 
 	public String getResponse() {
+		if (reason == null) return null;
 		return reason.getCardName();
 	}
 
