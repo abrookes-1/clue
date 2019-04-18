@@ -36,6 +36,7 @@ public class Board extends JPanel{
 	private Map<Character, String> legend;
 	private Map<String, String> characters;
 	private Set<String> weapons;
+	private Set<String> rooms;
 
 	private ArrayList<Card> deck; 
 	private Solution answer;
@@ -60,6 +61,7 @@ public class Board extends JPanel{
 		this.legend = new HashMap<Character, String>();
 		this.characters = new HashMap<String, String>();
 		this.weapons = new HashSet<String>();
+		this.rooms = new HashSet<String>();
 		this.deck = new ArrayList<Card>();
 		this.playerInstances = new HashSet<Player>();
 		this.compPlayerInstances = new HashSet<ComputerPlayer>();
@@ -291,6 +293,7 @@ public class Board extends JPanel{
             if (input[2].equals("Card")) {
             	Card newCard = new Card(input[1], CardType.ROOM);
             	deck.add(newCard);
+            	rooms.add(input[1]);
             }
         }
 	}
@@ -527,11 +530,7 @@ public class Board extends JPanel{
 	}
 	
 	public Set<String> getRooms() {
-		Set<String> toReturn = new HashSet<String>();
-		for (String item:legend.values()) {
-			toReturn.add(item);
-		}
-		return toReturn;
+		return rooms;
 	}
 	
 	public ArrayList<Card> getDeck() {
