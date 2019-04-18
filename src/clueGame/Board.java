@@ -47,9 +47,10 @@ public class Board extends JPanel{
 
 	private boolean humanFinished = true;
 	private int die;
-	Player currentPlayer;
-	Iterator<Player> iter;
-	Card reason;
+	private Player currentPlayer;
+	private Iterator<Player> iter;
+	private Card reason;
+	private boolean humanPlayerInRoom = false;
 
 
 	// Constructor
@@ -114,6 +115,10 @@ public class Board extends JPanel{
         	}
         }
 	}
+	
+	public boolean humanPlayerIsInRoom() {
+		return humanPlayerInRoom;
+	}
 
 	private void nextPlayer() {
 		if (!iter.hasNext()) {
@@ -149,6 +154,11 @@ public class Board extends JPanel{
 		calcTargets(currentPlayer.getRow(), currentPlayer.getCol(), getDie());
 		if (currentPlayer.isHuman) {
 			humanFinished = false;
+			if (getCellAt(currentPlayer.getRow(), currentPlayer.getCol()).getInitial() != 'W') {
+				humanPlayerInRoom = true;
+			} else {
+				humanPlayerInRoom = false;
+			}
 			repaint(); // ensures targets are drawn
 		} else {
 			currentPlayer.setRow(targets.iterator().next().getRow());
