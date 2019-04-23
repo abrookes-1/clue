@@ -52,7 +52,6 @@ public class Board extends JPanel{
 	private Card reason;
 	private boolean humanPlayerInRoom = false;
 
-
 	// Constructor
 	private Board() {
 		super();

@@ -41,6 +41,7 @@ public class ComputerPlayer extends Player{
 		}
 		String room = getRoom();
 		Solution sol = new Solution(person, weapon, room);
+		System.out.println("suggestion:" + person + weapon + room);
 		return sol;
 	}
 }
