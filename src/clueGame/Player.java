@@ -125,8 +125,7 @@ public class Player {
 		if (size == 0) return null;
 		int item = new Random().nextInt(size);
 		int i = 0;
-		for(Card aCard : cardsDisp)
-		{
+		for(Card aCard : cardsDisp) {
 		    if (i == item)
 		        return aCard;
 		    i++;
