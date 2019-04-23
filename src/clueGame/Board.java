@@ -452,15 +452,15 @@ public class Board extends JPanel{
 	}
 
 	// Checks if any player other than the accuser is able to disprove a suggestion, returns disproving card
-	public Card handleSuggestion(Solution sugg, Player suggSource) {
+	public void handleSuggestion(Solution sugg, Player suggSource) {
 		Card result;
 		for (Player pla: playerInstances) {
 			if (pla != suggSource) {
 				result = pla.disproveSuggestion(sugg);
-				if (result != null) return result;
+				reason = result;
 			}
 		}
-		return null;
+		reason = null;
 	}
 
 	public void assignStartingPositions() {
