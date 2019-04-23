@@ -28,14 +28,18 @@ public class ComputerPlayer extends Player{
 		for (Card unseen:getUnseenPeople()) {
 			if (i == index) {
 				person = unseen.getCardName();
+				System.out.println("index gotten: "+ index);
+				System.out.println("unseen person: " + person);
 			}
 			i++;
 		}
-		index = new Random().nextInt(getUnseenWeapons().size()) - 1;
+		index = new Random().nextInt(getUnseenWeapons().size());
 		i = 0;
 		for (Card unseen:getUnseenWeapons()) {
 			if (i == index) {
 				weapon = unseen.getCardName();
+				System.out.println("index gotten: "+ index);
+				System.out.println("unseen weapon: " + weapon);
 			}
 			i++;
 		}
