@@ -62,6 +62,7 @@ public class GUI_clue extends JFrame{
 	
 	private class NextTurnListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+			gameBoard.setSeen();
 			Solution ans = gameBoard.getAnswer();
 			System.out.println(ans.person+ ans.weapon+ ans.room);
 			if (gameBoard.isFinished()){
