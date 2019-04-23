@@ -149,6 +149,19 @@ public class Board extends JPanel{
 		if (reason == null) return null;
 		return reason.getCardName();
 	}
+	
+	public void setSeen() {
+		for (Player pla: playerInstances) {
+			if (reason.getType() == CardType.PERSON) {
+				pla.getUnseenPeople().remove(reason);
+			} else if (reason.getType() == CardType.WEAPON) {
+				pla.getUnseenWeapons().remove(reason);
+			} else if (reason.getType() == CardType.ROOM) {
+				pla.getUnseenRooms().remove(reason);
+			}
+		}
+		
+	}
 
 	public boolean startNextPlayer () {
 		nextPlayer();

@@ -100,6 +100,7 @@ public class Player {
 		return unseenRooms;
 	}
 	
+	
 	//returns all cards which disprove
 	public Set<Card> findCardsDisprove(Solution suggestion){
 		Set<Card> cardsDisp = new HashSet<Card>();
