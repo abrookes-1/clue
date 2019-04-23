@@ -220,8 +220,8 @@ public class GUI_clue extends JFrame{
 				displayWin();
 			} else {
 				displayLoss();
-				gameBoard.initialize();
-				gameBoard.repaint();
+				//gameBoard.initialize();
+				//gameBoard.repaint();
 			}
 			
 			acc.setVisible(false);
