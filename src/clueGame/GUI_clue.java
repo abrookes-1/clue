@@ -62,7 +62,6 @@ public class GUI_clue extends JFrame{
 	
 	private class NextTurnListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			
 			if (gameBoard.isFinished()){
 				gameBoard.startNextPlayer();
 				die.setText(Integer.toString(gameBoard.getDie()));
@@ -89,6 +88,7 @@ public class GUI_clue extends JFrame{
 					if (gameBoard.humanPlayerIsInRoom()) {
 						// open dialog for human player to make suggestion
 						sug.setVisible(true);
+						roomAnswer.setText(gameBoard.getCurrentPlayer().getRoom());
 					}
 					gameBoard.finishedTurn();
 					break;
