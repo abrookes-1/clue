@@ -168,7 +168,7 @@ public class Board extends JPanel{
 			currentPlayer.setCol(targets.iterator().next().getColumn());
 			if (getCellAt(currentPlayer.getRow(), currentPlayer.getCol()).getInitial() != 'W') {
 				// make suggestion
-				reason = handleSuggestion(currentPlayer.createSuggestion(), currentPlayer);
+				handleSuggestion(currentPlayer.createSuggestion(), currentPlayer);
 
 			}
 			targets.clear();
