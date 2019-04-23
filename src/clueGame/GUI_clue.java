@@ -70,6 +70,13 @@ public class GUI_clue extends JFrame{
 		JOptionPane.showMessageDialog(this, "Please finish your turn before moving on", "Turn Unfinished", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	private void displayWin() {
+		JOptionPane.showMessageDialog(this, "You win", "nice", JOptionPane.INFORMATION_MESSAGE);
+	}
+	private void displayLoss() {
+		JOptionPane.showMessageDialog(this, "You lose lmao", "not nice", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
 	private class NextTurnListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			gameBoard.setSeen();
@@ -208,9 +215,9 @@ public class GUI_clue extends JFrame{
 			Solution sugg = new Solution(personAnswer.getSelectedItem().toString(), weaponAnswer.getSelectedItem().toString(), roomAnswerChoose.getSelectedItem().toString());
 			boolean checkWin = gameBoard.checkAccusation(sugg);
 			if (checkWin) {
-				
+				displayWin();
 			} else {
-				
+				displayLoss();
 				gameBoard.initialize();
 				gameBoard.repaint();
 			}
