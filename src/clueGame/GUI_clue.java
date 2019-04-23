@@ -135,6 +135,18 @@ public class GUI_clue extends JFrame{
 	JButton submit;
 	JButton cancel;
 	
+	private class SugSubmitListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			// TODO: submit and handle suggestion
+		}
+	}
+	
+	private class SugCancelListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			sug.setVisible(false);
+		}
+	}
+	
 	private class SugDialog extends JDialog {
 		public SugDialog(Board game) {
 			setLayout(new GridLayout(4,2));
@@ -153,6 +165,8 @@ public class GUI_clue extends JFrame{
 			submit = new JButton("Submit");
 			cancel = new JButton("Cancel");
 			roomAnswer.setEditable(false);
+			submit.addActionListener(new SugSubmitListener());
+			cancel.addActionListener(new SugCancelListener());
 			add(yourRoom);
 			add(roomAnswer);
 			add(person);
