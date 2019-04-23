@@ -161,6 +161,8 @@ public class GUI_clue extends JFrame{
 	JComboBox weaponAnswer;
 	JButton submit;
 	JButton cancel;
+	JButton submitAcc;
+	JButton cancelAcc;
 	
 	private class SugSubmitListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
@@ -179,8 +181,8 @@ public class GUI_clue extends JFrame{
 		}
 	}
 	
-	private class SugDialog extends JDialog {
-		public SugDialog(Board game) {
+	private class AccusationDialog extends JDialog {
+		public AccusationDialog(Board game) {
 			setLayout(new GridLayout(4,2));
 			JTextField yourRoom = new JTextField("Your Room");
 			JTextField person = new JTextField("Person");
@@ -194,18 +196,18 @@ public class GUI_clue extends JFrame{
 			roomAnswerChoose = new JComboBox(gameBoard.getRooms().toArray());
 			personAnswer = new JComboBox(gameBoard.getCharacters().toArray());
 			weaponAnswer = new JComboBox(gameBoard.getWeapons().toArray());
-			submit = new JButton("Submit");
-			cancel = new JButton("Cancel");
-			submit.addActionListener(new SugSubmitListener());
-			cancel.addActionListener(new SugCancelListener());
+			submitAcc = new JButton("Submit");
+			cancelAcc = new JButton("Cancel");
+			submitAcc.addActionListener(new AccSubmitListener());
+			cancelAcc.addActionListener(new AccCancelListener());
 			add(yourRoom);
 			add(roomAnswerChoose);
 			add(person);
 			add(personAnswer);
 			add(weapon);
 			add(weaponAnswer);
-			add(submit);
-			add(cancel);
+			add(submitAcc);
+			add(cancelAcc);
 			
 		}
 	}
@@ -222,18 +224,18 @@ public class GUI_clue extends JFrame{
 				gameBoard.repaint();
 			}
 			
-			sug.setVisible(false);
+			acc.setVisible(false);
 		}
 	}
 	
 	private class AccCancelListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			sug.setVisible(false);
+			acc.setVisible(false);
 		}
 	}
 	
-	private class AccusationDialog extends JDialog {
-		public AccusationDialog(Board game) {
+	private class SugDialog extends JDialog {
+		public SugDialog(Board game) {
 			setLayout(new GridLayout(4,2));
 			JTextField yourRoom = new JTextField("Your Room");
 			JTextField person = new JTextField("Person");
@@ -372,6 +374,7 @@ public class GUI_clue extends JFrame{
 
 		// add action listeners
 		nextPlayer.addActionListener(new NextTurnListener());
+		makeAccusation.addActionListener(new AccusationListener());
 		
 		// Row 1
 		col.add(label);
