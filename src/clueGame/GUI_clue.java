@@ -76,6 +76,9 @@ public class GUI_clue extends JFrame{
 	private void displayLoss() {
 		JOptionPane.showMessageDialog(this, "You lose lmao", "not nice", JOptionPane.INFORMATION_MESSAGE);
 	}
+	private void displayNotTurn() {
+		JOptionPane.showMessageDialog(this, "Not yo turn", "sit down", JOptionPane.INFORMATION_MESSAGE);
+	}
 	
 	private class NextTurnListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
@@ -95,7 +98,11 @@ public class GUI_clue extends JFrame{
 	
 	private class AccusationListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			acc.setVisible(true);
+			if (gameBoard.getCurrentPlayer().isHuman) {
+				acc.setVisible(true);
+			} else {
+				displayNotTurn();
+			}
 		}
 	}
 	
