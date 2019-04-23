@@ -137,7 +137,8 @@ public class GUI_clue extends JFrame{
 	
 	private class SugSubmitListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			// TODO: submit and handle suggestion
+			Solution sugg = new Solution(personAnswer.getSelectedItem().toString(), weaponAnswer.getSelectedItem().toString(), roomAnswer.getText());
+			gameBoard.handleSuggestion(sugg, gameBoard.getCurrentPlayer());
 		}
 	}
 	
