@@ -139,8 +139,11 @@ public class GUI_clue extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			Solution sugg = new Solution(personAnswer.getSelectedItem().toString(), weaponAnswer.getSelectedItem().toString(), roomAnswer.getText());
 			gameBoard.handleSuggestion(sugg, gameBoard.getCurrentPlayer());
+			guessResult.setText(gameBoard.getResponse());
 			gameBoard.repaint();
 			System.out.println(personAnswer.getSelectedItem().toString());
+			System.out.println(gameBoard.getResponse());
+			sug.setVisible(false);
 		}
 	}
 	
