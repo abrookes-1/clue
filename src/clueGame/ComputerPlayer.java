@@ -31,7 +31,7 @@ public class ComputerPlayer extends Player{
 			}
 			i++;
 		}
-		index = new Random().nextInt(getUnseenWeapons().size());
+		index = new Random().nextInt(getUnseenWeapons().size()) - 1;
 		i = 0;
 		for (Card unseen:getUnseenWeapons()) {
 			if (i == index) {
