@@ -382,23 +382,24 @@ public class Board extends JPanel{
 
 	// To use before selecting answer, will create sets of cards of each type and set tham as unseen for each player
 	private void setUnseen() {
-		Set<Card> toReturn1 = new HashSet<Card>();
-		Set<Card> toReturn2 = new HashSet<Card>();
-		Set<Card> toReturn3 = new HashSet<Card>();
-
-		for (Card card:deck) {
-			if (card.getType() == CardType.PERSON) {
-				toReturn1.add(card);
-			}
-			if (card.getType() == CardType.WEAPON) {
-				toReturn2.add(card);
-			}
-			if (card.getType() == CardType.ROOM) {
-				toReturn3.add(card);
-			}
-		}
-
 		for (Player pla:playerInstances) {
+			
+			Set<Card> toReturn1 = new HashSet<Card>();
+			Set<Card> toReturn2 = new HashSet<Card>();
+			Set<Card> toReturn3 = new HashSet<Card>();
+	
+			for (Card card:deck) {
+				if (card.getType() == CardType.PERSON) {
+					toReturn1.add(card);
+				}
+				if (card.getType() == CardType.WEAPON) {
+					toReturn2.add(card);
+				}
+				if (card.getType() == CardType.ROOM) {
+					toReturn3.add(card);
+				}
+			}
+		
 			pla.setUnseenPeople(toReturn1);
 			pla.setUnseenWeapons(toReturn2);
 			pla.setUnseenRooms(toReturn3);
