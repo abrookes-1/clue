@@ -115,6 +115,7 @@ public class Board extends JPanel{
         }
 	}
 	
+	
 	public boolean humanPlayerIsInRoom() {
 		if (getCellAt(onlyHuman.getRow(), onlyHuman.getCol()).getInitial() != 'W'){
 			return true;
@@ -152,12 +153,9 @@ public class Board extends JPanel{
 	
 	public void setSeen() {
 		for (Player pla: playerInstances) {
+			if (reason == null) continue;
 			if (reason.getType() == CardType.PERSON) {
-				pla.getUnseenPeople().remove(reason);
-			} else if (reason.getType() == CardType.WEAPON) {
-				pla.getUnseenWeapons().remove(reason);
-			} else if (reason.getType() == CardType.ROOM) {
-				pla.getUnseenRooms().remove(reason);
+				pla.removeUnseenPerson(reason);
 			}
 		}
 		

@@ -71,7 +71,7 @@ public class GUI_clue extends JFrame{
 				whoseTurn.setText(gameBoard.getCurrentPlayer().getCharacter());
 				guessResult.setText(gameBoard.getResponse());
 			} else {
-				// unhide window that says you shuold finish your turn
+				// TODO: unhide window that says you shuold finish your turn
 			}
 		}
 	}

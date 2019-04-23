@@ -100,6 +100,9 @@ public class Player {
 		return unseenRooms;
 	}
 	
+	public void removeUnseenPerson(Card c) {
+		unseenPeople.remove(c);
+	}
 	
 	//returns all cards which disprove
 	public Set<Card> findCardsDisprove(Solution suggestion){
