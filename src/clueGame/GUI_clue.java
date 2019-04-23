@@ -141,6 +141,9 @@ public class GUI_clue extends JFrame{
 			gameBoard.handleSuggestion(sugg, gameBoard.getCurrentPlayer());
 			guessResult.setText(gameBoard.getResponse());
 			gameBoard.repaint();
+			System.out.println(gameBoard.getCurrentPlayer().getCharacter());
+			System.out.println(roomAnswer.getText());
+			System.out.println(weaponAnswer.getSelectedItem().toString());
 			System.out.println(personAnswer.getSelectedItem().toString());
 			System.out.println(gameBoard.getResponse());
 			sug.setVisible(false);
