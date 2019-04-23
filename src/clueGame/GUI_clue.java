@@ -60,6 +60,10 @@ public class GUI_clue extends JFrame{
 		addMouseListener(new MouseSelectListener());
 	}
 	
+	private void displayUnfinishedTurn() {
+		JOptionPane.showMessageDialog(this, "Please finish your turn before moving on", "Turn Unfinished", JOptionPane.INFORMATION_MESSAGE);
+	}
+	
 	private class NextTurnListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			gameBoard.setSeen();
@@ -71,7 +75,7 @@ public class GUI_clue extends JFrame{
 				whoseTurn.setText(gameBoard.getCurrentPlayer().getCharacter());
 				guessResult.setText(gameBoard.getResponse());
 			} else {
-				// TODO: unhide window that says you shuold finish your turn
+				displayUnfinishedTurn();
 			}
 		}
 	}
