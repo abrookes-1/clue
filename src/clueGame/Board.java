@@ -351,6 +351,13 @@ public class Board extends JPanel{
 
 	// checks if accusation matches answer
 	public boolean checkAccusation(Solution accusation) {
+		for (Player pla: playerInstances) {
+			if (pla.getCharacter().contentEquals(accusation.person)) {
+				pla.setRow(currentPlayer.getRow());
+				pla.setCol(currentPlayer.getCol());
+				repaint();
+			}
+		}
 		if (accusation.person.equals(answer.person)) {
 			if (accusation.weapon.equals(answer.weapon)) {
 				if (accusation.room.equals(answer.room)) {
@@ -368,11 +375,6 @@ public class Board extends JPanel{
 		reason = null;
 		Card result;
 		for (Player pla: playerInstances) {
-		
-			if (pla.getCharacter().contentEquals(sugg.person)) {
-				pla.setRow(currentPlayer.getRow());
-				pla.setCol(currentPlayer.getCol());
-			}
 			
 			if (pla != suggSource) {
 				result = pla.disproveSuggestion(sugg);
