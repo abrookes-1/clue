@@ -82,7 +82,7 @@ public class GUI_clue extends JFrame{
 	
 	private class NextTurnListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			gameBoard.setSeen();
+			gameBoard.updateSeen();
 			Solution ans = gameBoard.getAnswer();
 			System.out.println(ans.person+ ans.weapon+ ans.room);
 			if (gameBoard.isFinished()){
@@ -123,7 +123,7 @@ public class GUI_clue extends JFrame{
 						sug.setVisible(true);
 						roomAnswer.setText(gameBoard.getCurrentPlayer().getRoom());
 					}
-					gameBoard.finishedTurn();
+					gameBoard.humanFinished();
 					break;
 				}
 			}
@@ -163,17 +163,19 @@ public class GUI_clue extends JFrame{
 	}
 	
 	JTextField roomAnswer;
-	JComboBox roomAnswerChoose;
-	JComboBox personAnswer;
-	JComboBox weaponAnswer;
+	JComboBox<String> roomAnswerChoose;
+	JComboBox<String> personAnswer;
+	JComboBox<String> weaponAnswer;
 	JButton submit;
 	JButton cancel;
 	JButton submitAcc;
 	JButton cancelAcc;
 	
+	// TODO: Fix this darn thing lmao
 	private class SugSubmitListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			Solution sugg = new Solution(personAnswer.getSelectedItem().toString(), weaponAnswer.getSelectedItem().toString(), roomAnswer.getText());
+			System.out.println(sugg.person + sugg.weapon + sugg.room);
 			gameBoard.handleSuggestion(sugg, gameBoard.getCurrentPlayer());
 			guessResult.setText(gameBoard.getResponse());
 			gameBoard.repaint();
@@ -200,9 +202,18 @@ public class GUI_clue extends JFrame{
 			yourRoom.setBackground(null);
 			person.setBackground(null);
 			weapon.setBackground(null);
-			roomAnswerChoose = new JComboBox(gameBoard.getRooms().toArray());
-			personAnswer = new JComboBox(gameBoard.getCharacters().toArray());
-			weaponAnswer = new JComboBox(gameBoard.getWeapons().toArray());
+			roomAnswerChoose = new JComboBox<String>();
+			personAnswer = new JComboBox<String>();
+			weaponAnswer = new JComboBox<String>();
+			for (String room:gameBoard.getRooms()) {
+				roomAnswerChoose.addItem(room);
+			}
+			for (String chars:gameBoard.getCharacters()) {
+				personAnswer.addItem(chars);
+			}
+			for (String weaps:gameBoard.getWeapons()) {
+				weaponAnswer.addItem(weaps);
+			}
 			submitAcc = new JButton("Submit");
 			cancelAcc = new JButton("Cancel");
 			submitAcc.addActionListener(new AccSubmitListener());
@@ -254,8 +265,14 @@ public class GUI_clue extends JFrame{
 			person.setBackground(null);
 			weapon.setBackground(null);
 			roomAnswer = new JTextField("");
-			personAnswer = new JComboBox(gameBoard.getCharacters().toArray());
-			weaponAnswer = new JComboBox(gameBoard.getWeapons().toArray());
+			personAnswer = new JComboBox<String>();
+			weaponAnswer = new JComboBox<String>();
+			for (String chars:gameBoard.getCharacters()) {
+				personAnswer.addItem(chars);
+			}
+			for (String weaps:gameBoard.getWeapons()) {
+				weaponAnswer.addItem(weaps);
+			}
 			submit = new JButton("Submit");
 			cancel = new JButton("Cancel");
 			roomAnswer.setEditable(false);

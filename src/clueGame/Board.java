@@ -68,54 +68,18 @@ public class Board extends JPanel{
 		iter = playerInstances.iterator();
 	}
 
-	// Uses boardConfigFile and populates an array with boardCells
-	public void loadBoardConfig() throws FileNotFoundException, BadConfigFormatException {
-		FileReader reader = new FileReader(boardConfigFile);
-		Scanner in = new Scanner(reader);
-        String delimeter = ",";
-        String line;
-        boardCells = new ArrayList();
-
-        // Build array from file data
-        int row = -1;
-        while (in.hasNextLine()) {
-        	row++;
-			line = in.nextLine();
-			ArrayList<BoardCell> thisRow = new ArrayList<BoardCell>();
-            String[] input = line.split(delimeter);
-            int col = -1;
-            for ( int temp = 0; temp < input.length; ++temp ) {
-            	if (!input[temp].isEmpty()) {
-            		col++;
-            		if (!legend.containsKey(input[col].charAt(0))) {
-            			throw new BadConfigFormatException();
-            		}
-            		BoardCell cell = new BoardCell(row, col, input[col].charAt(0));
-            		if (input[col].length() == 2) {
-            			cell.setDirection(input[col].charAt(1));
-            			if (input[col].charAt(1) == 'Z') {
-            				roomLabelCells.add(cell);
-            			}
-            		}
-                	thisRow.add(cell);
-            	}
-            }
-            boardCells.add(thisRow);
-        }
-
-		// record dimensions
-		boardHeight = boardCells.size();
-        boardWidth = boardCells.get(0).size();
-
-        // check that each row has the same number of columns
-        for (int i = 1; i < boardHeight; ++i) {
-        	if (boardCells.get(i).size() != boardWidth) {
-        		throw new BadConfigFormatException();
-        	}
-        }
+	/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 * 	~~~~		Turn Handling	 	~~~~
+	 *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 */
+	
+	// Performs a random die roll (6 sided die)
+	private void roll() {
+		Random rand = new Random();
+		die = rand.nextInt(5) + 1;
 	}
-	
-	
+
+	// Check if human player is in room
 	public boolean humanPlayerIsInRoom() {
 		if (getCellAt(onlyHuman.getRow(), onlyHuman.getCol()).getInitial() != 'W'){
 			return true;
@@ -123,6 +87,7 @@ public class Board extends JPanel{
 		return false;
 	}
 
+	// Iterates playerInstances and sets next player as current
 	private void nextPlayer() {
 		if (!iter.hasNext()) {
 			iter = playerInstances.iterator();
@@ -130,37 +95,27 @@ public class Board extends JPanel{
 		currentPlayer = iter.next();
 	}
 
-	public Player getCurrentPlayer() {
-		return currentPlayer;
-	}
-
-	public void finishedTurn() {
+	// Set human player's turn as completed
+	public void humanFinished() {
 		humanFinished = true;
 	}
-
+ 
+	// Check if human player's turn has completed
 	public boolean isFinished() {
 		return humanFinished;
 	}
 
-	public int getDie() {
-		return die;
-	}
-
-	public String getResponse() {
-		if (reason == null) return null;
-		return reason.getCardName();
-	}
-	
-	public void setSeen() {
+	// After something has been disproved, 'shows' card to other players
+	public void updateSeen() {
 		for (Player pla: playerInstances) {
 			if (reason == null) continue;
 			if (reason.getType() == CardType.PERSON) {
 				pla.removeUnseenPerson(reason);
 			}
 		}
-		
 	}
 
+	// Performs logic of iterating turn
 	public boolean startNextPlayer () {
 		nextPlayer();
 		roll();
@@ -189,11 +144,11 @@ public class Board extends JPanel{
 		return true;
 	}
 
-	private void roll() {
-		Random rand = new Random();
-		die = rand.nextInt(5) + 1;
-	}
-
+	/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 * 	~~~~ Target & Movement Handling ~~~~
+	 *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 */
+	
 	// Populates a map of cells with a Set of their respective adjacent cells
 	private Map< BoardCell, Set<BoardCell> > calcAdjacencies() {
 		Map< BoardCell, Set<BoardCell> > adjacents = new HashMap< BoardCell, Set<BoardCell> >();
@@ -300,68 +255,11 @@ public class Board extends JPanel{
 		targets.remove(this.getCellAt(x, y)); // removes starting cell from targets if it gets included
 	}
 
-	// Uses roomConfigFile and populates an Map with a legend with room names corresponding to characters
-	public void loadRoomConfig() throws FileNotFoundException, BadConfigFormatException {
-		FileReader reader = new FileReader(roomConfigFile);
-		Scanner in = new Scanner(reader);
-        String delimeter = ",";
-        String line;
-
-        while (in.hasNextLine()) {
-			line = in.nextLine();
-            String[] input = line.split(delimeter);
-            legend.put(input[0].charAt(0), input[1]);
-            if (!input[2].equals("Card") && !input[2].equals("Other")) {
-            	throw new BadConfigFormatException(input[2]);
-            }
-            if (input[2].equals("Card")) {
-            	Card newCard = new Card(input[1], CardType.ROOM);
-            	deck.add(newCard);
-            	rooms.add(input[1]);
-            }
-        }
-	}
-
-	// Uses playerConfigFile and populates an Map with a legend with colors corresponding to player characters
-	public void loadPlayerConfig() throws FileNotFoundException, BadConfigFormatException {
-		FileReader reader = new FileReader(playerConfigFile);
-		Scanner in = new Scanner(reader);
-        String delimeter = ",";
-        String line;
-        ComputerPlayer cpla;
-
-        while (in.hasNextLine()) {
-			line = in.nextLine();
-            String[] input = line.split(delimeter);
-            characters.put(input[1], input[0]); // PDF has proper way to do string to color w/o errors if color not valid
-            Card newCard = new Card(input[0], CardType.PERSON);
-        	deck.add(newCard);
-        	if (playerInstances.size() == 0) {
-        		onlyHuman = new HumanPlayer(input[0],input[1]);
-        		onlyHuman.isHuman = true;
-        		playerInstances.add(onlyHuman);
-        	} else {
-        		cpla = new ComputerPlayer(input[0],input[1]);
-        		playerInstances.add(cpla);
-        		compPlayerInstances.add(cpla);
-        	}
-        }
-	}
-
-	// Uses weapon ConfigFile and populates an Set with weapons
-	public void loadWeaponConfig() throws FileNotFoundException, BadConfigFormatException {
-		FileReader reader = new FileReader(weaponConfigFile);
-		Scanner in = new Scanner(reader);
-        String line;
-
-        while (in.hasNextLine()) {
-			line = in.nextLine();
-            weapons.add(line);
-            Card newCard = new Card(line, CardType.WEAPON);
-        	deck.add(newCard);
-        }
-	}
-
+	/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 * 	~~~~	Deck & Card Handling 	~~~~
+	 *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 */
+	
 	// for the number of cards in the deck, will swap two random cards in the deck
 	private void shuffleDeck() {
 		Random rand = new Random();
@@ -451,7 +349,7 @@ public class Board extends JPanel{
 	}
 
 	// checks if accusation matches answer
-	public Boolean checkAccusation(Solution accusation) {
+	public boolean checkAccusation(Solution accusation) {
 		if (accusation.person.equals(answer.person)) {
 			if (accusation.weapon.equals(answer.weapon)) {
 				if (accusation.room.equals(answer.room)) {
@@ -476,6 +374,126 @@ public class Board extends JPanel{
 		}
 	}
 
+	
+	/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 * 	~~~~	Config File Handling 	~~~~
+	 *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 */
+	
+	// Uses boardConfigFile and populates an array with boardCells
+	public void loadBoardConfig() throws FileNotFoundException, BadConfigFormatException {
+		FileReader reader = new FileReader(boardConfigFile);
+		Scanner in = new Scanner(reader);
+        String delimeter = ",";
+        String line;
+        boardCells = new ArrayList();
+
+        // Build array from file data
+        int row = -1;
+        while (in.hasNextLine()) {
+        	row++;
+			line = in.nextLine();
+			ArrayList<BoardCell> thisRow = new ArrayList<BoardCell>();
+            String[] input = line.split(delimeter);
+            int col = -1;
+            for ( int temp = 0; temp < input.length; ++temp ) {
+            	if (!input[temp].isEmpty()) {
+            		col++;
+            		if (!legend.containsKey(input[col].charAt(0))) {
+            			throw new BadConfigFormatException();
+            		}
+            		BoardCell cell = new BoardCell(row, col, input[col].charAt(0));
+            		if (input[col].length() == 2) {
+            			cell.setDirection(input[col].charAt(1));
+            			if (input[col].charAt(1) == 'Z') {
+            				roomLabelCells.add(cell);
+            			}
+            		}
+                	thisRow.add(cell);
+            	}
+            }
+            boardCells.add(thisRow);
+        }
+
+		// record dimensions
+		boardHeight = boardCells.size();
+        boardWidth = boardCells.get(0).size();
+
+        // check that each row has the same number of columns
+        for (int i = 1; i < boardHeight; ++i) {
+        	if (boardCells.get(i).size() != boardWidth) {
+        		throw new BadConfigFormatException();
+        	}
+        }
+	}
+	
+	// Uses roomConfigFile and populates an Map with a legend with room names corresponding to characters
+	public void loadRoomConfig() throws FileNotFoundException, BadConfigFormatException {
+		FileReader reader = new FileReader(roomConfigFile);
+		Scanner in = new Scanner(reader);
+        String delimeter = ",";
+        String line;
+
+        while (in.hasNextLine()) {
+			line = in.nextLine();
+            String[] input = line.split(delimeter);
+            legend.put(input[0].charAt(0), input[1]);
+            if (!input[2].equals("Card") && !input[2].equals("Other")) {
+            	throw new BadConfigFormatException(input[2]);
+            }
+            if (input[2].equals("Card")) {
+            	Card newCard = new Card(input[1], CardType.ROOM);
+            	deck.add(newCard);
+            	rooms.add(input[1]);
+            }
+        }
+	}
+
+	// Uses playerConfigFile and populates an Map with a legend with colors corresponding to player characters
+	public void loadPlayerConfig() throws FileNotFoundException, BadConfigFormatException {
+		FileReader reader = new FileReader(playerConfigFile);
+		Scanner in = new Scanner(reader);
+        String delimeter = ",";
+        String line;
+        ComputerPlayer cpla;
+
+        while (in.hasNextLine()) {
+			line = in.nextLine();
+            String[] input = line.split(delimeter);
+            characters.put(input[1], input[0]); // PDF has proper way to do string to color w/o errors if color not valid
+            Card newCard = new Card(input[0], CardType.PERSON);
+        	deck.add(newCard);
+        	if (playerInstances.size() == 0) {
+        		onlyHuman = new HumanPlayer(input[0],input[1]);
+        		onlyHuman.isHuman = true;
+        		playerInstances.add(onlyHuman);
+        	} else {
+        		cpla = new ComputerPlayer(input[0],input[1]);
+        		playerInstances.add(cpla);
+        		compPlayerInstances.add(cpla);
+        	}
+        }
+	}
+
+	// Uses weapon ConfigFile and populates an Set with weapons
+	public void loadWeaponConfig() throws FileNotFoundException, BadConfigFormatException {
+		FileReader reader = new FileReader(weaponConfigFile);
+		Scanner in = new Scanner(reader);
+        String line;
+
+        while (in.hasNextLine()) {
+			line = in.nextLine();
+            weapons.add(line);
+            Card newCard = new Card(line, CardType.WEAPON);
+        	deck.add(newCard);
+        }
+	}
+
+	/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 * 	~~~~	Game Init & Drawing 	~~~~
+	 *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 */
+	
 	public void assignStartingPositions() {
 		int i = 0;
 		for (Player pla:playerInstances) {
@@ -499,8 +517,57 @@ public class Board extends JPanel{
 		}
 	}
 
+	
+	// Loads information from external files, creates and manages a deck of cards, and
+	// places players on the board
+	public void initialize() {
+		try {
+			this.loadRoomConfig();
+		} catch (FileNotFoundException e) {
+			System.out.println(e);  // file not found exception thrown by IntBoard Constructor
+		} catch (BadConfigFormatException e) {
+			System.out.println("Bad Config2: " + e.getMessage());  // io exception thrown by IntBoard Constructor
+		}
+		
+		try {
+			this.loadBoardConfig();
+		} catch (FileNotFoundException e) {
+			System.out.println(e); // file not found exception thrown by IntBoard Constructor
+		} catch (BadConfigFormatException e) {
+			System.out.println("Bad Config2: " + e.getMessage());  // io exception thrown by IntBoard Constructor
+		}
+		this.adjacencyMap = calcAdjacencies();
+
+
+		try {
+			this.loadPlayerConfig();
+		} catch (FileNotFoundException e) {
+			System.out.println(e); // file not found exception thrown by IntBoard Constructor
+		} catch (BadConfigFormatException e) {
+			System.out.println("Bad Config2: " + e.getMessage());
+		}
+		
+		try {
+			this.loadWeaponConfig();
+		} catch (FileNotFoundException e) {
+			System.out.println(e); // file not found exception thrown by IntBoard Constructor
+		} catch (BadConfigFormatException e) {
+			System.out.println("Bad Config2: " + e.getMessage());
+		}
+
+		//Create deck and deal cards
+		shuffleDeck();
+		setUnseen();
+		selectAnswer();
+		dealDeck();
+
+		assignStartingPositions();
+		// TODO: makeHumanFirst();
+	}
+
+
 	/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	 * 	~~~~	Setters and Getters 	~~~~
+	 * 	~~~~	Getters and Setters 	~~~~
 	 *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 	 */
 
@@ -516,8 +583,8 @@ public class Board extends JPanel{
 		return boardCells.get(row).get(col);
 	}
 
-	public Set<BoardCell> getAdjList(int x, int y) {
-		return adjacencyMap.get(this.getCellAt(x,y));
+	public Set<BoardCell> getAdjList(int row, int col) {
+		return adjacencyMap.get(this.getCellAt(row,col));
 	}
 
 	public int getNumRows() {
@@ -568,64 +635,30 @@ public class Board extends JPanel{
 		return answer;
 	}
 
-
-	public void setConfigFiles(String b, String l, String p, String w) {
-		this.roomConfigFile = l;
-		this.boardConfigFile = b;
-		this.playerConfigFile = p;
-		this.weaponConfigFile = w;
+	public Player getCurrentPlayer() {
+		return currentPlayer;
 	}
 
+	public int getDie() {
+		return die;
+	}
+
+	public String getResponse() {
+		if (reason == null) return null;
+		return reason.getCardName();
+	}
+	
+	
+	public void setConfigFiles(String board, String rooms, String characters, String weapons) {
+		this.roomConfigFile = rooms;
+		this.boardConfigFile = board;
+		this.playerConfigFile = characters;
+		this.weaponConfigFile = weapons;
+	}
 
 	public void setLegend(Map<Character, String> legend) {
 		this.legend = legend;
 	}
 
 
-
-	// TODO: re-factor maybe
-	public void initialize() {
-		try {
-			this.loadRoomConfig();
-		} catch (FileNotFoundException e) {
-			System.out.println(e);  // file not found exception thrown by IntBoard Constructor
-		} catch (BadConfigFormatException e) {
-			System.out.println("Bad Config2: " + e.getMessage());  // io exception thrown by IntBoard Constructor
-		}
-		try {
-			this.loadBoardConfig();
-		} catch (FileNotFoundException e) {
-			System.out.println(e); // file not found exception thrown by IntBoard Constructor
-		} catch (BadConfigFormatException e) {
-			System.out.println("Bad Config2: " + e.getMessage());  // io exception thrown by IntBoard Constructor
-		}
-		this.adjacencyMap = calcAdjacencies();
-
-
-		try {
-			this.loadPlayerConfig();
-		} catch (FileNotFoundException e) {
-			System.out.println(e); // file not found exception thrown by IntBoard Constructor
-		} catch (BadConfigFormatException e) {
-			System.out.println("Bad Config2: " + e.getMessage());
-		}
-		try {
-			this.loadWeaponConfig();
-		} catch (FileNotFoundException e) {
-			System.out.println(e); // file not found exception thrown by IntBoard Constructor
-		} catch (BadConfigFormatException e) {
-			System.out.println("Bad Config2: " + e.getMessage());
-		}
-
-		//Create deck and deal cards
-		shuffleDeck();
-		setUnseen();
-		selectAnswer();
-		dealDeck();
-
-
-		assignStartingPositions();
-		//makeHumanFirst();
-
-	}
 }
