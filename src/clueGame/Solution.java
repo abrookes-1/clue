@@ -10,4 +10,11 @@ public class Solution {
 		this.weapon = weapon;
 		this.room = room;
 	}
+	
+	@Override
+	public String toString() {
+		if (person.equals("") && weapon.equals("") && room.equals("")) return "";
+		return this.person + " with " + this.weapon + " in " + this.room;
+	}
+	
 }

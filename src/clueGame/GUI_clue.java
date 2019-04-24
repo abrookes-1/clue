@@ -101,6 +101,7 @@ public class GUI_clue extends JFrame{
 				die.setText(Integer.toString(gameBoard.getDie()));
 				whoseTurn.setText(gameBoard.getCurrentPlayer().getCharacter());
 				guessResult.setText(gameBoard.getResponse());
+				guess.setText(gameBoard.getLastGuess().toString());
 			} else {
 				displayUnfinishedTurn();
 			}
@@ -148,6 +149,7 @@ public class GUI_clue extends JFrame{
 			System.out.println(sugg.person + sugg.weapon + sugg.room);
 			gameBoard.handleSuggestion(sugg, gameBoard.getCurrentPlayer());
 			guessResult.setText(gameBoard.getResponse());
+			guess.setText(gameBoard.getLastGuess().toString());
 			gameBoard.repaint();
 			
 			sug.setVisible(false);

@@ -51,6 +51,7 @@ public class Board extends JPanel{
 	private Iterator<Player> iter;
 	private Card reason;
 	private boolean humanPlayerInRoom = false;
+	private Solution lastGuess = new Solution("","","");
 
 	// Constructor
 	private Board() {
@@ -363,6 +364,7 @@ public class Board extends JPanel{
 	// Checks if any player other than the accuser is able to disprove a suggestion, returns disproving card
 	// Also moves player called in suggestion to currentPlayer's room
 	public void handleSuggestion(Solution sugg, Player suggSource) {
+		lastGuess = sugg;
 		reason = null;
 		Card result;
 		for (Player pla: playerInstances) {
@@ -651,10 +653,13 @@ public class Board extends JPanel{
 	}
 
 	public String getResponse() {
-		if (reason == null) return null;
+		if (reason == null) return "no new clue";
 		return reason.getCardName();
 	}
 	
+	public Solution getLastGuess() {
+		return lastGuess;
+	}
 	
 	public void setConfigFiles(String board, String rooms, String characters, String weapons) {
 		this.roomConfigFile = rooms;
