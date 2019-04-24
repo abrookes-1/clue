@@ -349,7 +349,7 @@ public class Board extends JPanel{
 		answer = new Solution(person, weapon, room);
 	}
 
-	// checks if accusation matches answer
+	// checks if accusation matches answer and moves accused player to room
 	public boolean checkAccusation(Solution accusation) {
 		for (Player pla: playerInstances) {
 			if (pla.getCharacter().contentEquals(accusation.person)) {
@@ -369,7 +369,6 @@ public class Board extends JPanel{
 	}
 
 	// Checks if any player other than the accuser is able to disprove a suggestion, returns disproving card
-	// Also moves player called in suggestion to currentPlayer's room
 	public void handleSuggestion(Solution sugg, Player suggSource) {
 		lastGuess = sugg;
 		reason = null;
