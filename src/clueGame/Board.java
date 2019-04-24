@@ -133,8 +133,8 @@ public class Board extends JPanel{
 			currentPlayer.setCol(targets.iterator().next().getColumn());
 			if (getCellAt(currentPlayer.getRow(), currentPlayer.getCol()).getInitial() != 'W') {
 				// make suggestion
-				handleSuggestion(currentPlayer.createSuggestion(), currentPlayer);
-
+				Solution suggestion = currentPlayer.createSuggestion();
+				handleSuggestion(suggestion, currentPlayer);
 			}
 			targets.clear();
 			repaint();
@@ -361,10 +361,17 @@ public class Board extends JPanel{
 	}
 
 	// Checks if any player other than the accuser is able to disprove a suggestion, returns disproving card
+	// Also moves player called in suggestion to currentPlayer's room
 	public void handleSuggestion(Solution sugg, Player suggSource) {
 		reason = null;
 		Card result;
 		for (Player pla: playerInstances) {
+		
+			if (pla.getCharacter().contentEquals(sugg.person)) {
+				pla.setRow(currentPlayer.getRow());
+				pla.setCol(currentPlayer.getCol());
+			}
+			
 			if (pla != suggSource) {
 				result = pla.disproveSuggestion(sugg);
 				if (result != null) {
