@@ -125,14 +125,12 @@ public class Player {
 		
 		// get random card from set
 		int size = cardsDisp.size();
-		System.out.println(size);
 		//return null if empty
 		if (size == 0) return null;
 		int item = new Random().nextInt(size);
 		int i = 0;
 		for(Card aCard : cardsDisp) {
 		    if (i == item) {
-		    	System.out.println("returned a card");
 		        return aCard;
 		    }
 		    i++;

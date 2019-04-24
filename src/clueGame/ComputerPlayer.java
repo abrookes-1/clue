@@ -28,8 +28,6 @@ public class ComputerPlayer extends Player{
 		for (Card unseen:getUnseenPeople()) {
 			if (i == index) {
 				person = unseen.getCardName();
-				System.out.println("index gotten: "+ index);
-				System.out.println("unseen person: " + person);
 			}
 			i++;
 		}
@@ -38,14 +36,11 @@ public class ComputerPlayer extends Player{
 		for (Card unseen:getUnseenWeapons()) {
 			if (i == index) {
 				weapon = unseen.getCardName();
-				System.out.println("index gotten: "+ index);
-				System.out.println("unseen weapon: " + weapon);
 			}
 			i++;
 		}
 		String room = getRoom();
 		Solution sol = new Solution(person, weapon, room);
-		System.out.println("suggestion:" + person + weapon + room);
 		return sol;
 	}
 }

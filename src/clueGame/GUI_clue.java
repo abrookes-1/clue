@@ -95,7 +95,6 @@ public class GUI_clue extends JFrame{
 		public void actionPerformed(ActionEvent e) {
 			gameBoard.updateSeen();
 			Solution ans = gameBoard.getAnswer();
-			System.out.println(ans.person+ ans.weapon+ ans.room);
 			if (gameBoard.isFinished()){
 				gameBoard.startNextPlayer();
 				die.setText(Integer.toString(gameBoard.getDie()));
@@ -145,8 +144,6 @@ public class GUI_clue extends JFrame{
 	private class SugSubmitListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			Solution sugg = new Solution(personAnswer.getSelectedItem().toString(), weaponAnswer.getSelectedItem().toString(), roomAnswer.getText());
-			System.out.println(personAnswer.getSelectedIndex());
-			System.out.println(sugg.person + sugg.weapon + sugg.room);
 			gameBoard.handleSuggestion(sugg, gameBoard.getCurrentPlayer());
 			guessResult.setText(gameBoard.getResponse());
 			guess.setText(gameBoard.getLastGuess().toString());
