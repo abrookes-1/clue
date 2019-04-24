@@ -31,6 +31,7 @@ public class GUI_clue extends JFrame{
 	AccusationDialog acc;
 	static Board gameBoard;
 
+	// Constructor Method 
 	public GUI_clue() {
 		setSize(660, 660);
 		setTitle("Clue");
@@ -66,20 +67,30 @@ public class GUI_clue extends JFrame{
 		addMouseListener(new MouseSelectListener());
 	}
 	
-	private void displayUnfinishedTurn() {
-		JOptionPane.showMessageDialog(this, "Please finish your turn before moving on", "Turn Unfinished", JOptionPane.INFORMATION_MESSAGE);
-	}
+	/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 * 	~~~~	Pop-up Dialogues 		~~~~
+	 *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 */
 	
+	private void displayUnfinishedTurn() {
+		JOptionPane.showMessageDialog(this, "Please finish your turn", "Turn Unfinished", JOptionPane.INFORMATION_MESSAGE);
+	}
 	private void displayWin() {
-		JOptionPane.showMessageDialog(this, "You win", "nice", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(this, "You win", "Congratulations", JOptionPane.INFORMATION_MESSAGE);
 	}
 	private void displayLoss() {
-		JOptionPane.showMessageDialog(this, "You lose lmao", "not nice", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(this, "You lose", "Incorrect Accusation", JOptionPane.INFORMATION_MESSAGE);
 	}
 	private void displayNotTurn() {
-		JOptionPane.showMessageDialog(this, "Not yo turn", "sit down", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(this, "Wait until your turn to make an accusation", "Illegal Action", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
+	/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 * 	~~~~		Listeners		 	~~~~
+	 *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 */
+	
+	//
 	private class NextTurnListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			gameBoard.updateSeen();
@@ -130,6 +141,127 @@ public class GUI_clue extends JFrame{
 		}
 	}
 	
+	private class SugSubmitListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			Solution sugg = new Solution(personAnswer.getSelectedItem().toString(), weaponAnswer.getSelectedItem().toString(), roomAnswer.getText());
+			System.out.println(personAnswer.getSelectedIndex());
+			System.out.println(sugg.person + sugg.weapon + sugg.room);
+			gameBoard.handleSuggestion(sugg, gameBoard.getCurrentPlayer());
+			guessResult.setText(gameBoard.getResponse());
+			gameBoard.repaint();
+			
+			sug.setVisible(false);
+		}
+	}
+	
+	private class SugCancelListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			sug.setVisible(false);
+		}
+	}
+	
+	private class AccSubmitListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			Solution sugg = new Solution(personAnswerChoose.getSelectedItem().toString(), weaponAnswerChoose.getSelectedItem().toString(), roomAnswerChoose.getSelectedItem().toString());
+			boolean checkWin = gameBoard.checkAccusation(sugg);
+			if (checkWin) {
+				displayWin();
+			} else {
+				displayLoss();
+				//gameBoard.getHuman() = null;
+				//gameBoard.initialize();
+				//gameBoard.repaint();
+			}
+			
+			acc.setVisible(false);
+		}
+	}
+	
+	private class AccCancelListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			acc.setVisible(false);
+		}
+	}
+
+	/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 * 	~~~~	Specific Dialogues		~~~~
+	 *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 */
+	
+	JComboBox roomAnswerChoose;
+	JComboBox personAnswerChoose;
+	JComboBox weaponAnswerChoose;
+	JButton submitAcc;
+	JButton cancelAcc;
+	
+	private class AccusationDialog extends JDialog {
+		public AccusationDialog(Board game) {
+			setLayout(new GridLayout(4,2));
+			JTextField yourRoom = new JTextField("Your Room");
+			JTextField person = new JTextField("Person");
+			JTextField weapon = new JTextField("Weapon");
+			yourRoom.setEditable(false);
+			person.setEditable(false);
+			weapon.setEditable(false);
+			yourRoom.setBackground(null);
+			person.setBackground(null);
+			weapon.setBackground(null);
+			roomAnswerChoose = new JComboBox(gameBoard.getRooms().toArray());
+			personAnswerChoose = new JComboBox(gameBoard.getCharacters().toArray());
+			weaponAnswerChoose = new JComboBox(gameBoard.getWeapons().toArray());
+			submitAcc = new JButton("Submit");
+			cancelAcc = new JButton("Cancel");
+			submitAcc.addActionListener(new AccSubmitListener());
+			cancelAcc.addActionListener(new AccCancelListener());
+			add(yourRoom);
+			add(roomAnswerChoose);
+			add(person);
+			add(personAnswerChoose);
+			add(weapon);
+			add(weaponAnswerChoose);
+			add(submitAcc);
+			add(cancelAcc);
+		}
+	}
+	
+	JTextField roomAnswer;
+	JComboBox personAnswer;
+	JComboBox weaponAnswer;
+	JButton submit;
+	JButton cancel;
+	
+	private class SugDialog extends JDialog {
+		public SugDialog(Board game) {
+			setLayout(new GridLayout(4,2));
+			JTextField yourRoom = new JTextField("Your Room");
+			JTextField person = new JTextField("Person");
+			JTextField weapon = new JTextField("Weapon");
+			yourRoom.setEditable(false);
+			person.setEditable(false);
+			weapon.setEditable(false);
+			yourRoom.setBackground(null);
+			person.setBackground(null);
+			weapon.setBackground(null);
+			roomAnswer = new JTextField("");
+			personAnswer = new JComboBox(gameBoard.getCharacters().toArray());
+			weaponAnswer = new JComboBox(gameBoard.getWeapons().toArray());
+			submit = new JButton("Submit");
+			cancel = new JButton("Cancel");
+			roomAnswer.setEditable(false);
+			submit.addActionListener(new SugSubmitListener());
+			cancel.addActionListener(new SugCancelListener());
+			add(yourRoom);
+			add(roomAnswer);
+			add(person);
+			add(personAnswer);
+			add(weapon);
+			add(weaponAnswer);
+			add(submit);
+			add(cancel);
+			
+		}
+	}
+	
 	private class NotesDialog extends JDialog {
 		public NotesDialog(Board game) {
 			setTitle("Detective Notes");
@@ -162,219 +294,15 @@ public class GUI_clue extends JFrame{
 		}
 	}
 	
-	JTextField roomAnswer;
-	JComboBox roomAnswerChoose;
-	JComboBox personAnswerChoose;
-	JComboBox weaponAnswerChoose;
-	JComboBox personAnswer;
-	JComboBox weaponAnswer;
-	JButton submit;
-	JButton cancel;
-	JButton submitAcc;
-	JButton cancelAcc;
-	
-	// TODO: Fix this darn thing lmao
-	private class SugSubmitListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			Solution sugg = new Solution(personAnswer.getSelectedItem().toString(), weaponAnswer.getSelectedItem().toString(), roomAnswer.getText());
-			System.out.println(personAnswer.getSelectedIndex());
-			System.out.println(sugg.person + sugg.weapon + sugg.room);
-			gameBoard.handleSuggestion(sugg, gameBoard.getCurrentPlayer());
-			guessResult.setText(gameBoard.getResponse());
-			gameBoard.repaint();
-			
-			sug.setVisible(false);
-		}
-	}
-	
-	private class SugCancelListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			sug.setVisible(false);
-		}
-	}
-	
-	private class AccusationDialog extends JDialog {
-		public AccusationDialog(Board game) {
-			setLayout(new GridLayout(4,2));
-			JTextField yourRoom = new JTextField("Your Room");
-			JTextField person = new JTextField("Person");
-			JTextField weapon = new JTextField("Weapon");
-			yourRoom.setEditable(false);
-			person.setEditable(false);
-			weapon.setEditable(false);
-			yourRoom.setBackground(null);
-			person.setBackground(null);
-			weapon.setBackground(null);
-			roomAnswerChoose = new JComboBox(gameBoard.getRooms().toArray());
-			personAnswerChoose = new JComboBox(gameBoard.getCharacters().toArray());
-			weaponAnswerChoose = new JComboBox(gameBoard.getWeapons().toArray());
-//			for (String room:gameBoard.getRooms()) {
-//				roomAnswerChoose.addItem(room);
-//			}
-//			for (String chars:gameBoard.getCharacters()) {
-//				personAnswerChoose.addItem(chars);
-//			}
-//			for (String weaps:gameBoard.getWeapons()) {
-//				weaponAnswerChoose.addItem(weaps);
-//			}
-			submitAcc = new JButton("Submit");
-			cancelAcc = new JButton("Cancel");
-			submitAcc.addActionListener(new AccSubmitListener());
-			cancelAcc.addActionListener(new AccCancelListener());
-			add(yourRoom);
-			add(roomAnswerChoose);
-			add(person);
-			add(personAnswerChoose);
-			add(weapon);
-			add(weaponAnswerChoose);
-			add(submitAcc);
-			add(cancelAcc);
-		}
-	}
-	
-	private class AccSubmitListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			Solution sugg = new Solution(personAnswerChoose.getSelectedItem().toString(), weaponAnswerChoose.getSelectedItem().toString(), roomAnswerChoose.getSelectedItem().toString());
-			boolean checkWin = gameBoard.checkAccusation(sugg);
-			if (checkWin) {
-				displayWin();
-			} else {
-				displayLoss();
-				//gameBoard.initialize();
-				//gameBoard.repaint();
-			}
-			
-			acc.setVisible(false);
-		}
-	}
-	
-	private class AccCancelListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			acc.setVisible(false);
-		}
-	}
-	
-	private class SugDialog extends JDialog {
-		public SugDialog(Board game) {
-			setLayout(new GridLayout(4,2));
-			JTextField yourRoom = new JTextField("Your Room");
-			JTextField person = new JTextField("Person");
-			JTextField weapon = new JTextField("Weapon");
-			yourRoom.setEditable(false);
-			person.setEditable(false);
-			weapon.setEditable(false);
-			yourRoom.setBackground(null);
-			person.setBackground(null);
-			weapon.setBackground(null);
-			roomAnswer = new JTextField("");
-			personAnswer = new JComboBox(gameBoard.getCharacters().toArray());
-			weaponAnswer = new JComboBox(gameBoard.getWeapons().toArray());
-//			for (String chars:gameBoard.getCharacters()) {
-//				personAnswer.addItem(chars);
-//			}
-//			for (String weaps:gameBoard.getWeapons()) {
-//				weaponAnswer.addItem(weaps);
-//			}
-			submit = new JButton("Submit");
-			cancel = new JButton("Cancel");
-			roomAnswer.setEditable(false);
-			submit.addActionListener(new SugSubmitListener());
-			cancel.addActionListener(new SugCancelListener());
-			add(yourRoom);
-			add(roomAnswer);
-			add(person);
-			add(personAnswer);
-			add(weapon);
-			add(weaponAnswer);
-			add(submit);
-			add(cancel);
-			
-		}
-	}
-	
-	private JMenu createFileMenu() {
-		JMenu menu = new JMenu("File");
-		menu.add(createNoteItem());
-		menu.add(createExitItem());
-		return menu;
-	}
-	
-	private JMenuItem createExitItem() {
-		JMenuItem item = new JMenuItem("Exit");
-		class MenuItemListener implements ActionListener {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(0);
-			}
-		}
-		item.addActionListener(new MenuItemListener());
-		
-		return item;
-	}
-	
-	private JMenuItem createNoteItem() {
-		JMenuItem item = new JMenuItem("Notes");
-		class MenuItemListener implements ActionListener {
-			public void actionPerformed(ActionEvent e) {
-				notes.setVisible(true);
-			}
-		}
-		item.addActionListener(new MenuItemListener());
-		
-		return item;
-	}
-	
-	private JPanel cardsPanel(Board game) {
-		JPanel cpanel = createNamePanel("Cards", 3, 0);
-		JPanel panel;
-		JTextField text;
-		
-		panel = createNamePanel("People", 0, 1);
-		for (Card card: game.getHuman().getHand()) {
-			if (card.getType() == CardType.PERSON) {
-				text = new JTextField(card.getCardName(), 8);
-				text.setEditable(false);
-				text.setBackground(null);
-				panel.add(text);
-			}
-		}
-		cpanel.add(panel);
-		
-		
-		panel = createNamePanel("Rooms", 0, 1);
-		for (Card card: game.getHuman().getHand()) {
-			if (card.getType() == CardType.ROOM) {
-				text = new JTextField(card.getCardName(), 8);
-				text.setEditable(false);
-				text.setBackground(null);
-				panel.add(text);
-			}
-		}
-		cpanel.add(panel);
-		
-		
-		panel = createNamePanel("Weapons", 0, 1);
-		for (Card card: game.getHuman().getHand()) {
-			if (card.getType() == CardType.WEAPON) {
-				text = new JTextField(card.getCardName(), 8);
-				text.setEditable(false);
-				text.setBackground(null);
-				panel.add(text);
-			}
-		}
-		cpanel.add(panel);
-		
-		
-		return cpanel;
-	}
+	/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 * 	~~~~	Specific Panels		~~~~
+	 *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 */
 	
 	JTextField whoseTurn = new JTextField(14);
-	
 	JTextField die = new JTextField(3);
-	
 	JTextField guess = new JTextField(20);
-
 	JTextField guessResult = new JTextField(10);
-
 	JLabel label = new JLabel("Whose Turn?");
 	JButton nextPlayer = new JButton("Next Player");
 	JButton makeAccusation = new JButton("Make Accusation");
@@ -447,14 +375,90 @@ public class GUI_clue extends JFrame{
 		return panel;
 	}
 	 
-//	private JPanel displayBoard(Board game, Graphics g) {
-//		JPanel panel = new JPanel();
-//		
-//		
-//		
-//		return panel;
-//	}
+	private JPanel cardsPanel(Board game) {
+		JPanel cpanel = createNamePanel("Cards", 3, 0);
+		JPanel panel;
+		JTextField text;
+		
+		panel = createNamePanel("People", 0, 1);
+		for (Card card: game.getHuman().getHand()) {
+			if (card.getType() == CardType.PERSON) {
+				text = new JTextField(card.getCardName(), 8);
+				text.setEditable(false);
+				text.setBackground(null);
+				panel.add(text);
+			}
+		}
+		cpanel.add(panel);
+		
+		
+		panel = createNamePanel("Rooms", 0, 1);
+		for (Card card: game.getHuman().getHand()) {
+			if (card.getType() == CardType.ROOM) {
+				text = new JTextField(card.getCardName(), 8);
+				text.setEditable(false);
+				text.setBackground(null);
+				panel.add(text);
+			}
+		}
+		cpanel.add(panel);
+		
+		panel = createNamePanel("Weapons", 0, 1);
+		for (Card card: game.getHuman().getHand()) {
+			if (card.getType() == CardType.WEAPON) {
+				text = new JTextField(card.getCardName(), 8);
+				text.setEditable(false);
+				text.setBackground(null);
+				panel.add(text);
+			}
+		}
+		cpanel.add(panel);
+		
+		return cpanel;
+	}
+	
+	/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 * 	~~~~		File Menu			~~~~
+	 *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 */
 
+	private JMenu createFileMenu() {
+		JMenu menu = new JMenu("File");
+		menu.add(createNoteItem());
+		menu.add(createExitItem());
+		return menu;
+	}
+	
+	private JMenuItem createExitItem() {
+		JMenuItem item = new JMenuItem("Exit");
+		class MenuItemListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		}
+		item.addActionListener(new MenuItemListener());
+		
+		return item;
+	}
+	
+	private JMenuItem createNoteItem() {
+		JMenuItem item = new JMenuItem("Notes");
+		class MenuItemListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				notes.setVisible(true);
+			}
+		}
+		item.addActionListener(new MenuItemListener());
+		
+		return item;
+	}
+	
+	/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 * 	~~~~	Helper Functions		~~~~
+	 *  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	 */
+	
+	// Helper Function to create named and bordered panels
 	 private JPanel createNamePanel(String panelTitle, int grid_rows, int grid_cols) {
 	 	JPanel panel = new JPanel();
 	 	if (grid_rows != 0 || grid_cols != 0) {
@@ -463,18 +467,8 @@ public class GUI_clue extends JFrame{
 		panel.setBorder(new TitledBorder (new EtchedBorder(), panelTitle));
 		return panel;
 	}
-	 /*
-	 private JPanel createNoNamePanel(int grid_rows, int grid_cols) {
-		 	JPanel panel = new JPanel();
-		 	// Use a grid layout, 1 row, 2 elements (label, text)
-		 	if (grid_rows != 0 || grid_cols != 0) {
-		 		panel.setLayout(new GridLayout(grid_rows, grid_cols));
-		 	}
-			panel.setBorder(new EtchedBorder());
-			return panel;
-		}
-		
-	 */
+
+	 
 	public static void main(String[] args) {
 		// Set up board & game
 		gameBoard = Board.getInstance();
