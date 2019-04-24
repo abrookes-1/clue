@@ -108,30 +108,33 @@ public class Player {
 	public Set<Card> findCardsDisprove(Solution suggestion){
 		Set<Card> cardsDisp = new HashSet<Card>();
 		for (Card aCard: cards) {
-			if (aCard.getCardName() == suggestion.person) {
+			if (aCard.getCardName().equals(suggestion.person)) {
 				cardsDisp.add(aCard);
-			} else if (aCard.getCardName() == suggestion.room) {
+			} else if (aCard.getCardName().equals(suggestion.weapon)) {
 				cardsDisp.add(aCard);
-			} else if (aCard.getCardName() == suggestion.weapon) {
+			} else if (aCard.getCardName().equals(suggestion.room)) {
 				cardsDisp.add(aCard);
 			}
 		}
 		return cardsDisp;
 	}
 	
-	// untested
+
 	public Card disproveSuggestion(Solution suggestion) {
 		Set<Card> cardsDisp = findCardsDisprove(suggestion);
 		
 		// get random card from set
 		int size = cardsDisp.size();
+		System.out.println(size);
 		//return null if empty
 		if (size == 0) return null;
 		int item = new Random().nextInt(size);
 		int i = 0;
 		for(Card aCard : cardsDisp) {
-		    if (i == item)
+		    if (i == item) {
+		    	System.out.println("returned a card");
 		        return aCard;
+		    }
 		    i++;
 		}
 		return null;
