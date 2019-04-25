@@ -20,7 +20,7 @@ public class ComputerPlayer extends Player{
 	}
 	
 	@Override
-	public Solution createSuggestion() { // args tbd
+	public Solution createSuggestion() { 
 		String person = null;
 		String weapon = null;
 		int index = new Random().nextInt(getUnseenPeople().size());

@@ -375,6 +375,12 @@ public class Board extends JPanel{
 		Card result;
 		for (Player pla: playerInstances) {
 			
+			if (pla.getCharacter().contentEquals(sugg.person)) {
+				pla.setRow(currentPlayer.getRow());
+				pla.setCol(currentPlayer.getCol());
+				repaint();
+			}
+			
 			if (pla != suggSource) {
 				result = pla.disproveSuggestion(sugg);
 				if (result != null) {
