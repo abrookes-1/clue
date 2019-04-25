@@ -13,7 +13,9 @@ public class Solution {
 	
 	@Override
 	public String toString() {
-		if (person.equals("") && weapon.equals("") && room.equals("")) return "";
+		if (person.equals("") && weapon.equals("") && room.equals("")) {
+			return "";
+		}
 		return this.person + " with " + this.weapon + " in " + this.room;
 	}
 	
