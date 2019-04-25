@@ -1,3 +1,359 @@
+commit 7b94c892e659e8ffb1fc763f46c83034b6dc5469
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 24 19:51:05 2019 -0600
+
+    Fixed AI Accusations, Computers can now win before the player
+
+commit abfdbc572bc3edc069756911fc4a221d7b5e8f22
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 24 19:36:32 2019 -0600
+
+    Fixed Player movement, Computers should be able to make accusations and win
+
+commit 343994d2bfe43df73d5fb7feeb29a94e8d92bd9e
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 24 18:26:23 2019 -0600
+
+    Added Accusation info to winning/losing dialogues
+
+commit 3fd60ac9a0371b306f65eeb822380620ea8d7f95
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 24 18:14:01 2019 -0600
+
+    reinstated move accused player to room because it was supposed to be a part of suggestion, I'm just an idiot
+
+commit d2cb55bf177ba58bac259ad57a8cee81cc4840e2
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 24 15:51:05 2019 -0600
+
+    Removed Console print statements (no longer needed)
+
+commit bbf6fcab5c2e0815816c53be54ac2e0b6b2005a8
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 24 15:48:48 2019 -0600
+
+    Update Board.java
+
+commit e7336bb62fb1bdff4c01f553ee1eb16180516ebd
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 24 15:48:21 2019 -0600
+
+    reverted moving player to room of suggestion to accusation only
+
+commit 8e7a923c47bbced8739c1315c64a57969c82ae7e
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 24 15:45:18 2019 -0600
+
+    Fixed guess and added no new clue text
+
+commit 9f85b9ca9a1154d3498c78ae90d8e7e86d86ad04
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 24 15:24:32 2019 -0600
+
+    Disproving Room now works
+    
+    for some reason two room entities are floating around, problem was fixed simply by changing "==" to ".equals()"
+
+commit 2cfb6f873e688f0b1887c37ae11605847897ce2c
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 24 14:44:11 2019 -0600
+
+    Made player in suggestion move to room of player calling suggestion
+
+commit 362c6f7358e66f99680de50519e8b76f0272f1c6
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 24 12:51:26 2019 -0600
+
+    Reorg of GUI class, Still missing room for human sugg
+
+commit de5559eac5227374e6b2e189ea7ec433282e90de
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 24 12:09:44 2019 -0600
+
+    Fixed Human suggestion, but Rooms cant be disproven?
+
+commit 76417a4d919a3caa934851bd59f61f84948e7658
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 24 11:06:11 2019 -0600
+
+    Refactor and Reorg Board, found issue with human suggestions
+
+commit 422a982e3f63d23860a6c8b03aeb5747ae6a268d
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 23 16:32:45 2019 -0600
+
+    Update GUI_clue.java
+
+commit 3d39b0eac08e5de336ca13712fc650336c330a86
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 23 16:29:27 2019 -0600
+
+    Update GUI_clue.java
+
+commit 7fd4884bd147a26071a5bb7b3190ce3c33da7b8a
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 23 16:26:57 2019 -0600
+
+    Update GUI_clue.java
+
+commit 062d6bdf640abb860f32e18fc32332ab4c2afac6
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 23 16:14:54 2019 -0600
+
+    Update GUI_clue.java
+
+commit 2fda3da4492782e62f598e4c2f16ce61f42f1740
+Merge: cffe714 073fc94
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 23 16:10:22 2019 -0600
+
+    Merge branch 'C21A' of https://github.com/abrookes-1/clue into C21A
+
+commit cffe71462b5def4ce1ef54087e7d3b4586c02872
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 23 16:10:21 2019 -0600
+
+    Adding accusation handling
+
+commit 073fc944d08cd1000d74e677e29735db1d78691a
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 23 16:02:37 2019 -0600
+
+    added unfinished turn error message
+
+commit a67bcfcd73471b3cc5deea3ee3030f042c7432f6
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 23 15:56:19 2019 -0600
+
+    Computers correctly handle unseen cards
+
+commit 81553a724842c4c209ab722681718e5491111f46
+Merge: 9c12917 d4d3de8
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 23 15:41:22 2019 -0600
+
+    Merge branch 'C21A' of https://github.com/abrookes-1/clue into C21A
+
+commit 9c1291710ea4555fdf8d4a376c543b47142027b8
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 23 15:41:07 2019 -0600
+
+    Added method to update unseen cards
+
+commit d4d3de8a1eddf7ff40c6a7d72049a6327a4a2580
+Merge: 80d5a9b ea86d92
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 23 15:41:04 2019 -0600
+
+    Merge branch 'C21A' of https://github.com/abrookes-1/clue into C21A
+
+commit 80d5a9bba3cbb59b525fe5b6f911ff93b1be3dde
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 23 15:40:56 2019 -0600
+
+    Update GUI_clue.java
+
+commit ea86d92ee57f12202bfef463cf96bbe4a80b4354
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 23 15:32:45 2019 -0600
+
+    Fixed Computer Suggestions
+
+commit 0028edd8d6ae2431338d5efc2c36a1f0fe34fb0e
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 23 15:21:13 2019 -0600
+
+    Update ComputerPlayer.java
+
+commit 2fb484cb3c6d6f6827381547194db49bb047e746
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 23 15:09:00 2019 -0600
+
+    Update ComputerPlayer.java
+
+commit db3d449c8d428172071d3cab966e6735fdbc4acb
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 23 15:05:41 2019 -0600
+
+    added print debugging (yay)
+
+commit d9357bc71beeaabf0f37d5958c6e12f97b89c3f3
+Merge: 79e930b 3c91ecd
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 23 14:50:04 2019 -0600
+
+    Merge branch 'C21A' of https://github.com/abrookes-1/clue into C21A
+
+commit 79e930b2b7be16a30003bc066a37981b5a97c737
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 23 14:49:15 2019 -0600
+
+    Update GUI_clue.java
+
+commit 3c91ecdd1515129e70a2b3a04f0cb366fd31cb56
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 23 14:49:13 2019 -0600
+
+    Small Fixes
+
+commit 4452805ada6065b93de4de51282868186cdb965b
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 23 14:26:22 2019 -0600
+
+    Update GUI_clue.java
+
+commit 144b9d9718ff8d4ac87dedd9f28edff26e982a83
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 23 14:20:50 2019 -0600
+
+    update handlesug
+
+commit 0c25c3d6486258ce75855cefb76dcac3c9d61dc2
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 23 14:16:56 2019 -0600
+
+    Update Board.java
+
+commit 7b852ed54418873a29bd30e98da30b12f586abb0
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Tue Apr 23 14:16:12 2019 -0600
+
+    Update GUI_clue.java
+
+commit 29e18515c882e1cb6d5dfd3645e4a442b1cf10c1
+Merge: 6fc7994 bd63ba6
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 23 14:06:57 2019 -0600
+
+    Merge branch 'C21A' of https://github.com/abrookes-1/clue into C21A
+
+commit 6fc79946ad73b90475395643233979b9d7c8edff
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Tue Apr 23 14:06:47 2019 -0600
+
+    added action listeners to cancel and submit buttons
+
+commit bd63ba6b527783b949c833834d10eab9f9a73679
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Apr 18 16:03:13 2019 -0600
+
+    Suggestion window now displays current room
+
+commit e99605e44905f1dbcbb03b88335fa7dc05dce7a6
+Merge: ddb2525 ba85787
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 18 15:55:28 2019 -0600
+
+    Merge branch 'C21A' of https://github.com/abrookes-1/clue into C21A
+
+commit ddb25250295960d67937abbc9f85aa017043e3d2
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 18 15:55:26 2019 -0600
+
+    added make suggestion dialog box
+
+commit ba85787c05f8964d32cbae1f4a412675ab281f34
+Merge: da9aead 3073fc0
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Apr 18 15:31:57 2019 -0600
+
+    Merge branch 'C21A' of https://github.com/abrookes-1/clue into C21A
+
+commit da9aead0eda276b021b3862c06276c00eef05098
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Apr 18 15:31:51 2019 -0600
+
+    Update GUI_clue.java
+
+commit 3073fc06d9682042ff42a4f36367f467c6d1d0f6
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 18 15:22:07 2019 -0600
+
+    Update Board.java
+
+commit c1d485dd3a8f02df68027122d15ec0b18e7c28ed
+Merge: 69904f7 aa1562b
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 18 15:21:17 2019 -0600
+
+    Merge branch 'C21A' of https://github.com/abrookes-1/clue into C21A
+
+commit 69904f7a2326e88573524791692cfa4ad9427d7f
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 18 15:21:15 2019 -0600
+
+    Update Board.java
+
+commit aa1562b791e690d3b0e3f3af3a4d2399544eaa11
+Merge: 5e989aa ca2828c
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Apr 18 15:12:31 2019 -0600
+
+    Merge branch 'C21A' of https://github.com/abrookes-1/clue into C21A
+
+commit 5e989aad8608dd7b7525b9418472d1ca30b12df4
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Apr 18 15:12:24 2019 -0600
+
+    Update Board.java
+
+commit ca2828cd50e3fd2c3860b375e1179ad10b44660f
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 18 15:04:45 2019 -0600
+
+    Update GUI_clue.java
+
+commit 4478c515eb54eedbbf0c1168dc84fc5e25f42b64
+Merge: 2b016cd 8f346e9
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Apr 18 15:02:26 2019 -0600
+
+    Merge branch 'C21A' of https://github.com/abrookes-1/clue into C21A
+
+commit 2b016cd44ff85e40882e85a9bd959e283bc82ddf
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Apr 18 15:01:41 2019 -0600
+
+    Fixed Det. Notes rooms
+
+commit 8f346e9c8520e338a156dddeb286e5afd1213b71
+Merge: afc9ff4 a5a3e96
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 18 14:55:11 2019 -0600
+
+    Merge branch 'C21A' of https://github.com/abrookes-1/clue into C21A
+
+commit afc9ff4382ad6543af817a6983e04a610cc15fe3
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 18 14:55:02 2019 -0600
+
+    updated getRooms
+
+commit a5a3e96b2606789ad1ac5537d5fd35bc30c75851
+Merge: d377556 f922163
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Apr 18 14:43:41 2019 -0600
+
+    Merge branch 'C21A' of https://github.com/abrookes-1/clue into C21A
+
+commit d377556a484700d111cd1cde00cdb4aef72474ae
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Thu Apr 18 14:43:39 2019 -0600
+
+    clean
+
+commit f922163692cc9fa9ffabb6db59396a3b8772c28d
+Author: Aidan Brookes <aaabrookes@gmail.com>
+Date:   Thu Apr 18 14:43:24 2019 -0600
+
+    updated handleusggestion
+
+commit d48c70ff50a05e92f67953d7ac5b40fdd5d6e756
+Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
+Date:   Wed Apr 17 23:16:40 2019 -0600
+
+    Update logFile.txt
+
 commit 75e3fb7ea30710146a8068d17d0e4d61a53e5ab7
 Author: GiorgioCassata <38116994+GiorgioCassata@users.noreply.github.com>
 Date:   Wed Apr 17 23:15:24 2019 -0600

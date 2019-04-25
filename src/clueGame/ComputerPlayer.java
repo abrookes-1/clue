@@ -5,19 +5,15 @@ import java.util.Random;
 import java.util.Set;
 
 public class ComputerPlayer extends Player{
-	public static final boolean ISHUMAN = false;
 	
+	// Constructor
 	public ComputerPlayer(String character, String color) {
 		super(character, color);
 	}
 	
-	public BoardCell pickLocation(Set<BoardCell> targets) {
-		return null;
-	}
-	
+	// Once enough cards have been seen, will make guesses as accusations
 	@Override
 	public Solution makeAccusation() {
-		// Once enough cards have been seen, will make guesses as accusations
 		if (getUnseenPeople().size() <= 2 && getUnseenWeapons().size() <= 2 && getUnseenRooms().size() <= 2) {
 			Solution finalGuess = createSuggestion();
 			return finalGuess;
@@ -28,6 +24,7 @@ public class ComputerPlayer extends Player{
 		return null;
 	}
 	
+	// Generates an accusation randomly from unseen cards
 	@Override
 	public Solution createAccusation() { 
 		String person = null;
@@ -62,6 +59,7 @@ public class ComputerPlayer extends Player{
 		return sol;
 	}
 	
+	// Generates a suggestion randomly from unsees cards
 	@Override
 	public Solution createSuggestion() { 
 		String person = null;
