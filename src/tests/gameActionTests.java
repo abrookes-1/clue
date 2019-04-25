@@ -24,6 +24,7 @@ public class gameActionTests {
 	public static void setup() {
 		gameBoard.setConfigFiles("ClueMap.csv", "RoomKey.txt", "players.txt", "weapons.txt");
 		gameBoard.initialize();
+		gameBoard.startNextPlayer();
 	}
 	
 //	(10pts) Select a target. Tests include:
@@ -210,7 +211,8 @@ public class gameActionTests {
 		Solution suggestionToHandle = new Solution(gameBoard.getAnswer().person, gameBoard.getAnswer().weapon, gameBoard.getAnswer().room);	
 		
 		// Suggestion no one can disprove returns null
-		assert(null == gameBoard.handleSuggestion(suggestionToHandle, null));
+		gameBoard.handleSuggestion(suggestionToHandle, gameBoard.getHuman());
+		assert(gameBoard.getResponse().equals("no new clue"));
 		
 		for (Player pla:gameBoard.getPlayerInstances()) {
 			// Suggestion only accusing player can disprove returns null
@@ -221,12 +223,14 @@ public class gameActionTests {
 						break;
 					}
 				}
-				assert(null == gameBoard.handleSuggestion(suggestionToHandle, pla));
+				gameBoard.handleSuggestion(suggestionToHandle, pla);
+				assert(gameBoard.getResponse().equals("no new clue"));
 				break;
 			} 
 		}
 		// Suggestion only human can disprove returns answer (i.e., card that disproves suggestion)
-		assert(suggestionToHandle.room == gameBoard.handleSuggestion(suggestionToHandle, null).getCardName());
+		gameBoard.handleSuggestion(suggestionToHandle, gameBoard.getHuman());
+		assert(gameBoard.getResponse().equals(suggestionToHandle.room) || gameBoard.getResponse().equals(suggestionToHandle.weapon ) || gameBoard.getResponse().equals(suggestionToHandle.person));
 			
 		for (Player pla:gameBoard.getCompPlayerInstances()) {
 			for (Card card:pla.getHand()) {

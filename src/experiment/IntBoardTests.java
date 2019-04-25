@@ -1,4 +1,4 @@
-package tests;
+package experiment;
 
 import java.util.*;
 import java.io.*;
