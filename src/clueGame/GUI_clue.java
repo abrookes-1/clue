@@ -75,11 +75,14 @@ public class GUI_clue extends JFrame{
 	private void displayUnfinishedTurn() {
 		JOptionPane.showMessageDialog(this, "Please finish your turn", "Turn Unfinished", JOptionPane.INFORMATION_MESSAGE);
 	}
-	private void displayWin(Solution accusation) {
+	private void displayPlayerWin(Solution accusation) {
 		JOptionPane.showMessageDialog(this, accusation.toString() + "\n" + "Is Correct\n" + "\n" + "You Win", "Congratulations", JOptionPane.INFORMATION_MESSAGE);
 	}
-	private void displayLoss(Solution accusation) {
-		JOptionPane.showMessageDialog(this, accusation.toString() + "\n" + "Is Incorrect\n" + "\n" + "You Lose", "Incorrect Accusation", JOptionPane.INFORMATION_MESSAGE);
+	private void displayComputerWin(Solution accusation, String character) {
+		JOptionPane.showMessageDialog(this, character + " Guessed\n" + accusation.toString() + "\n" + "Correctly" + "\n" + "You Lose", "A Player Has Won", JOptionPane.INFORMATION_MESSAGE);
+	}
+	private void displayWrongAcc(Solution accusation) {
+		JOptionPane.showMessageDialog(this, accusation.toString() + "\n" + "Is Incorrect\n", "Incorrect Accusation", JOptionPane.INFORMATION_MESSAGE);
 	}
 	private void displayNotTurn() {
 		JOptionPane.showMessageDialog(this, "Wait until your turn to make an accusation", "Illegal Action", JOptionPane.INFORMATION_MESSAGE);
@@ -97,6 +100,12 @@ public class GUI_clue extends JFrame{
 			Solution ans = gameBoard.getAnswer();
 			if (gameBoard.isFinished()){
 				gameBoard.startNextPlayer();
+				Solution acc = gameBoard.getCurrentPlayer().makeAccusation();
+				if (acc != null) {
+					if (gameBoard.checkAccusation(acc)) {
+						displayComputerWin(acc, gameBoard.getCurrentPlayer().getCharacter());
+					}
+				}
 				die.setText(Integer.toString(gameBoard.getDie()));
 				whoseTurn.setText(gameBoard.getCurrentPlayer().getCharacter());
 				guessResult.setText(gameBoard.getResponse());
@@ -109,7 +118,7 @@ public class GUI_clue extends JFrame{
 	
 	private class AccusationListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			if (gameBoard.getCurrentPlayer().isHuman) {
+			if (gameBoard.getCurrentPlayer().isHuman && gameBoard.isFinished() != true) {
 				acc.setVisible(true);
 			} else {
 				displayNotTurn();
@@ -164,11 +173,13 @@ public class GUI_clue extends JFrame{
 			Solution sugg = new Solution(personAnswerChoose.getSelectedItem().toString(), weaponAnswerChoose.getSelectedItem().toString(), roomAnswerChoose.getSelectedItem().toString());
 			boolean checkWin = gameBoard.checkAccusation(sugg);
 			if (checkWin) {
-				displayWin(sugg);
+				displayPlayerWin(sugg);
 			} else {
-				displayLoss(sugg);
-				//gameBoard.initialize();
-				//gameBoard.repaint();
+				displayWrongAcc(sugg);
+				// ensure human can't perform any more actions this turn 
+				gameBoard.getTargets().clear();
+				gameBoard.humanFinished(); 
+				repaint();
 			}
 			
 			acc.setVisible(false);

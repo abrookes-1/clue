@@ -15,8 +15,14 @@ public class ComputerPlayer extends Player{
 		return null;
 	}
 	
-	public void makeAccusation() {
+	@Override
+	public Solution makeAccusation() {
 		// if possible, make an accusation, else do nothing
+		if (getUnseenPeople().size() == 1 && getUnseenWeapons().size() == 1 && getUnseenRooms().size() == 1) {
+			Solution finalGuess = createSuggestion();
+			return finalGuess;
+		}
+		return null;
 	}
 	
 	@Override

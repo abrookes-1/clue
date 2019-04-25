@@ -104,6 +104,14 @@ public class Player {
 		unseenPeople.remove(c);
 	}
 	
+	public void removeUnseenWeapon(Card c) {
+		unseenWeapons.remove(c);
+	}
+	
+	public void removeUnseenRoom(Card c) {
+		unseenRooms.remove(c);
+	}
+	
 	//returns all cards which disprove
 	public Set<Card> findCardsDisprove(Solution suggestion){
 		Set<Card> cardsDisp = new HashSet<Card>();
@@ -145,7 +153,9 @@ public class Player {
 		g.drawOval(column*SIZE, row*SIZE, SIZE, SIZE);
 	}
 	
-	
+	public Solution makeAccusation() {
+		return null;
+	}
 	private Color getColor(String color) {
 		
 		//return color;

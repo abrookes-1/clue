@@ -28,6 +28,7 @@ public class Board extends JPanel{
 
 	private Map< BoardCell, Set<BoardCell> > adjacencyMap;
 	private Set<BoardCell> targets;
+	private Iterator<BoardCell> iterTar;
 	private ArrayList<ArrayList<BoardCell>> boardCells;
 	private ArrayList<Integer> startingRows = new ArrayList<Integer>(Arrays.asList(0,6,6,13,15,22));
 	private ArrayList<Integer> startingColumns = new ArrayList<Integer>(Arrays.asList(14,0,24,0,24,16));
@@ -67,6 +68,7 @@ public class Board extends JPanel{
 		this.playerInstances = new HashSet<Player>();
 		this.compPlayerInstances = new HashSet<ComputerPlayer>();
 		iter = playerInstances.iterator();
+		iterTar = targets.iterator();
 	}
 
 	/*  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -112,10 +114,27 @@ public class Board extends JPanel{
 			if (reason == null) continue;
 			if (reason.getType() == CardType.PERSON) {
 				pla.removeUnseenPerson(reason);
+			} else if (reason.getType() == CardType.WEAPON) {
+				pla.removeUnseenWeapon(reason);
+			} else if (reason.getType() == CardType.ROOM) {
+				pla.removeUnseenRoom(reason);
 			}
 		}
 	}
 
+	
+	private BoardCell targetIterate(int times) {
+		BoardCell toMoveTarget = null;
+		iterTar = targets.iterator();
+		for (int i = -1; i < times; ++i) {
+			if (!iterTar.hasNext()) {
+				iterTar = targets.iterator();
+			}
+			toMoveTarget = iterTar.next();
+		}
+		return toMoveTarget;
+	}
+	
 	// Performs logic of iterating turn
 	public boolean startNextPlayer () {
 		nextPlayer();
@@ -129,9 +148,13 @@ public class Board extends JPanel{
 				humanPlayerInRoom = false;
 			}
 			repaint(); // ensures targets are drawn
+		} else if (currentPlayer == null) {
+			//nothing
 		} else {
-			currentPlayer.setRow(targets.iterator().next().getRow());
-			currentPlayer.setCol(targets.iterator().next().getColumn());
+			int randomize = new Random().nextInt(targets.size());
+			BoardCell selectedCell = targetIterate(randomize);
+			currentPlayer.setRow(selectedCell.getRow());
+			currentPlayer.setCol(selectedCell.getColumn());
 			if (getCellAt(currentPlayer.getRow(), currentPlayer.getCol()).getInitial() != 'W') {
 				// make suggestion
 				Solution suggestion = currentPlayer.createSuggestion();
@@ -351,13 +374,6 @@ public class Board extends JPanel{
 
 	// checks if accusation matches answer and moves accused player to room
 	public boolean checkAccusation(Solution accusation) {
-		for (Player pla: playerInstances) {
-			if (pla.getCharacter().contentEquals(accusation.person)) {
-				pla.setRow(currentPlayer.getRow());
-				pla.setCol(currentPlayer.getCol());
-				repaint();
-			}
-		}
 		if (accusation.person.equals(answer.person)) {
 			if (accusation.weapon.equals(answer.weapon)) {
 				if (accusation.room.equals(answer.room)) {
