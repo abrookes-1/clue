@@ -30,6 +30,10 @@ public class Player {
 		return null;
 	}
 	
+	public Solution createAccusation() {
+		return null;
+	}
+	
 	public void dealCard(Card card) {
 		cards.add(card);
 		if (card.getType() == CardType.PERSON) {

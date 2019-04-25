@@ -79,7 +79,7 @@ public class GUI_clue extends JFrame{
 		JOptionPane.showMessageDialog(this, accusation.toString() + "\n" + "Is Correct\n" + "\n" + "You Win", "Congratulations", JOptionPane.INFORMATION_MESSAGE);
 	}
 	private void displayComputerWin(Solution accusation, String character) {
-		JOptionPane.showMessageDialog(this, character + " Guessed\n" + accusation.toString() + "\n" + "Correctly" + "\n" + "You Lose", "A Player Has Won", JOptionPane.INFORMATION_MESSAGE);
+		JOptionPane.showMessageDialog(this, character + " Guessed\n" + accusation.toString() + "\n" + "\n" + "You Lose", "A Player Has Won", JOptionPane.INFORMATION_MESSAGE);
 	}
 	private void displayWrongAcc(Solution accusation) {
 		JOptionPane.showMessageDialog(this, accusation.toString() + "\n" + "Is Incorrect\n", "Incorrect Accusation", JOptionPane.INFORMATION_MESSAGE);
