@@ -75,11 +75,11 @@ public class GUI_clue extends JFrame{
 	private void displayUnfinishedTurn() {
 		JOptionPane.showMessageDialog(this, "Please finish your turn", "Turn Unfinished", JOptionPane.INFORMATION_MESSAGE);
 	}
-	private void displayWin() {
-		JOptionPane.showMessageDialog(this, "You win", "Congratulations", JOptionPane.INFORMATION_MESSAGE);
+	private void displayWin(Solution accusation) {
+		JOptionPane.showMessageDialog(this, accusation.toString() + "\n" + "Is Correct\n" + "\n" + "You Win", "Congratulations", JOptionPane.INFORMATION_MESSAGE);
 	}
-	private void displayLoss() {
-		JOptionPane.showMessageDialog(this, "You lose", "Incorrect Accusation", JOptionPane.INFORMATION_MESSAGE);
+	private void displayLoss(Solution accusation) {
+		JOptionPane.showMessageDialog(this, accusation.toString() + "\n" + "Is Incorrect\n" + "\n" + "You Lose", "Incorrect Accusation", JOptionPane.INFORMATION_MESSAGE);
 	}
 	private void displayNotTurn() {
 		JOptionPane.showMessageDialog(this, "Wait until your turn to make an accusation", "Illegal Action", JOptionPane.INFORMATION_MESSAGE);
@@ -164,10 +164,9 @@ public class GUI_clue extends JFrame{
 			Solution sugg = new Solution(personAnswerChoose.getSelectedItem().toString(), weaponAnswerChoose.getSelectedItem().toString(), roomAnswerChoose.getSelectedItem().toString());
 			boolean checkWin = gameBoard.checkAccusation(sugg);
 			if (checkWin) {
-				displayWin();
+				displayWin(sugg);
 			} else {
-				displayLoss();
-				//gameBoard.getHuman() = null;
+				displayLoss(sugg);
 				//gameBoard.initialize();
 				//gameBoard.repaint();
 			}
